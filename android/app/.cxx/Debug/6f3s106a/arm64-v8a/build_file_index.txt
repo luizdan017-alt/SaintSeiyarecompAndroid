@@ -1,0 +1,2 @@
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/src/main/cpp/CMakeLists.txt
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/third_party/SDL/CMakeLists.txt

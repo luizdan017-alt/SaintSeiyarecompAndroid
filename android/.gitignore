@@ -1,0 +1,5 @@
+third_party/
+app/src/main/java/org/libsdl/
+app/build/
+.gradle/
+build/

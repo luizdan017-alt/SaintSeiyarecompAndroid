@@ -1,0 +1,7 @@
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/main.dir
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/edit_cache.dir
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/rebuild_cache.dir
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/SDL3-build/CMakeFiles/SDL3-shared.dir
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/SDL3-build/CMakeFiles/SDL_uclibc.dir
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/SDL3-build/CMakeFiles/edit_cache.dir
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/SDL3-build/CMakeFiles/rebuild_cache.dir

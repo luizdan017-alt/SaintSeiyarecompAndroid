@@ -1,0 +1,517 @@
+Determining if the __GLIBC__ exist failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_747f9 && [1/2] Building C object CMakeFiles/cmTC_747f9.dir/CheckSymbolExists.c.o
+FAILED: CMakeFiles/cmTC_747f9.dir/CheckSymbolExists.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot   -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -fPIE -MD -MT CMakeFiles/cmTC_747f9.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_747f9.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_747f9.dir/CheckSymbolExists.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: use of undeclared identifier '__GLIBC__'
+  return ((int*)(&__GLIBC__))[argc];
+                  ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdlib.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef __GLIBC__
+  return ((int*)(&__GLIBC__))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the _i64toa exist failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_673d5 && [1/2] Building C object CMakeFiles/cmTC_673d5.dir/CheckSymbolExists.c.o
+FAILED: CMakeFiles/cmTC_673d5.dir/CheckSymbolExists.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot   -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -fPIE -MD -MT CMakeFiles/cmTC_673d5.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_673d5.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_673d5.dir/CheckSymbolExists.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:26:19: error: use of undeclared identifier '_i64toa'
+  return ((int*)(&_i64toa))[argc];
+                  ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <iconv.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _i64toa
+  return ((int*)(&_i64toa))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the index exist failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c569e && [1/2] Building C object CMakeFiles/cmTC_c569e.dir/CheckSymbolExists.c.o
+FAILED: CMakeFiles/cmTC_c569e.dir/CheckSymbolExists.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot   -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -fPIE -MD -MT CMakeFiles/cmTC_c569e.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_c569e.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_c569e.dir/CheckSymbolExists.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:26:19: error: call to undeclared library function 'index' with type 'char *(const char *, int)'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+  return ((int*)(&index))[argc];
+                  ^
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:26:19: note: include the header <strings.h> or explicitly provide a declaration for 'index'
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <iconv.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef index
+  return ((int*)(&index))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the itoa exist failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_5a053 && [1/2] Building C object CMakeFiles/cmTC_5a053.dir/CheckSymbolExists.c.o
+FAILED: CMakeFiles/cmTC_5a053.dir/CheckSymbolExists.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot   -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -fPIE -MD -MT CMakeFiles/cmTC_5a053.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_5a053.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_5a053.dir/CheckSymbolExists.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:26:19: error: use of undeclared identifier 'itoa'
+  return ((int*)(&itoa))[argc];
+                  ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <iconv.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef itoa
+  return ((int*)(&itoa))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the _ltoa exist failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_028bd && [1/2] Building C object CMakeFiles/cmTC_028bd.dir/CheckSymbolExists.c.o
+FAILED: CMakeFiles/cmTC_028bd.dir/CheckSymbolExists.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot   -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -fPIE -MD -MT CMakeFiles/cmTC_028bd.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_028bd.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_028bd.dir/CheckSymbolExists.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:26:19: error: use of undeclared identifier '_ltoa'
+  return ((int*)(&_ltoa))[argc];
+                  ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <iconv.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _ltoa
+  return ((int*)(&_ltoa))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the rindex exist failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_b4838 && [1/2] Building C object CMakeFiles/cmTC_b4838.dir/CheckSymbolExists.c.o
+FAILED: CMakeFiles/cmTC_b4838.dir/CheckSymbolExists.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot   -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -fPIE -MD -MT CMakeFiles/cmTC_b4838.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_b4838.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_b4838.dir/CheckSymbolExists.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:26:19: error: call to undeclared library function 'rindex' with type 'char *(const char *, int)'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+  return ((int*)(&rindex))[argc];
+                  ^
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:26:19: note: include the header <strings.h> or explicitly provide a declaration for 'rindex'
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <iconv.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef rindex
+  return ((int*)(&rindex))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the sqr exist failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_53c3e && [1/2] Building C object CMakeFiles/cmTC_53c3e.dir/CheckSymbolExists.c.o
+FAILED: CMakeFiles/cmTC_53c3e.dir/CheckSymbolExists.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot   -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -fPIE -MD -MT CMakeFiles/cmTC_53c3e.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_53c3e.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_53c3e.dir/CheckSymbolExists.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:26:19: error: use of undeclared identifier 'sqr'; did you mean 'sqrt'?
+  return ((int*)(&sqr))[argc];
+                  ^~~
+                  sqrt
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/math.h:205:8: note: 'sqrt' declared here
+double sqrt(double __x);
+       ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <iconv.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef sqr
+  return ((int*)(&sqr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the strnstr exist failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e4be2 && [1/2] Building C object CMakeFiles/cmTC_e4be2.dir/CheckSymbolExists.c.o
+FAILED: CMakeFiles/cmTC_e4be2.dir/CheckSymbolExists.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot   -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -fPIE -MD -MT CMakeFiles/cmTC_e4be2.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_e4be2.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_e4be2.dir/CheckSymbolExists.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:26:19: error: use of undeclared identifier 'strnstr'; did you mean 'strstr'?
+  return ((int*)(&strnstr))[argc];
+                  ^~~~~~~
+                  strstr
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/string.h:133:17: note: 'strstr' declared here
+char* _Nullable strstr(const char* _Nonnull __haystack, const char* _Nonnull __needle) __attribute_pure__;
+                ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <float.h>
+#include <iconv.h>
+#include <inttypes.h>
+#include <limits.h>
+#include <malloc.h>
+#include <math.h>
+#include <memory.h>
+#include <signal.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <time.h>
+#include <wchar.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strnstr
+  return ((int*)(&strnstr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C SOURCE FILE Test LIBC_HAS_ISINFF failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_6f0ad && [1/2] Building C object CMakeFiles/cmTC_6f0ad.dir/src.c.o
+FAILED: CMakeFiles/cmTC_6f0ad.dir/src.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DLIBC_HAS_ISINFF  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -Wfloat-conversion -Werror -fPIE -MD -MT CMakeFiles/cmTC_6f0ad.dir/src.c.o -MF CMakeFiles/cmTC_6f0ad.dir/src.c.o.d -o CMakeFiles/cmTC_6f0ad.dir/src.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/src.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/src.c:5:16: error: call to undeclared function 'isinff'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+        return isinff(f);
+               ^
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/src.c:5:16: note: did you mean 'isinf'?
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/math.h:329:6: note: 'isinf' declared here
+int (isinf)(double __x) __attribute_const__ __INTRODUCED_IN(21);
+     ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+      #include <math.h>
+      int main() {
+        float f = 3.14159f;
+        return isinff(f);
+      }
+    
+Determining if the sysctlbyname exist failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_b1427 && [1/2] Building C object CMakeFiles/cmTC_b1427.dir/CheckSymbolExists.c.o
+FAILED: CMakeFiles/cmTC_b1427.dir/CheckSymbolExists.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot   -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -fPIE -MD -MT CMakeFiles/cmTC_b1427.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_b1427.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_b1427.dir/CheckSymbolExists.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:3:10: fatal error: 'sys/sysctl.h' file not found
+#include <sys/sysctl.h>
+         ^~~~~~~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <sys/types.h>
+#include <sys/sysctl.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef sysctlbyname
+  return ((int*)(&sysctlbyname))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the elf_aux_info exist failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_b428d && [1/2] Building C object CMakeFiles/cmTC_b428d.dir/CheckSymbolExists.c.o
+FAILED: CMakeFiles/cmTC_b428d.dir/CheckSymbolExists.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot   -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -fPIE -MD -MT CMakeFiles/cmTC_b428d.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_b428d.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_b428d.dir/CheckSymbolExists.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: use of undeclared identifier 'elf_aux_info'
+  return ((int*)(&elf_aux_info))[argc];
+                  ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <sys/auxv.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef elf_aux_info
+  return ((int*)(&elf_aux_info))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the memfd_create exist failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_4968f && [1/2] Building C object CMakeFiles/cmTC_4968f.dir/CheckSymbolExists.c.o
+FAILED: CMakeFiles/cmTC_4968f.dir/CheckSymbolExists.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot   -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -fPIE -MD -MT CMakeFiles/cmTC_4968f.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_4968f.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_4968f.dir/CheckSymbolExists.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: use of undeclared identifier 'memfd_create'
+  return ((int*)(&memfd_create))[argc];
+                  ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <sys/mman.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef memfd_create
+  return ((int*)(&memfd_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Performing C SOURCE FILE Test ICONV_IN_LIBICONV failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_3b70c && [1/2] Building C object CMakeFiles/cmTC_3b70c.dir/src.c.o
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/src.c:5:32: warning: null passed to a callee that requires a non-null argument [-Wnonnull]
+            return !iconv_open(NULL,NULL);
+                               ^~~~
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/include/stddef.h:89:16: note: expanded from macro 'NULL'
+#  define NULL ((void*)0)
+               ^~~~~~~~~~
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/src.c:5:37: warning: null passed to a callee that requires a non-null argument [-Wnonnull]
+            return !iconv_open(NULL,NULL);
+                                    ^~~~
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/include/stddef.h:89:16: note: expanded from macro 'NULL'
+#  define NULL ((void*)0)
+               ^~~~~~~~~~
+2 warnings generated.
+[2/2] Linking C executable cmTC_3b70c
+FAILED: cmTC_3b70c 
+: && /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--no-undefined-version -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments CMakeFiles/cmTC_3b70c.dir/src.c.o -o cmTC_3b70c  -liconv  -latomic -lm && :
+ld.lld: error: unable to find library -liconv
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+        #include <stddef.h>
+        #include <iconv.h>
+        int main(int argc, char **argv) {
+            return !iconv_open(NULL,NULL);
+        }
+Performing C SOURCE FILE Test HAVE_ARM_MODE failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2f96c && [1/2] Building C object CMakeFiles/cmTC_2f96c.dir/src.c.o
+FAILED: CMakeFiles/cmTC_2f96c.dir/src.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DHAVE_ARM_MODE  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -Werror=unused-command-line-argument -fPIE   -marm -MD -MT CMakeFiles/cmTC_2f96c.dir/src.c.o -MF CMakeFiles/cmTC_2f96c.dir/src.c.o.d -o CMakeFiles/cmTC_2f96c.dir/src.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/src.c
+clang: error: argument unused during compilation: '-marm' [-Werror,-Wunused-command-line-argument]
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+int main(void) { return 0; }
+Determining if the include file pthread_np.h exists failed with the following output:
+Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_9f98d && [1/2] Building C object CMakeFiles/cmTC_9f98d.dir/CheckIncludeFile.c.o
+FAILED: CMakeFiles/cmTC_9f98d.dir/CheckIncludeFile.c.o 
+/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot   -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -D_GNU_SOURCE=1 -fPIE -MD -MT CMakeFiles/cmTC_9f98d.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_9f98d.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_9f98d.dir/CheckIncludeFile.c.o -c /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'pthread_np.h' file not found
+#include <pthread_np.h>
+         ^~~~~~~~~~~~~~
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+

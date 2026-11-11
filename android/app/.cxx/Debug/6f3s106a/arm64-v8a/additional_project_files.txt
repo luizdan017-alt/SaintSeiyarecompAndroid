@@ -1,0 +1,2 @@
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/SDL3-build/CMakeFiles/SDL3-shared.dir/cmake_pch.h
+/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/SDL3-build/CMakeFiles/SDL3-shared.dir/cmake_pch.hxx
