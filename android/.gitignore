@@ -1,5 +1,6 @@
 third_party/
 app/src/main/java/org/libsdl/
 app/build/
+app/.cxx/
 .gradle/
 build/

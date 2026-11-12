@@ -14,8 +14,8 @@
 #else
 #include <unistd.h>
 #endif
-#ifdef __APPLE__
 #include <errno.h>
+#ifdef __APPLE__
 #include <limits.h>
 #include <mach-o/dyld.h>
 #endif
@@ -136,7 +136,7 @@ void platform_sleep_until(const struct timespec *when) {
             if (SetWaitableTimer(timer, &due, 0, NULL, NULL, FALSE)) WaitForSingleObject(timer, INFINITE);
         } else SwitchToThread();
     }
-#elif defined(__APPLE__)
+#elif defined(__APPLE__) || defined(__ANDROID__)
     /* no absolute clock_nanosleep: sleep for what is left (nanosleep returns early on a signal, so again) */
     for (;;) {
         struct timespec now, left;

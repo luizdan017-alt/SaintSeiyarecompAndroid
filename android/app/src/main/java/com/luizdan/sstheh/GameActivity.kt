@@ -1,8 +1,39 @@
 package com.luizdan.sstheh
 
+import android.net.Uri
+import android.os.Bundle
+import android.os.ParcelFileDescriptor
+import android.os.Process
+import android.system.Os
+import android.util.Log
 import org.libsdl.app.SDLActivity
 
-/** A atividade do jogo: a do SDL3, que carrega libSDL3.so e libmain.so e chama SDL_main. */
+/** O jogo: carrega libSDL3.so e libsstheh.so (o motor) e chama SDL_main. Roda no processo ":game". */
 class GameActivity : SDLActivity() {
-    override fun getLibraries(): Array<String> = arrayOf("SDL3", "main")
+    private var iso: ParcelFileDescriptor? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        try {
+            val f = filesDir.absolutePath
+            Os.setenv("SS_FILES", f, true)
+            Os.setenv("HOME", f, true)
+            Os.setenv("XDG_DATA_HOME", "$f/data", true)
+            val s = intent.getStringExtra("iso")
+            if (s != null) {
+                // a ISO e lida direto do arquivo escolhido, sem copiar: o motor recebe so o numero do descritor
+                iso = contentResolver.openFileDescriptor(Uri.parse(s), "r")
+                Os.setenv("SS_ISO", "fd:${iso!!.fd}", true)
+            }
+        } catch (e: Exception) {
+            Log.e("sstheh", "preparo falhou", e)
+        }
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun getLibraries(): Array<String> = arrayOf("SDL3", "sstheh")
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Process.killProcess(Process.myPid())   // cada partida comeca com o processo limpo
+    }
 }

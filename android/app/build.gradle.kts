@@ -18,7 +18,9 @@ android {
             cmake {
                 arguments += listOf(
                     "-DANDROID_STL=c++_shared",
-                    "-DSDL_DIR=${rootProject.projectDir}/third_party/SDL"
+                    "-DSDL_DIR=${rootProject.projectDir}/third_party/SDL",
+                    "-DSS_ROOT=${rootProject.projectDir}/..",
+                    "-DCMAKE_BUILD_TYPE=Release"
                 )
             }
         }

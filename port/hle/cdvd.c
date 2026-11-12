@@ -40,7 +40,11 @@ static int find_layout(void) {
 }
 
 int cdvd_open(const char *path) {
-    iso = fopen(path, "rb");
+    if (!strncmp(path, "fd:", 3)) {   /* Android: descritor da ISO escolhida; dup para nao fechar o original */
+        extern int dup(int);
+        int d = dup(atoi(path + 3));
+        iso = d >= 0 ? fdopen(d, "rb") : NULL;
+    } else iso = fopen(path, "rb");
     if (!iso) return -1;
     if (find_layout()) { rt_log("cdvd", "%s: no ISO 9660 volume in it", path); fclose(iso); iso = NULL; return -1; }
     rt_log("cdvd", "disc image %s%s", path, stride == SECTOR ? "" : stride == 2448 ? " (2448-byte sectors)" : " (raw sectors)");
