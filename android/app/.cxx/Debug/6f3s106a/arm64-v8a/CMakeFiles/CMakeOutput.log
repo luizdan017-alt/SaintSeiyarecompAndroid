@@ -1,5 +1,5 @@
 The target system is: Android - 1 - aarch64
-The host system is: Linux - 7.0.0-1017-azure - x86_64
+The host system is: Linux - 7.0.0-1019-azure - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler: /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang 
 Build flags: -g;-DANDROID;-fdata-sections;-ffunction-sections;-funwind-tables;-fstack-protector-strong;-no-canonical-prefixes;-D_FORTIFY_SOURCE=2;-Wformat;-Werror=format-security;
@@ -16,13 +16,13 @@ The C compiler identification is Clang, found in "/home/runner/work/SaintSeiyare
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_80017 && [1/2] Building C object CMakeFiles/cmTC_80017.dir/CMakeCCompilerABI.c.o
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_dd921 && [1/2] Building C object CMakeFiles/cmTC_dd921.dir/CMakeCCompilerABI.c.o
 Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362)
 Target: aarch64-none-linux-android29
 Thread model: posix
 InstalledDir: /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin
  (in-process)
- "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang" -cc1 -triple aarch64-none-linux-android29 -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=non-leaf -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu generic -target-feature +neon -target-feature +v8a -target-feature +fix-cortex-a53-835769 -target-abi aapcs -mllvm -treat-scalable-fixed-error-as-warning -debug-info-kind=constructor -dwarf-version=4 -debugger-tuning=gdb -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -resource-dir /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17 -dependency-file CMakeFiles/cmTC_80017.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_80017.dir/CMakeCCompilerABI.c.o -sys-header-deps -D ANDROID -D _FORTIFY_SOURCE=2 -isysroot /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/include -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -Wformat -fdebug-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fno-signed-char -fgnuc-version=4.2.1 -target-feature +outline-atomics -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_80017.dir/CMakeCCompilerABI.c.o -x c /usr/local/lib/android/sdk/cmake/3.22.1/share/cmake-3.22/Modules/CMakeCCompilerABI.c
+ "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang" -cc1 -triple aarch64-none-linux-android29 -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=non-leaf -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu generic -target-feature +neon -target-feature +v8a -target-feature +fix-cortex-a53-835769 -target-abi aapcs -mllvm -treat-scalable-fixed-error-as-warning -debug-info-kind=constructor -dwarf-version=4 -debugger-tuning=gdb -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -resource-dir /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17 -dependency-file CMakeFiles/cmTC_dd921.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_dd921.dir/CMakeCCompilerABI.c.o -sys-header-deps -D ANDROID -D _FORTIFY_SOURCE=2 -isysroot /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/include -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -Wformat -fdebug-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fno-signed-char -fgnuc-version=4.2.1 -target-feature +outline-atomics -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_dd921.dir/CMakeCCompilerABI.c.o -x c /usr/local/lib/android/sdk/cmake/3.22.1/share/cmake-3.22/Modules/CMakeCCompilerABI.c
 clang -cc1 version 17.0.2 based upon LLVM 17.0.2 default target x86_64-unknown-linux-gnu
 ignoring nonexistent directory "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include"
 ignoring nonexistent directory "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/include"
@@ -32,12 +32,12 @@ ignoring nonexistent directory "/usr/local/lib/android/sdk/ndk/26.1.10909125/too
  /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android
  /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
 End of search list.
-[2/2] Linking C executable cmTC_80017
+[2/2] Linking C executable cmTC_dd921
 Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362)
 Target: aarch64-none-linux-android29
 Thread model: posix
 InstalledDir: /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin
- "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld" --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -pie -EL --fix-cortex-a53-843419 -z now -z relro -z max-page-size=4096 --hash-style=gnu --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_80017 /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib --build-id=sha1 --no-rosegment --no-undefined-version --fatal-warnings --no-undefined CMakeFiles/cmTC_80017.dir/CMakeCCompilerABI.c.o /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtend_android.o
+ "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld" --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -pie -EL --fix-cortex-a53-843419 -z now -z relro -z max-page-size=4096 --hash-style=gnu --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_dd921 /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib --build-id=sha1 --no-rosegment --no-undefined-version --fatal-warnings --no-undefined CMakeFiles/cmTC_dd921.dir/CMakeCCompilerABI.c.o /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtend_android.o
 
 
 
@@ -58,13 +58,13 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld\.lld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_80017 && [1/2] Building C object CMakeFiles/cmTC_80017.dir/CMakeCCompilerABI.c.o]
+  ignore line: [Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_dd921 && [1/2] Building C object CMakeFiles/cmTC_dd921.dir/CMakeCCompilerABI.c.o]
   ignore line: [Android (10552028  +pgo  +bolt  +lto  -mlgo  based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362)]
   ignore line: [Target: aarch64-none-linux-android29]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin]
   ignore line: [ (in-process)]
-  ignore line: [ "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang" -cc1 -triple aarch64-none-linux-android29 -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=non-leaf -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu generic -target-feature +neon -target-feature +v8a -target-feature +fix-cortex-a53-835769 -target-abi aapcs -mllvm -treat-scalable-fixed-error-as-warning -debug-info-kind=constructor -dwarf-version=4 -debugger-tuning=gdb -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -resource-dir /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17 -dependency-file CMakeFiles/cmTC_80017.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_80017.dir/CMakeCCompilerABI.c.o -sys-header-deps -D ANDROID -D _FORTIFY_SOURCE=2 -isysroot /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/include -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -Wformat -fdebug-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fno-signed-char -fgnuc-version=4.2.1 -target-feature +outline-atomics -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_80017.dir/CMakeCCompilerABI.c.o -x c /usr/local/lib/android/sdk/cmake/3.22.1/share/cmake-3.22/Modules/CMakeCCompilerABI.c]
+  ignore line: [ "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang" -cc1 -triple aarch64-none-linux-android29 -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=non-leaf -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu generic -target-feature +neon -target-feature +v8a -target-feature +fix-cortex-a53-835769 -target-abi aapcs -mllvm -treat-scalable-fixed-error-as-warning -debug-info-kind=constructor -dwarf-version=4 -debugger-tuning=gdb -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -resource-dir /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17 -dependency-file CMakeFiles/cmTC_dd921.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_dd921.dir/CMakeCCompilerABI.c.o -sys-header-deps -D ANDROID -D _FORTIFY_SOURCE=2 -isysroot /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/include -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -Wformat -fdebug-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fno-signed-char -fgnuc-version=4.2.1 -target-feature +outline-atomics -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_dd921.dir/CMakeCCompilerABI.c.o -x c /usr/local/lib/android/sdk/cmake/3.22.1/share/cmake-3.22/Modules/CMakeCCompilerABI.c]
   ignore line: [clang -cc1 version 17.0.2 based upon LLVM 17.0.2 default target x86_64-unknown-linux-gnu]
   ignore line: [ignoring nonexistent directory "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include"]
   ignore line: [ignoring nonexistent directory "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/include"]
@@ -74,12 +74,12 @@ Parsed C implicit link information from above output:
   ignore line: [ /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android]
   ignore line: [ /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include]
   ignore line: [End of search list.]
-  ignore line: [[2/2] Linking C executable cmTC_80017]
+  ignore line: [[2/2] Linking C executable cmTC_dd921]
   ignore line: [Android (10552028  +pgo  +bolt  +lto  -mlgo  based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362)]
   ignore line: [Target: aarch64-none-linux-android29]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin]
-  link line: [ "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld" --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -pie -EL --fix-cortex-a53-843419 -z now -z relro -z max-page-size=4096 --hash-style=gnu --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_80017 /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib --build-id=sha1 --no-rosegment --no-undefined-version --fatal-warnings --no-undefined CMakeFiles/cmTC_80017.dir/CMakeCCompilerABI.c.o /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtend_android.o]
+  link line: [ "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld" --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -pie -EL --fix-cortex-a53-843419 -z now -z relro -z max-page-size=4096 --hash-style=gnu --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_dd921 /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib --build-id=sha1 --no-rosegment --no-undefined-version --fatal-warnings --no-undefined CMakeFiles/cmTC_dd921.dir/CMakeCCompilerABI.c.o /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtend_android.o]
     arg [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld] ==> ignore
     arg [--sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot] ==> ignore
     arg [-pie] ==> ignore
@@ -95,7 +95,7 @@ Parsed C implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/system/bin/linker64] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_80017] ==> ignore
+    arg [cmTC_dd921] ==> ignore
     arg [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o] ==> obj [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o]
     arg [-L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64] ==> dir [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64]
     arg [-L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29] ==> dir [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29]
@@ -106,7 +106,7 @@ Parsed C implicit link information from above output:
     arg [--no-undefined-version] ==> ignore
     arg [--fatal-warnings] ==> ignore
     arg [--no-undefined] ==> ignore
-    arg [CMakeFiles/cmTC_80017.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_dd921.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a] ==> lib [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a]
     arg [-l:libunwind.a] ==> lib [-l:libunwind.a]
     arg [-ldl] ==> lib [dl]
@@ -130,8 +130,8 @@ Parsed C implicit link information from above output:
 Performing C SOURCE FILE Test HAVE_GCC_WALL succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_409dc && [1/2] Building C object CMakeFiles/cmTC_409dc.dir/src.c.o
-[2/2] Linking C executable cmTC_409dc
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_59f56 && [1/2] Building C object CMakeFiles/cmTC_59f56.dir/src.c.o
+[2/2] Linking C executable cmTC_59f56
 
 
 Source file was:
@@ -139,8 +139,8 @@ int main(void) { return 0; }
 Performing C SOURCE FILE Test HAVE_GCC_WUNDEF succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_ba5a6 && [1/2] Building C object CMakeFiles/cmTC_ba5a6.dir/src.c.o
-[2/2] Linking C executable cmTC_ba5a6
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d9b55 && [1/2] Building C object CMakeFiles/cmTC_d9b55.dir/src.c.o
+[2/2] Linking C executable cmTC_d9b55
 
 
 Source file was:
@@ -148,8 +148,8 @@ int main(void) { return 0; }
 Performing C SOURCE FILE Test HAVE_GCC_WFLOAT_CONVERSION succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_24051 && [1/2] Building C object CMakeFiles/cmTC_24051.dir/src.c.o
-[2/2] Linking C executable cmTC_24051
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_44f17 && [1/2] Building C object CMakeFiles/cmTC_44f17.dir/src.c.o
+[2/2] Linking C executable cmTC_44f17
 
 
 Source file was:
@@ -157,8 +157,8 @@ int main(void) { return 0; }
 Performing C SOURCE FILE Test HAVE_GCC_NO_STRICT_ALIASING succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_ca3e1 && [1/2] Building C object CMakeFiles/cmTC_ca3e1.dir/src.c.o
-[2/2] Linking C executable cmTC_ca3e1
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_30006 && [1/2] Building C object CMakeFiles/cmTC_30006.dir/src.c.o
+[2/2] Linking C executable cmTC_30006
 
 
 Source file was:
@@ -166,8 +166,8 @@ int main(void) { return 0; }
 Performing C SOURCE FILE Test HAVE_GCC_WDOCUMENTATION succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_1fc3c && [1/2] Building C object CMakeFiles/cmTC_1fc3c.dir/src.c.o
-[2/2] Linking C executable cmTC_1fc3c
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_8c0cc && [1/2] Building C object CMakeFiles/cmTC_8c0cc.dir/src.c.o
+[2/2] Linking C executable cmTC_8c0cc
 
 
 Source file was:
@@ -175,8 +175,8 @@ int main(void) { return 0; }
 Performing C SOURCE FILE Test HAVE_GCC_WDOCUMENTATION_UNKNOWN_COMMAND succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_490d8 && [1/2] Building C object CMakeFiles/cmTC_490d8.dir/src.c.o
-[2/2] Linking C executable cmTC_490d8
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0f742 && [1/2] Building C object CMakeFiles/cmTC_0f742.dir/src.c.o
+[2/2] Linking C executable cmTC_0f742
 
 
 Source file was:
@@ -184,8 +184,8 @@ int main(void) { return 0; }
 Performing C SOURCE FILE Test HAVE_GCC_COMMENT_BLOCK_COMMANDS succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_4ad93 && [1/2] Building C object CMakeFiles/cmTC_4ad93.dir/src.c.o
-[2/2] Linking C executable cmTC_4ad93
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_fe8bf && [1/2] Building C object CMakeFiles/cmTC_fe8bf.dir/src.c.o
+[2/2] Linking C executable cmTC_fe8bf
 
 
 Source file was:
@@ -193,8 +193,8 @@ int main(void) { return 0; }
 Performing C SOURCE FILE Test HAVE_GCC_WSHADOW succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_056a8 && [1/2] Building C object CMakeFiles/cmTC_056a8.dir/src.c.o
-[2/2] Linking C executable cmTC_056a8
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_1919f && [1/2] Building C object CMakeFiles/cmTC_1919f.dir/src.c.o
+[2/2] Linking C executable cmTC_1919f
 
 
 Source file was:
@@ -202,8 +202,8 @@ int main(void) { return 0; }
 Performing C SOURCE FILE Test HAVE_GCC_WUNUSED_LOCAL_TYPEDEFS succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0e175 && [1/2] Building C object CMakeFiles/cmTC_0e175.dir/src.c.o
-[2/2] Linking C executable cmTC_0e175
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_a5204 && [1/2] Building C object CMakeFiles/cmTC_a5204.dir/src.c.o
+[2/2] Linking C executable cmTC_a5204
 
 
 Source file was:
@@ -211,8 +211,8 @@ int main(void) { return 0; }
 Performing C SOURCE FILE Test HAVE_GCC_WIMPLICIT_FALLTHROUGH succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_a6623 && [1/2] Building C object CMakeFiles/cmTC_a6623.dir/src.c.o
-[2/2] Linking C executable cmTC_a6623
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_b924b && [1/2] Building C object CMakeFiles/cmTC_b924b.dir/src.c.o
+[2/2] Linking C executable cmTC_b924b
 
 
 Source file was:
@@ -220,8 +220,8 @@ int main(void) { return 0; }
 Performing C SOURCE FILE Test COMPILER_SUPPORTS_FCOLOR_DIAGNOSTICS succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_ca76f && [1/2] Building C object CMakeFiles/cmTC_ca76f.dir/src.c.o
-[2/2] Linking C executable cmTC_ca76f
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_6ea8c && [1/2] Building C object CMakeFiles/cmTC_6ea8c.dir/src.c.o
+[2/2] Linking C executable cmTC_6ea8c
 
 
 Source file was:
@@ -229,8 +229,8 @@ int main(void) { return 0; }
 Performing C SOURCE FILE Test LINKER_SUPPORTS_VERSION_SCRIPT succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_26428 && [1/2] Building C object CMakeFiles/cmTC_26428.dir/src.c.o
-[2/2] Linking C executable cmTC_26428
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_117ce && [1/2] Building C object CMakeFiles/cmTC_117ce.dir/src.c.o
+[2/2] Linking C executable cmTC_117ce
 
 
 Source file was:
@@ -238,8 +238,8 @@ int func(void) {return 0;} int main(int argc,char*argv[]){(void)argc;(void)argv;
 Performing C SOURCE FILE Test COMPILER_SUPPORTS_GCC_ATOMICS succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_a13c0 && [1/2] Building C object CMakeFiles/cmTC_a13c0.dir/src.c.o
-[2/2] Linking C executable cmTC_a13c0
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e7ece && [1/2] Building C object CMakeFiles/cmTC_e7ece.dir/src.c.o
+[2/2] Linking C executable cmTC_e7ece
 
 
 Source file was:
@@ -255,8 +255,8 @@ int main(int argc, char **argv) {
 Performing C SOURCE FILE Test HAVE_GCC_FVISIBILITY succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_b0758 && [1/2] Building C object CMakeFiles/cmTC_b0758.dir/src.c.o
-[2/2] Linking C executable cmTC_b0758
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_8daa4 && [1/2] Building C object CMakeFiles/cmTC_8daa4.dir/src.c.o
+[2/2] Linking C executable cmTC_8daa4
 
 
 Source file was:
@@ -272,8 +272,8 @@ Source file was:
 Performing C SOURCE FILE Test LINKER_SUPPORTS_WL_NO_UNDEFINED succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_fe86d && [1/2] Building C object CMakeFiles/cmTC_fe86d.dir/src.c.o
-[2/2] Linking C executable cmTC_fe86d
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_4e7ef && [1/2] Building C object CMakeFiles/cmTC_4e7ef.dir/src.c.o
+[2/2] Linking C executable cmTC_4e7ef
 
 
 Source file was:
@@ -281,8 +281,8 @@ int main() { return 0; }
 Performing C SOURCE FILE Test COMPILER_SUPPORTS_ARMNEON succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_6acdd && [1/2] Building C object CMakeFiles/cmTC_6acdd.dir/src.c.o
-[2/2] Linking C executable cmTC_6acdd
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_21e04 && [1/2] Building C object CMakeFiles/cmTC_21e04.dir/src.c.o
+[2/2] Linking C executable cmTC_21e04
 
 
 Source file was:
@@ -317,167 +317,167 @@ Source file was:
 Determining if the include file alloca.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_83d7d && [1/2] Building C object CMakeFiles/cmTC_83d7d.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_83d7d
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_524df && [1/2] Building C object CMakeFiles/cmTC_524df.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_524df
 
 
 
 Determining if the include file float.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2e254 && [1/2] Building C object CMakeFiles/cmTC_2e254.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_2e254
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_5709c && [1/2] Building C object CMakeFiles/cmTC_5709c.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_5709c
 
 
 
 Determining if the include file iconv.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_ebe0a && [1/2] Building C object CMakeFiles/cmTC_ebe0a.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_ebe0a
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f8c82 && [1/2] Building C object CMakeFiles/cmTC_f8c82.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_f8c82
 
 
 
 Determining if the include file inttypes.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_07830 && [1/2] Building C object CMakeFiles/cmTC_07830.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_07830
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_68ac6 && [1/2] Building C object CMakeFiles/cmTC_68ac6.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_68ac6
 
 
 
 Determining if the include file limits.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d2116 && [1/2] Building C object CMakeFiles/cmTC_d2116.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_d2116
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e1d65 && [1/2] Building C object CMakeFiles/cmTC_e1d65.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_e1d65
 
 
 
 Determining if the include file malloc.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_38aaa && [1/2] Building C object CMakeFiles/cmTC_38aaa.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_38aaa
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c0bd7 && [1/2] Building C object CMakeFiles/cmTC_c0bd7.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_c0bd7
 
 
 
 Determining if the include file math.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_4113a && [1/2] Building C object CMakeFiles/cmTC_4113a.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_4113a
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_1d964 && [1/2] Building C object CMakeFiles/cmTC_1d964.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_1d964
 
 
 
 Determining if the include file memory.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c022d && [1/2] Building C object CMakeFiles/cmTC_c022d.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_c022d
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d0aac && [1/2] Building C object CMakeFiles/cmTC_d0aac.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_d0aac
 
 
 
 Determining if the include file signal.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_6a827 && [1/2] Building C object CMakeFiles/cmTC_6a827.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_6a827
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_bdc27 && [1/2] Building C object CMakeFiles/cmTC_bdc27.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_bdc27
 
 
 
 Determining if the include file stdarg.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_3e438 && [1/2] Building C object CMakeFiles/cmTC_3e438.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_3e438
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_dc92a && [1/2] Building C object CMakeFiles/cmTC_dc92a.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_dc92a
 
 
 
 Determining if the include file stdbool.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_fe82d && [1/2] Building C object CMakeFiles/cmTC_fe82d.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_fe82d
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_8e416 && [1/2] Building C object CMakeFiles/cmTC_8e416.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_8e416
 
 
 
 Determining if the include file stddef.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7db57 && [1/2] Building C object CMakeFiles/cmTC_7db57.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_7db57
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_53d18 && [1/2] Building C object CMakeFiles/cmTC_53d18.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_53d18
 
 
 
 Determining if the include file stdint.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e36db && [1/2] Building C object CMakeFiles/cmTC_e36db.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_e36db
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_ad112 && [1/2] Building C object CMakeFiles/cmTC_ad112.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_ad112
 
 
 
 Determining if the include file stdio.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_afb27 && [1/2] Building C object CMakeFiles/cmTC_afb27.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_afb27
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_6ed2c && [1/2] Building C object CMakeFiles/cmTC_6ed2c.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_6ed2c
 
 
 
 Determining if the include file stdlib.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_5d08c && [1/2] Building C object CMakeFiles/cmTC_5d08c.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_5d08c
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c712a && [1/2] Building C object CMakeFiles/cmTC_c712a.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_c712a
 
 
 
 Determining if the include file string.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_4623a && [1/2] Building C object CMakeFiles/cmTC_4623a.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_4623a
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e1163 && [1/2] Building C object CMakeFiles/cmTC_e1163.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_e1163
 
 
 
 Determining if the include file strings.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d499c && [1/2] Building C object CMakeFiles/cmTC_d499c.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_d499c
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0cf17 && [1/2] Building C object CMakeFiles/cmTC_0cf17.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_0cf17
 
 
 
 Determining if the include file sys/types.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_215b4 && [1/2] Building C object CMakeFiles/cmTC_215b4.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_215b4
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_bf29c && [1/2] Building C object CMakeFiles/cmTC_bf29c.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_bf29c
 
 
 
 Determining if the include file time.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_5dcc3 && [1/2] Building C object CMakeFiles/cmTC_5dcc3.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_5dcc3
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d6a7f && [1/2] Building C object CMakeFiles/cmTC_d6a7f.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_d6a7f
 
 
 
 Determining if the include file wchar.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d1b6f && [1/2] Building C object CMakeFiles/cmTC_d1b6f.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_d1b6f
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_17684 && [1/2] Building C object CMakeFiles/cmTC_17684.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_17684
 
 
 
 Determining if the function pow exists in the m passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_9a5a2 && [1/2] Building C object CMakeFiles/cmTC_9a5a2.dir/CheckFunctionExists.c.o
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_30219 && [1/2] Building C object CMakeFiles/cmTC_30219.dir/CheckFunctionExists.c.o
 /usr/local/lib/android/sdk/cmake/3.22.1/share/cmake-3.22/Modules/CheckFunctionExists.c:7:3: warning: incompatible redeclaration of library function 'pow' [-Wincompatible-library-redeclaration]
   CHECK_FUNCTION_EXISTS(void);
   ^
@@ -489,15 +489,15 @@ Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_9a5a
 #define CHECK_FUNCTION_EXISTS pow
                               ^
 1 warning generated.
-[2/2] Linking C executable cmTC_9a5a2
+[2/2] Linking C executable cmTC_30219
 
 
 
 Determining if the abs exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_bb794 && [1/2] Building C object CMakeFiles/cmTC_bb794.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_bb794
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7c9f9 && [1/2] Building C object CMakeFiles/cmTC_7c9f9.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_7c9f9
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -535,8 +535,8 @@ int main(int argc, char** argv)
 Determining if the acos exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_90758 && [1/2] Building C object CMakeFiles/cmTC_90758.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_90758
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_98a81 && [1/2] Building C object CMakeFiles/cmTC_98a81.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_98a81
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -574,8 +574,8 @@ int main(int argc, char** argv)
 Determining if the acosf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_eabf0 && [1/2] Building C object CMakeFiles/cmTC_eabf0.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_eabf0
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_4d863 && [1/2] Building C object CMakeFiles/cmTC_4d863.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_4d863
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -613,8 +613,8 @@ int main(int argc, char** argv)
 Determining if the asin exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_952b5 && [1/2] Building C object CMakeFiles/cmTC_952b5.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_952b5
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_8fcef && [1/2] Building C object CMakeFiles/cmTC_8fcef.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_8fcef
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -652,8 +652,8 @@ int main(int argc, char** argv)
 Determining if the asinf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_16a0a && [1/2] Building C object CMakeFiles/cmTC_16a0a.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_16a0a
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_9d3a3 && [1/2] Building C object CMakeFiles/cmTC_9d3a3.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_9d3a3
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -691,8 +691,8 @@ int main(int argc, char** argv)
 Determining if the atan exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_5eab2 && [1/2] Building C object CMakeFiles/cmTC_5eab2.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_5eab2
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_bca1b && [1/2] Building C object CMakeFiles/cmTC_bca1b.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_bca1b
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -730,8 +730,8 @@ int main(int argc, char** argv)
 Determining if the atan2 exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_29d40 && [1/2] Building C object CMakeFiles/cmTC_29d40.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_29d40
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2f9dd && [1/2] Building C object CMakeFiles/cmTC_2f9dd.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2f9dd
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -769,8 +769,8 @@ int main(int argc, char** argv)
 Determining if the atan2f exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_4c4db && [1/2] Building C object CMakeFiles/cmTC_4c4db.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_4c4db
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_48af1 && [1/2] Building C object CMakeFiles/cmTC_48af1.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_48af1
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -808,8 +808,8 @@ int main(int argc, char** argv)
 Determining if the atanf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e75e2 && [1/2] Building C object CMakeFiles/cmTC_e75e2.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_e75e2
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0cb1b && [1/2] Building C object CMakeFiles/cmTC_0cb1b.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_0cb1b
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -847,8 +847,8 @@ int main(int argc, char** argv)
 Determining if the atof exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_667b5 && [1/2] Building C object CMakeFiles/cmTC_667b5.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_667b5
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_ad155 && [1/2] Building C object CMakeFiles/cmTC_ad155.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_ad155
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -886,8 +886,8 @@ int main(int argc, char** argv)
 Determining if the atoi exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_547f5 && [1/2] Building C object CMakeFiles/cmTC_547f5.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_547f5
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_4f996 && [1/2] Building C object CMakeFiles/cmTC_4f996.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_4f996
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -925,8 +925,8 @@ int main(int argc, char** argv)
 Determining if the bcopy exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_ace87 && [1/2] Building C object CMakeFiles/cmTC_ace87.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_ace87
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c0408 && [1/2] Building C object CMakeFiles/cmTC_c0408.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_c0408
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -964,8 +964,8 @@ int main(int argc, char** argv)
 Determining if the ceil exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_42cbc && [1/2] Building C object CMakeFiles/cmTC_42cbc.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_42cbc
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_4601b && [1/2] Building C object CMakeFiles/cmTC_4601b.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_4601b
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1003,8 +1003,8 @@ int main(int argc, char** argv)
 Determining if the ceilf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e14cf && [1/2] Building C object CMakeFiles/cmTC_e14cf.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_e14cf
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f4b05 && [1/2] Building C object CMakeFiles/cmTC_f4b05.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_f4b05
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1042,8 +1042,8 @@ int main(int argc, char** argv)
 Determining if the copysign exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_61f0c && [1/2] Building C object CMakeFiles/cmTC_61f0c.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_61f0c
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_9e38e && [1/2] Building C object CMakeFiles/cmTC_9e38e.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_9e38e
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1081,8 +1081,8 @@ int main(int argc, char** argv)
 Determining if the copysignf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_cfbda && [1/2] Building C object CMakeFiles/cmTC_cfbda.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_cfbda
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f7ae6 && [1/2] Building C object CMakeFiles/cmTC_f7ae6.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_f7ae6
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1120,8 +1120,8 @@ int main(int argc, char** argv)
 Determining if the cos exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0e9bd && [1/2] Building C object CMakeFiles/cmTC_0e9bd.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_0e9bd
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_85d27 && [1/2] Building C object CMakeFiles/cmTC_85d27.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_85d27
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1159,8 +1159,8 @@ int main(int argc, char** argv)
 Determining if the cosf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_28907 && [1/2] Building C object CMakeFiles/cmTC_28907.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_28907
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7b62d && [1/2] Building C object CMakeFiles/cmTC_7b62d.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_7b62d
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1198,8 +1198,8 @@ int main(int argc, char** argv)
 Determining if the _Exit exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_9136e && [1/2] Building C object CMakeFiles/cmTC_9136e.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_9136e
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2de77 && [1/2] Building C object CMakeFiles/cmTC_2de77.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2de77
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1237,8 +1237,8 @@ int main(int argc, char** argv)
 Determining if the exp exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_3a7a2 && [1/2] Building C object CMakeFiles/cmTC_3a7a2.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_3a7a2
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e39b6 && [1/2] Building C object CMakeFiles/cmTC_e39b6.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_e39b6
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1276,8 +1276,8 @@ int main(int argc, char** argv)
 Determining if the expf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_43749 && [1/2] Building C object CMakeFiles/cmTC_43749.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_43749
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d2c94 && [1/2] Building C object CMakeFiles/cmTC_d2c94.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_d2c94
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1315,8 +1315,8 @@ int main(int argc, char** argv)
 Determining if the fabs exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_ab7d3 && [1/2] Building C object CMakeFiles/cmTC_ab7d3.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_ab7d3
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_40a4d && [1/2] Building C object CMakeFiles/cmTC_40a4d.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_40a4d
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1354,8 +1354,8 @@ int main(int argc, char** argv)
 Determining if the fabsf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f9f72 && [1/2] Building C object CMakeFiles/cmTC_f9f72.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_f9f72
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7b6f7 && [1/2] Building C object CMakeFiles/cmTC_7b6f7.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_7b6f7
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1393,8 +1393,8 @@ int main(int argc, char** argv)
 Determining if the floor exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_81ae7 && [1/2] Building C object CMakeFiles/cmTC_81ae7.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_81ae7
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7911a && [1/2] Building C object CMakeFiles/cmTC_7911a.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_7911a
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1432,8 +1432,8 @@ int main(int argc, char** argv)
 Determining if the floorf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_aad6f && [1/2] Building C object CMakeFiles/cmTC_aad6f.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_aad6f
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_11bd9 && [1/2] Building C object CMakeFiles/cmTC_11bd9.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_11bd9
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1471,8 +1471,8 @@ int main(int argc, char** argv)
 Determining if the fmod exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_82980 && [1/2] Building C object CMakeFiles/cmTC_82980.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_82980
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_45c73 && [1/2] Building C object CMakeFiles/cmTC_45c73.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_45c73
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1510,8 +1510,8 @@ int main(int argc, char** argv)
 Determining if the fmodf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_db2a4 && [1/2] Building C object CMakeFiles/cmTC_db2a4.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_db2a4
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_5151a && [1/2] Building C object CMakeFiles/cmTC_5151a.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_5151a
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1549,8 +1549,8 @@ int main(int argc, char** argv)
 Determining if the fopen64 exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e932a && [1/2] Building C object CMakeFiles/cmTC_e932a.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_e932a
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2baa1 && [1/2] Building C object CMakeFiles/cmTC_2baa1.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2baa1
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1588,8 +1588,8 @@ int main(int argc, char** argv)
 Determining if the fseeko exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c3551 && [1/2] Building C object CMakeFiles/cmTC_c3551.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_c3551
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_44721 && [1/2] Building C object CMakeFiles/cmTC_44721.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_44721
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1627,8 +1627,8 @@ int main(int argc, char** argv)
 Determining if the fseeko64 exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_98441 && [1/2] Building C object CMakeFiles/cmTC_98441.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_98441
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0d228 && [1/2] Building C object CMakeFiles/cmTC_0d228.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_0d228
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1666,8 +1666,8 @@ int main(int argc, char** argv)
 Determining if the getenv exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_3a452 && [1/2] Building C object CMakeFiles/cmTC_3a452.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_3a452
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_82155 && [1/2] Building C object CMakeFiles/cmTC_82155.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_82155
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1705,8 +1705,8 @@ int main(int argc, char** argv)
 Determining if the log exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_cbdc3 && [1/2] Building C object CMakeFiles/cmTC_cbdc3.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_cbdc3
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_75623 && [1/2] Building C object CMakeFiles/cmTC_75623.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_75623
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1744,8 +1744,8 @@ int main(int argc, char** argv)
 Determining if the log10 exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_4123f && [1/2] Building C object CMakeFiles/cmTC_4123f.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_4123f
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_6c2a4 && [1/2] Building C object CMakeFiles/cmTC_6c2a4.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_6c2a4
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1783,8 +1783,8 @@ int main(int argc, char** argv)
 Determining if the log10f exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_51681 && [1/2] Building C object CMakeFiles/cmTC_51681.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_51681
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_fdf52 && [1/2] Building C object CMakeFiles/cmTC_fdf52.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_fdf52
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1822,8 +1822,8 @@ int main(int argc, char** argv)
 Determining if the logf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_183a1 && [1/2] Building C object CMakeFiles/cmTC_183a1.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_183a1
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_b3915 && [1/2] Building C object CMakeFiles/cmTC_b3915.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_b3915
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1861,8 +1861,8 @@ int main(int argc, char** argv)
 Determining if the lround exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_6f107 && [1/2] Building C object CMakeFiles/cmTC_6f107.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_6f107
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_cd9c6 && [1/2] Building C object CMakeFiles/cmTC_cd9c6.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_cd9c6
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1900,8 +1900,8 @@ int main(int argc, char** argv)
 Determining if the lroundf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d40f9 && [1/2] Building C object CMakeFiles/cmTC_d40f9.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_d40f9
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_54ded && [1/2] Building C object CMakeFiles/cmTC_54ded.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_54ded
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1939,8 +1939,8 @@ int main(int argc, char** argv)
 Determining if the malloc exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e3649 && [1/2] Building C object CMakeFiles/cmTC_e3649.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_e3649
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_9ddc4 && [1/2] Building C object CMakeFiles/cmTC_9ddc4.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_9ddc4
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -1978,8 +1978,8 @@ int main(int argc, char** argv)
 Determining if the memcmp exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d8d2c && [1/2] Building C object CMakeFiles/cmTC_d8d2c.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_d8d2c
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_17765 && [1/2] Building C object CMakeFiles/cmTC_17765.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_17765
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2017,8 +2017,8 @@ int main(int argc, char** argv)
 Determining if the memcpy exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_97257 && [1/2] Building C object CMakeFiles/cmTC_97257.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_97257
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0503d && [1/2] Building C object CMakeFiles/cmTC_0503d.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_0503d
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2056,8 +2056,8 @@ int main(int argc, char** argv)
 Determining if the memmove exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e0124 && [1/2] Building C object CMakeFiles/cmTC_e0124.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_e0124
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2009d && [1/2] Building C object CMakeFiles/cmTC_2009d.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2009d
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2095,8 +2095,8 @@ int main(int argc, char** argv)
 Determining if the memset exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_df2ad && [1/2] Building C object CMakeFiles/cmTC_df2ad.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_df2ad
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e3870 && [1/2] Building C object CMakeFiles/cmTC_e3870.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_e3870
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2134,8 +2134,8 @@ int main(int argc, char** argv)
 Determining if the modf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_210b8 && [1/2] Building C object CMakeFiles/cmTC_210b8.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_210b8
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c384c && [1/2] Building C object CMakeFiles/cmTC_c384c.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_c384c
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2173,8 +2173,8 @@ int main(int argc, char** argv)
 Determining if the modff exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_88c09 && [1/2] Building C object CMakeFiles/cmTC_88c09.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_88c09
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2bb03 && [1/2] Building C object CMakeFiles/cmTC_2bb03.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2bb03
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2212,8 +2212,8 @@ int main(int argc, char** argv)
 Determining if the pow exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f932d && [1/2] Building C object CMakeFiles/cmTC_f932d.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_f932d
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_6d18c && [1/2] Building C object CMakeFiles/cmTC_6d18c.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_6d18c
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2251,8 +2251,8 @@ int main(int argc, char** argv)
 Determining if the powf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_baf4d && [1/2] Building C object CMakeFiles/cmTC_baf4d.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_baf4d
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_ee406 && [1/2] Building C object CMakeFiles/cmTC_ee406.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_ee406
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2290,8 +2290,8 @@ int main(int argc, char** argv)
 Determining if the putenv exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_bab3b && [1/2] Building C object CMakeFiles/cmTC_bab3b.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_bab3b
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_98186 && [1/2] Building C object CMakeFiles/cmTC_98186.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_98186
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2329,8 +2329,8 @@ int main(int argc, char** argv)
 Determining if the round exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_edf11 && [1/2] Building C object CMakeFiles/cmTC_edf11.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_edf11
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2f423 && [1/2] Building C object CMakeFiles/cmTC_2f423.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2f423
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2368,8 +2368,8 @@ int main(int argc, char** argv)
 Determining if the roundf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_319a8 && [1/2] Building C object CMakeFiles/cmTC_319a8.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_319a8
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7334e && [1/2] Building C object CMakeFiles/cmTC_7334e.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_7334e
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2407,8 +2407,8 @@ int main(int argc, char** argv)
 Determining if the scalbn exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e9a95 && [1/2] Building C object CMakeFiles/cmTC_e9a95.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_e9a95
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_5c9f0 && [1/2] Building C object CMakeFiles/cmTC_5c9f0.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_5c9f0
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2446,8 +2446,8 @@ int main(int argc, char** argv)
 Determining if the scalbnf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7b29d && [1/2] Building C object CMakeFiles/cmTC_7b29d.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_7b29d
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d95e1 && [1/2] Building C object CMakeFiles/cmTC_d95e1.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_d95e1
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2485,8 +2485,8 @@ int main(int argc, char** argv)
 Determining if the setenv exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_b36c1 && [1/2] Building C object CMakeFiles/cmTC_b36c1.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_b36c1
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f7918 && [1/2] Building C object CMakeFiles/cmTC_f7918.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_f7918
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2524,8 +2524,8 @@ int main(int argc, char** argv)
 Determining if the sin exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_73587 && [1/2] Building C object CMakeFiles/cmTC_73587.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_73587
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_a47b8 && [1/2] Building C object CMakeFiles/cmTC_a47b8.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_a47b8
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2563,8 +2563,8 @@ int main(int argc, char** argv)
 Determining if the sinf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e379c && [1/2] Building C object CMakeFiles/cmTC_e379c.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_e379c
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2aa08 && [1/2] Building C object CMakeFiles/cmTC_2aa08.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2aa08
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2602,8 +2602,8 @@ int main(int argc, char** argv)
 Determining if the sqrt exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_fa13f && [1/2] Building C object CMakeFiles/cmTC_fa13f.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_fa13f
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7b549 && [1/2] Building C object CMakeFiles/cmTC_7b549.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_7b549
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2641,8 +2641,8 @@ int main(int argc, char** argv)
 Determining if the sqrtf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_47cac && [1/2] Building C object CMakeFiles/cmTC_47cac.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_47cac
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0c9d9 && [1/2] Building C object CMakeFiles/cmTC_0c9d9.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_0c9d9
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2680,8 +2680,8 @@ int main(int argc, char** argv)
 Determining if the sscanf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_32827 && [1/2] Building C object CMakeFiles/cmTC_32827.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_32827
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c5275 && [1/2] Building C object CMakeFiles/cmTC_c5275.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_c5275
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2719,8 +2719,8 @@ int main(int argc, char** argv)
 Determining if the strchr exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_922a2 && [1/2] Building C object CMakeFiles/cmTC_922a2.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_922a2
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2fca7 && [1/2] Building C object CMakeFiles/cmTC_2fca7.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2fca7
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2758,8 +2758,8 @@ int main(int argc, char** argv)
 Determining if the strcmp exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f7ac3 && [1/2] Building C object CMakeFiles/cmTC_f7ac3.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_f7ac3
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_cbe6b && [1/2] Building C object CMakeFiles/cmTC_cbe6b.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_cbe6b
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2797,8 +2797,8 @@ int main(int argc, char** argv)
 Determining if the strlcat exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_aff04 && [1/2] Building C object CMakeFiles/cmTC_aff04.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_aff04
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_3a94b && [1/2] Building C object CMakeFiles/cmTC_3a94b.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_3a94b
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2836,8 +2836,8 @@ int main(int argc, char** argv)
 Determining if the strlcpy exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_8b2a1 && [1/2] Building C object CMakeFiles/cmTC_8b2a1.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_8b2a1
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0a36a && [1/2] Building C object CMakeFiles/cmTC_0a36a.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_0a36a
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2875,8 +2875,8 @@ int main(int argc, char** argv)
 Determining if the strlen exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_74425 && [1/2] Building C object CMakeFiles/cmTC_74425.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_74425
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e2c0c && [1/2] Building C object CMakeFiles/cmTC_e2c0c.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_e2c0c
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2914,8 +2914,8 @@ int main(int argc, char** argv)
 Determining if the strncmp exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_56943 && [1/2] Building C object CMakeFiles/cmTC_56943.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_56943
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_8d8d9 && [1/2] Building C object CMakeFiles/cmTC_8d8d9.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_8d8d9
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2953,8 +2953,8 @@ int main(int argc, char** argv)
 Determining if the strnlen exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_75b6b && [1/2] Building C object CMakeFiles/cmTC_75b6b.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_75b6b
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7ad37 && [1/2] Building C object CMakeFiles/cmTC_7ad37.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_7ad37
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -2992,8 +2992,8 @@ int main(int argc, char** argv)
 Determining if the strpbrk exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_dc8ab && [1/2] Building C object CMakeFiles/cmTC_dc8ab.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_dc8ab
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_3e751 && [1/2] Building C object CMakeFiles/cmTC_3e751.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_3e751
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3031,8 +3031,8 @@ int main(int argc, char** argv)
 Determining if the strrchr exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_a5604 && [1/2] Building C object CMakeFiles/cmTC_a5604.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_a5604
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_90007 && [1/2] Building C object CMakeFiles/cmTC_90007.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_90007
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3070,8 +3070,8 @@ int main(int argc, char** argv)
 Determining if the strstr exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_24f1d && [1/2] Building C object CMakeFiles/cmTC_24f1d.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_24f1d
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_cb955 && [1/2] Building C object CMakeFiles/cmTC_cb955.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_cb955
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3109,8 +3109,8 @@ int main(int argc, char** argv)
 Determining if the strtod exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_61a8b && [1/2] Building C object CMakeFiles/cmTC_61a8b.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_61a8b
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_036e2 && [1/2] Building C object CMakeFiles/cmTC_036e2.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_036e2
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3148,8 +3148,8 @@ int main(int argc, char** argv)
 Determining if the strtok_r exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0481d && [1/2] Building C object CMakeFiles/cmTC_0481d.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_0481d
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_3a20a && [1/2] Building C object CMakeFiles/cmTC_3a20a.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_3a20a
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3187,8 +3187,8 @@ int main(int argc, char** argv)
 Determining if the strtol exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_6c892 && [1/2] Building C object CMakeFiles/cmTC_6c892.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_6c892
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_328f8 && [1/2] Building C object CMakeFiles/cmTC_328f8.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_328f8
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3226,8 +3226,8 @@ int main(int argc, char** argv)
 Determining if the strtoll exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_fe993 && [1/2] Building C object CMakeFiles/cmTC_fe993.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_fe993
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_1f876 && [1/2] Building C object CMakeFiles/cmTC_1f876.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_1f876
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3265,8 +3265,8 @@ int main(int argc, char** argv)
 Determining if the strtoul exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_02480 && [1/2] Building C object CMakeFiles/cmTC_02480.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_02480
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_1204c && [1/2] Building C object CMakeFiles/cmTC_1204c.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_1204c
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3304,8 +3304,8 @@ int main(int argc, char** argv)
 Determining if the strtoull exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e59e2 && [1/2] Building C object CMakeFiles/cmTC_e59e2.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_e59e2
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_a68a6 && [1/2] Building C object CMakeFiles/cmTC_a68a6.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_a68a6
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3343,8 +3343,8 @@ int main(int argc, char** argv)
 Determining if the tan exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c36e0 && [1/2] Building C object CMakeFiles/cmTC_c36e0.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_c36e0
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_9da45 && [1/2] Building C object CMakeFiles/cmTC_9da45.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_9da45
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3382,8 +3382,8 @@ int main(int argc, char** argv)
 Determining if the tanf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_3576e && [1/2] Building C object CMakeFiles/cmTC_3576e.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_3576e
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_48ee6 && [1/2] Building C object CMakeFiles/cmTC_48ee6.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_48ee6
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3421,8 +3421,8 @@ int main(int argc, char** argv)
 Determining if the trunc exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c1bb8 && [1/2] Building C object CMakeFiles/cmTC_c1bb8.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_c1bb8
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f09dc && [1/2] Building C object CMakeFiles/cmTC_f09dc.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_f09dc
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3460,8 +3460,8 @@ int main(int argc, char** argv)
 Determining if the truncf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_655f7 && [1/2] Building C object CMakeFiles/cmTC_655f7.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_655f7
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d5b04 && [1/2] Building C object CMakeFiles/cmTC_d5b04.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_d5b04
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3499,8 +3499,8 @@ int main(int argc, char** argv)
 Determining if the unsetenv exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_ed727 && [1/2] Building C object CMakeFiles/cmTC_ed727.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_ed727
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_560a1 && [1/2] Building C object CMakeFiles/cmTC_560a1.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_560a1
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3538,8 +3538,8 @@ int main(int argc, char** argv)
 Determining if the vsnprintf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_bc858 && [1/2] Building C object CMakeFiles/cmTC_bc858.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_bc858
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_3dfe3 && [1/2] Building C object CMakeFiles/cmTC_3dfe3.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_3dfe3
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3577,8 +3577,8 @@ int main(int argc, char** argv)
 Determining if the vsscanf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_eb44b && [1/2] Building C object CMakeFiles/cmTC_eb44b.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_eb44b
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_aaf69 && [1/2] Building C object CMakeFiles/cmTC_aaf69.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_aaf69
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3616,8 +3616,8 @@ int main(int argc, char** argv)
 Determining if the wcsnlen exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_181f2 && [1/2] Building C object CMakeFiles/cmTC_181f2.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_181f2
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_48651 && [1/2] Building C object CMakeFiles/cmTC_48651.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_48651
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3655,8 +3655,8 @@ int main(int argc, char** argv)
 Determining if the wcscmp exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d3f7d && [1/2] Building C object CMakeFiles/cmTC_d3f7d.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_d3f7d
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e8397 && [1/2] Building C object CMakeFiles/cmTC_e8397.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_e8397
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3694,8 +3694,8 @@ int main(int argc, char** argv)
 Determining if the wcsdup exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_82e8c && [1/2] Building C object CMakeFiles/cmTC_82e8c.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_82e8c
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c9785 && [1/2] Building C object CMakeFiles/cmTC_c9785.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_c9785
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3733,8 +3733,8 @@ int main(int argc, char** argv)
 Determining if the wcslcat exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f8e29 && [1/2] Building C object CMakeFiles/cmTC_f8e29.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_f8e29
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_fc372 && [1/2] Building C object CMakeFiles/cmTC_fc372.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_fc372
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3772,8 +3772,8 @@ int main(int argc, char** argv)
 Determining if the wcslcpy exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2cb59 && [1/2] Building C object CMakeFiles/cmTC_2cb59.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_2cb59
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_406fb && [1/2] Building C object CMakeFiles/cmTC_406fb.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_406fb
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3811,8 +3811,8 @@ int main(int argc, char** argv)
 Determining if the wcslen exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_89a8e && [1/2] Building C object CMakeFiles/cmTC_89a8e.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_89a8e
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7743a && [1/2] Building C object CMakeFiles/cmTC_7743a.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_7743a
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3850,8 +3850,8 @@ int main(int argc, char** argv)
 Determining if the wcsncmp exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0cc80 && [1/2] Building C object CMakeFiles/cmTC_0cc80.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_0cc80
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_a4d71 && [1/2] Building C object CMakeFiles/cmTC_a4d71.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_a4d71
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3889,8 +3889,8 @@ int main(int argc, char** argv)
 Determining if the wcsstr exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_38ec8 && [1/2] Building C object CMakeFiles/cmTC_38ec8.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_38ec8
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_bc712 && [1/2] Building C object CMakeFiles/cmTC_bc712.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_bc712
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3928,8 +3928,8 @@ int main(int argc, char** argv)
 Determining if the wcstol exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_a54ff && [1/2] Building C object CMakeFiles/cmTC_a54ff.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_a54ff
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f9079 && [1/2] Building C object CMakeFiles/cmTC_f9079.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_f9079
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -3967,8 +3967,8 @@ int main(int argc, char** argv)
 Determining if the strcasestr exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_ca937 && [1/2] Building C object CMakeFiles/cmTC_ca937.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_ca937
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c0ddb && [1/2] Building C object CMakeFiles/cmTC_c0ddb.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_c0ddb
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4006,8 +4006,8 @@ int main(int argc, char** argv)
 Performing C SOURCE FILE Test LIBC_HAS_ISINF succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_fa6b3 && [1/2] Building C object CMakeFiles/cmTC_fa6b3.dir/src.c.o
-[2/2] Linking C executable cmTC_fa6b3
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_cfe09 && [1/2] Building C object CMakeFiles/cmTC_cfe09.dir/src.c.o
+[2/2] Linking C executable cmTC_cfe09
 
 
 Source file was:
@@ -4021,8 +4021,8 @@ Source file was:
 Performing C SOURCE FILE Test LIBC_ISINF_HANDLES_FLOAT succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_05b78 && [1/2] Building C object CMakeFiles/cmTC_05b78.dir/src.c.o
-[2/2] Linking C executable cmTC_05b78
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_48d5d && [1/2] Building C object CMakeFiles/cmTC_48d5d.dir/src.c.o
+[2/2] Linking C executable cmTC_48d5d
 
 
 Source file was:
@@ -4036,8 +4036,8 @@ Source file was:
 Performing C SOURCE FILE Test LIBC_HAS_ISNAN succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_b6a8e && [1/2] Building C object CMakeFiles/cmTC_b6a8e.dir/src.c.o
-[2/2] Linking C executable cmTC_b6a8e
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_543c5 && [1/2] Building C object CMakeFiles/cmTC_543c5.dir/src.c.o
+[2/2] Linking C executable cmTC_543c5
 
 
 Source file was:
@@ -4051,8 +4051,8 @@ Source file was:
 Performing C SOURCE FILE Test LIBC_ISNAN_HANDLES_FLOAT succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f3184 && [1/2] Building C object CMakeFiles/cmTC_f3184.dir/src.c.o
-[2/2] Linking C executable cmTC_f3184
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f93ce && [1/2] Building C object CMakeFiles/cmTC_f93ce.dir/src.c.o
+[2/2] Linking C executable cmTC_f93ce
 
 
 Source file was:
@@ -4066,8 +4066,8 @@ Source file was:
 Performing C SOURCE FILE Test LIBC_HAS_ISNANF succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_4377d && [1/2] Building C object CMakeFiles/cmTC_4377d.dir/src.c.o
-[2/2] Linking C executable cmTC_4377d
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c7c2e && [1/2] Building C object CMakeFiles/cmTC_c7c2e.dir/src.c.o
+[2/2] Linking C executable cmTC_c7c2e
 
 
 Source file was:
@@ -4081,8 +4081,8 @@ Source file was:
 Determining if the fdatasync exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_cc41d && [1/2] Building C object CMakeFiles/cmTC_cc41d.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_cc41d
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_bb6bc && [1/2] Building C object CMakeFiles/cmTC_bb6bc.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_bb6bc
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4102,8 +4102,8 @@ int main(int argc, char** argv)
 Determining if the gethostname exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c5fa5 && [1/2] Building C object CMakeFiles/cmTC_c5fa5.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_c5fa5
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_07fac && [1/2] Building C object CMakeFiles/cmTC_07fac.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_07fac
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4123,8 +4123,8 @@ int main(int argc, char** argv)
 Determining if the getpagesize exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d876e && [1/2] Building C object CMakeFiles/cmTC_d876e.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_d876e
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0f7af && [1/2] Building C object CMakeFiles/cmTC_0f7af.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_0f7af
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4144,8 +4144,8 @@ int main(int argc, char** argv)
 Determining if the getresgid exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0b43e && [1/2] Building C object CMakeFiles/cmTC_0b43e.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_0b43e
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_67bce && [1/2] Building C object CMakeFiles/cmTC_67bce.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_67bce
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4165,8 +4165,8 @@ int main(int argc, char** argv)
 Determining if the getresuid exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_98836 && [1/2] Building C object CMakeFiles/cmTC_98836.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_98836
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_c619a && [1/2] Building C object CMakeFiles/cmTC_c619a.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_c619a
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4186,8 +4186,8 @@ int main(int argc, char** argv)
 Determining if the sigaction exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_1ffb4 && [1/2] Building C object CMakeFiles/cmTC_1ffb4.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_1ffb4
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_febcd && [1/2] Building C object CMakeFiles/cmTC_febcd.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_febcd
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4207,8 +4207,8 @@ int main(int argc, char** argv)
 Determining if the sigtimedwait exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_227f1 && [1/2] Building C object CMakeFiles/cmTC_227f1.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_227f1
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_aadad && [1/2] Building C object CMakeFiles/cmTC_aadad.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_aadad
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4228,8 +4228,8 @@ int main(int argc, char** argv)
 Determining if the setjmp exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f9564 && [1/2] Building C object CMakeFiles/cmTC_f9564.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_f9564
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_3ae71 && [1/2] Building C object CMakeFiles/cmTC_3ae71.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_3ae71
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4249,8 +4249,8 @@ int main(int argc, char** argv)
 Determining if the nanosleep exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_96583 && [1/2] Building C object CMakeFiles/cmTC_96583.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_96583
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_69e90 && [1/2] Building C object CMakeFiles/cmTC_69e90.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_69e90
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4270,8 +4270,8 @@ int main(int argc, char** argv)
 Determining if the gmtime_r exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_20edd && [1/2] Building C object CMakeFiles/cmTC_20edd.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_20edd
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_4d50e && [1/2] Building C object CMakeFiles/cmTC_4d50e.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_4d50e
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4291,8 +4291,8 @@ int main(int argc, char** argv)
 Determining if the localtime_r exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_df0df && [1/2] Building C object CMakeFiles/cmTC_df0df.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_df0df
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_b273d && [1/2] Building C object CMakeFiles/cmTC_b273d.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_b273d
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4312,8 +4312,8 @@ int main(int argc, char** argv)
 Determining if the nl_langinfo exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_78d73 && [1/2] Building C object CMakeFiles/cmTC_78d73.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_78d73
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_89e9b && [1/2] Building C object CMakeFiles/cmTC_89e9b.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_89e9b
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4333,8 +4333,8 @@ int main(int argc, char** argv)
 Determining if the sysconf exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0f309 && [1/2] Building C object CMakeFiles/cmTC_0f309.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_0f309
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2913f && [1/2] Building C object CMakeFiles/cmTC_2913f.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_2913f
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4354,8 +4354,8 @@ int main(int argc, char** argv)
 Determining if the getauxval exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_bfdb2 && [1/2] Building C object CMakeFiles/cmTC_bfdb2.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_bfdb2
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7c59a && [1/2] Building C object CMakeFiles/cmTC_7c59a.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_7c59a
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4375,8 +4375,8 @@ int main(int argc, char** argv)
 Determining if the poll exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_a4daa && [1/2] Building C object CMakeFiles/cmTC_a4daa.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_a4daa
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_f475e && [1/2] Building C object CMakeFiles/cmTC_f475e.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_f475e
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4396,8 +4396,8 @@ int main(int argc, char** argv)
 Determining if the posix_fallocate exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_73896 && [1/2] Building C object CMakeFiles/cmTC_73896.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_73896
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_91941 && [1/2] Building C object CMakeFiles/cmTC_91941.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_91941
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4417,7 +4417,7 @@ int main(int argc, char** argv)
 Performing C SOURCE FILE Test ICONV_IN_LIBC succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d18b5 && [1/2] Building C object CMakeFiles/cmTC_d18b5.dir/src.c.o
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2995b && [1/2] Building C object CMakeFiles/cmTC_2995b.dir/src.c.o
 /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/src.c:6:32: warning: null passed to a callee that requires a non-null argument [-Wnonnull]
             return !iconv_open(NULL,NULL);
                                ^~~~
@@ -4431,7 +4431,7 @@ Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_d18b
 #  define NULL ((void*)0)
                ^~~~~~~~~~
 2 warnings generated.
-[2/2] Linking C executable cmTC_d18b5
+[2/2] Linking C executable cmTC_2995b
 
 
 Source file was:
@@ -4445,8 +4445,8 @@ Source file was:
 Performing C SOURCE FILE Test HAVE_SA_SIGACTION succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_eb640 && [1/2] Building C object CMakeFiles/cmTC_eb640.dir/src.c.o
-[2/2] Linking C executable cmTC_eb640
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_a1c4e && [1/2] Building C object CMakeFiles/cmTC_a1c4e.dir/src.c.o
+[2/2] Linking C executable cmTC_a1c4e
 
 
 Source file was:
@@ -4462,8 +4462,8 @@ int main()
 Performing C SOURCE FILE Test HAVE_ST_MTIM succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_3a6b6 && [1/2] Building C object CMakeFiles/cmTC_3a6b6.dir/src.c.o
-[2/2] Linking C executable cmTC_3a6b6
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_9754b && [1/2] Building C object CMakeFiles/cmTC_9754b.dir/src.c.o
+[2/2] Linking C executable cmTC_9754b
 
 
 Source file was:
@@ -4479,8 +4479,8 @@ int main()
 Determining if the dlopen exist passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_5deb0 && [1/2] Building C object CMakeFiles/cmTC_5deb0.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_5deb0
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_07a92 && [1/2] Building C object CMakeFiles/cmTC_07a92.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_07a92
 
 
 File /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
@@ -4500,8 +4500,8 @@ int main(int argc, char** argv)
 Performing C SOURCE FILE Test HAVE_O_CLOEXEC succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_95e77 && [1/2] Building C object CMakeFiles/cmTC_95e77.dir/src.c.o
-[2/2] Linking C executable cmTC_95e77
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_eeb8b && [1/2] Building C object CMakeFiles/cmTC_eeb8b.dir/src.c.o
+[2/2] Linking C executable cmTC_eeb8b
 
 
 Source file was:
@@ -4525,13 +4525,13 @@ The CXX compiler identification is Clang, found in "/home/runner/work/SaintSeiya
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_435b3 && [1/2] Building CXX object CMakeFiles/cmTC_435b3.dir/CMakeCXXCompilerABI.cpp.o
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_bc304 && [1/2] Building CXX object CMakeFiles/cmTC_bc304.dir/CMakeCXXCompilerABI.cpp.o
 Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362)
 Target: aarch64-none-linux-android29
 Thread model: posix
 InstalledDir: /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin
  (in-process)
- "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++" -cc1 -triple aarch64-none-linux-android29 -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=non-leaf -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu generic -target-feature +neon -target-feature +v8a -target-feature +fix-cortex-a53-835769 -target-abi aapcs -mllvm -treat-scalable-fixed-error-as-warning -debug-info-kind=constructor -dwarf-version=4 -debugger-tuning=gdb -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -resource-dir /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17 -dependency-file CMakeFiles/cmTC_435b3.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_435b3.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -D ANDROID -D _FORTIFY_SOURCE=2 -isysroot /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1 -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/include -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -Wformat -fdeprecated-macro -fdebug-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fno-signed-char -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -target-feature +outline-atomics -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_435b3.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/lib/android/sdk/cmake/3.22.1/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
+ "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++" -cc1 -triple aarch64-none-linux-android29 -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=non-leaf -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu generic -target-feature +neon -target-feature +v8a -target-feature +fix-cortex-a53-835769 -target-abi aapcs -mllvm -treat-scalable-fixed-error-as-warning -debug-info-kind=constructor -dwarf-version=4 -debugger-tuning=gdb -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -resource-dir /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17 -dependency-file CMakeFiles/cmTC_bc304.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_bc304.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -D ANDROID -D _FORTIFY_SOURCE=2 -isysroot /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1 -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/include -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -Wformat -fdeprecated-macro -fdebug-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fno-signed-char -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -target-feature +outline-atomics -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_bc304.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/lib/android/sdk/cmake/3.22.1/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
 clang -cc1 version 17.0.2 based upon LLVM 17.0.2 default target x86_64-unknown-linux-gnu
 ignoring nonexistent directory "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include"
 ignoring nonexistent directory "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/include"
@@ -4542,12 +4542,12 @@ ignoring nonexistent directory "/usr/local/lib/android/sdk/ndk/26.1.10909125/too
  /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android
  /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
 End of search list.
-[2/2] Linking CXX executable cmTC_435b3
+[2/2] Linking CXX executable cmTC_bc304
 Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362)
 Target: aarch64-none-linux-android29
 Thread model: posix
 InstalledDir: /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin
- "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld" --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -pie -EL --fix-cortex-a53-843419 -z now -z relro -z max-page-size=4096 --hash-style=gnu --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_435b3 /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib --build-id=sha1 --no-rosegment --no-undefined-version --fatal-warnings --no-undefined CMakeFiles/cmTC_435b3.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lm /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtend_android.o
+ "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld" --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -pie -EL --fix-cortex-a53-843419 -z now -z relro -z max-page-size=4096 --hash-style=gnu --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_bc304 /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib --build-id=sha1 --no-rosegment --no-undefined-version --fatal-warnings --no-undefined CMakeFiles/cmTC_bc304.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lm /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtend_android.o
 
 
 
@@ -4570,13 +4570,13 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld\.lld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_435b3 && [1/2] Building CXX object CMakeFiles/cmTC_435b3.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_bc304 && [1/2] Building CXX object CMakeFiles/cmTC_bc304.dir/CMakeCXXCompilerABI.cpp.o]
   ignore line: [Android (10552028  +pgo  +bolt  +lto  -mlgo  based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362)]
   ignore line: [Target: aarch64-none-linux-android29]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin]
   ignore line: [ (in-process)]
-  ignore line: [ "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++" -cc1 -triple aarch64-none-linux-android29 -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=non-leaf -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu generic -target-feature +neon -target-feature +v8a -target-feature +fix-cortex-a53-835769 -target-abi aapcs -mllvm -treat-scalable-fixed-error-as-warning -debug-info-kind=constructor -dwarf-version=4 -debugger-tuning=gdb -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -resource-dir /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17 -dependency-file CMakeFiles/cmTC_435b3.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_435b3.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -D ANDROID -D _FORTIFY_SOURCE=2 -isysroot /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1 -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/include -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -Wformat -fdeprecated-macro -fdebug-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fno-signed-char -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -target-feature +outline-atomics -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_435b3.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/lib/android/sdk/cmake/3.22.1/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [ "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++" -cc1 -triple aarch64-none-linux-android29 -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=non-leaf -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu generic -target-feature +neon -target-feature +v8a -target-feature +fix-cortex-a53-835769 -target-abi aapcs -mllvm -treat-scalable-fixed-error-as-warning -debug-info-kind=constructor -dwarf-version=4 -debugger-tuning=gdb -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -resource-dir /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17 -dependency-file CMakeFiles/cmTC_bc304.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_bc304.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -D ANDROID -D _FORTIFY_SOURCE=2 -isysroot /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1 -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/include -internal-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/include -internal-externc-isystem /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include -Wformat -fdeprecated-macro -fdebug-compilation-dir=/home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fno-signed-char -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -target-feature +outline-atomics -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_bc304.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/lib/android/sdk/cmake/3.22.1/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
   ignore line: [clang -cc1 version 17.0.2 based upon LLVM 17.0.2 default target x86_64-unknown-linux-gnu]
   ignore line: [ignoring nonexistent directory "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include"]
   ignore line: [ignoring nonexistent directory "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/include"]
@@ -4587,12 +4587,12 @@ Parsed CXX implicit link information from above output:
   ignore line: [ /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android]
   ignore line: [ /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include]
   ignore line: [End of search list.]
-  ignore line: [[2/2] Linking CXX executable cmTC_435b3]
+  ignore line: [[2/2] Linking CXX executable cmTC_bc304]
   ignore line: [Android (10552028  +pgo  +bolt  +lto  -mlgo  based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362)]
   ignore line: [Target: aarch64-none-linux-android29]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin]
-  link line: [ "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld" --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -pie -EL --fix-cortex-a53-843419 -z now -z relro -z max-page-size=4096 --hash-style=gnu --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_435b3 /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib --build-id=sha1 --no-rosegment --no-undefined-version --fatal-warnings --no-undefined CMakeFiles/cmTC_435b3.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lm /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtend_android.o]
+  link line: [ "/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld" --sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot -pie -EL --fix-cortex-a53-843419 -z now -z relro -z max-page-size=4096 --hash-style=gnu --eh-frame-hdr -m aarch64linux -dynamic-linker /system/bin/linker64 -o cmTC_bc304 /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29 -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android -L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib --build-id=sha1 --no-rosegment --no-undefined-version --fatal-warnings --no-undefined CMakeFiles/cmTC_bc304.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lm /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl -lc /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a -l:libunwind.a -ldl /usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtend_android.o]
     arg [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld] ==> ignore
     arg [--sysroot=/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot] ==> ignore
     arg [-pie] ==> ignore
@@ -4608,7 +4608,7 @@ Parsed CXX implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/system/bin/linker64] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_435b3] ==> ignore
+    arg [cmTC_bc304] ==> ignore
     arg [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o] ==> obj [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o]
     arg [-L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64] ==> dir [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/aarch64]
     arg [-L/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29] ==> dir [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/29]
@@ -4619,7 +4619,7 @@ Parsed CXX implicit link information from above output:
     arg [--no-undefined-version] ==> ignore
     arg [--fatal-warnings] ==> ignore
     arg [--no-undefined] ==> ignore
-    arg [CMakeFiles/cmTC_435b3.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_bc304.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lc++] ==> lib [c++]
     arg [-lm] ==> lib [m]
     arg [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a] ==> lib [/usr/local/lib/android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/17/lib/linux/libclang_rt.builtins-aarch64-android.a]
@@ -4645,8 +4645,8 @@ Parsed CXX implicit link information from above output:
 Performing C SOURCE FILE Test VULKAN_PASSED_ANDROID_CHECKS succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_2161e && [1/2] Building C object CMakeFiles/cmTC_2161e.dir/src.c.o
-[2/2] Linking C executable cmTC_2161e
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_ee6d6 && [1/2] Building C object CMakeFiles/cmTC_ee6d6.dir/src.c.o
+[2/2] Linking C executable cmTC_ee6d6
 
 
 Source file was:
@@ -4659,8 +4659,8 @@ Source file was:
 Performing C SOURCE FILE Test HAVE_PTHREADS succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_bba85 && [1/2] Building C object CMakeFiles/cmTC_bba85.dir/src.c.o
-[2/2] Linking C executable cmTC_bba85
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_0bd08 && [1/2] Building C object CMakeFiles/cmTC_0bd08.dir/src.c.o
+[2/2] Linking C executable cmTC_0bd08
 
 
 Source file was:
@@ -4674,8 +4674,8 @@ Source file was:
 Performing C SOURCE FILE Test HAVE_RECURSIVE_MUTEXES succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_e7e1e && [1/2] Building C object CMakeFiles/cmTC_e7e1e.dir/src.c.o
-[2/2] Linking C executable cmTC_e7e1e
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_15951 && [1/2] Building C object CMakeFiles/cmTC_15951.dir/src.c.o
+[2/2] Linking C executable cmTC_15951
 
 
 Source file was:
@@ -4689,8 +4689,8 @@ Source file was:
 Performing C SOURCE FILE Test HAVE_PTHREADS_SEM succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_173da && [1/2] Building C object CMakeFiles/cmTC_173da.dir/src.c.o
-[2/2] Linking C executable cmTC_173da
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_02a9a && [1/2] Building C object CMakeFiles/cmTC_02a9a.dir/src.c.o
+[2/2] Linking C executable cmTC_02a9a
 
 
 Source file was:
@@ -4700,7 +4700,7 @@ Source file was:
 Performing C SOURCE FILE Test COMPILER_HAS_SEM_TIMEDWAIT succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7a54b && [1/2] Building C object CMakeFiles/cmTC_7a54b.dir/src.c.o
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_5da8c && [1/2] Building C object CMakeFiles/cmTC_5da8c.dir/src.c.o
 /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp/src.c:5:33: warning: null passed to a callee that requires a non-null argument [-Wnonnull]
                   sem_timedwait(NULL, NULL);
                                 ^~~~
@@ -4714,7 +4714,7 @@ Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_7a54
 #  define NULL ((void*)0)
                ^~~~~~~~~~
 2 warnings generated.
-[2/2] Linking C executable cmTC_7a54b
+[2/2] Linking C executable cmTC_5da8c
 
 
 Source file was:
@@ -4728,16 +4728,16 @@ Source file was:
 Determining if the include file pthread.h exists passed with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_6f523 && [1/2] Building C object CMakeFiles/cmTC_6f523.dir/CheckIncludeFile.c.o
-[2/2] Linking C executable cmTC_6f523
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_63323 && [1/2] Building C object CMakeFiles/cmTC_63323.dir/CheckIncludeFile.c.o
+[2/2] Linking C executable cmTC_63323
 
 
 
 Performing C SOURCE FILE Test HAVE_PTHREAD_SETNAME_NP succeeded with the following output:
 Change Dir: /home/runner/work/SaintSeiyarecompAndroid/SaintSeiyarecompAndroid/android/app/.cxx/Debug/6f3s106a/arm64-v8a/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_43381 && [1/2] Building C object CMakeFiles/cmTC_43381.dir/src.c.o
-[2/2] Linking C executable cmTC_43381
+Run Build Command(s):/usr/local/lib/android/sdk/cmake/3.22.1/bin/ninja cmTC_b0f68 && [1/2] Building C object CMakeFiles/cmTC_b0f68.dir/src.c.o
+[2/2] Linking C executable cmTC_b0f68
 
 
 Source file was:
