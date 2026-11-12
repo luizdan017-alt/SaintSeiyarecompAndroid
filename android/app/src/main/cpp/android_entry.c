@@ -41,8 +41,6 @@ static int extract(const char *name, const char *dest) {
     u32 lsn, size;
     snprintf(key, sizeof key, "\\%s;1", name);
     if (!cdvd_find(key, &lsn, &size)) { fprintf(stderr, "o disco nao tem %s\n", name); return -1; }
-    struct stat st;
-    if (stat(dest, &st) == 0 && (u32)st.st_size == size) return 0;      /* ja extraido */
     FILE *f = fopen(dest, "wb");
     if (!f) { fprintf(stderr, "nao consegui criar %s\n", dest); return -1; }
     static u8 buf[2048 * 32];
@@ -56,6 +54,54 @@ static int extract(const char *name, const char *dest) {
     fclose(f);
     fprintf(stderr, "extraido %s (%u bytes)\n", name, size);
     return 0;
+}
+
+
+/* ---- diagnostico do executavel extraido: tamanho, FNV-1a 64 (o que o jogo confere) e SHA-1 ---- */
+static u32 rol(u32 v, int n) { return v << n | v >> (32 - n); }
+static void sha1_block(u32 h[5], const u8 *p) {
+    u32 w[80];
+    for (int i = 0; i < 16; i++) w[i] = (u32)p[4*i] << 24 | p[4*i+1] << 16 | p[4*i+2] << 8 | p[4*i+3];
+    for (int i = 16; i < 80; i++) w[i] = rol(w[i-3] ^ w[i-8] ^ w[i-14] ^ w[i-16], 1);
+    u32 a = h[0], b = h[1], c = h[2], d = h[3], e = h[4];
+    for (int i = 0; i < 80; i++) {
+        u32 f, k;
+        if (i < 20) { f = (b & c) | (~b & d); k = 0x5A827999; }
+        else if (i < 40) { f = b ^ c ^ d; k = 0x6ED9EBA1; }
+        else if (i < 60) { f = (b & c) | (b & d) | (c & d); k = 0x8F1BBCDC; }
+        else { f = b ^ c ^ d; k = 0xCA62C1D6; }
+        u32 t = rol(a, 5) + f + e + k + w[i];
+        e = d; d = c; c = rol(b, 30); b = a; a = t;
+    }
+    h[0] += a; h[1] += b; h[2] += c; h[3] += d; h[4] += e;
+}
+static void describe(const char *path) {
+    FILE *f = fopen(path, "rb");
+    if (!f) return;
+    fseek(f, 0, SEEK_END);
+    long n = ftell(f);
+    fseek(f, 0, SEEK_SET);
+    u8 *b = malloc(n > 0 ? (size_t)n : 1);
+    if (!b || fread(b, 1, (size_t)n, f) != (size_t)n) { fclose(f); free(b); return; }
+    fclose(f);
+    unsigned long long fnv = 0xCBF29CE484222325ull;
+    for (long i = 0; i < n; i++) fnv = (fnv ^ b[i]) * 0x100000001B3ull;
+    u32 h[5] = {0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0};
+    long full = n / 64 * 64;
+    for (long i = 0; i < full; i += 64) sha1_block(h, b + i);
+    u8 last[128] = {0};
+    long rest = n - full;
+    memcpy(last, b + full, (size_t)rest);
+    last[rest] = 0x80;
+    int tot = rest < 56 ? 64 : 128;
+    unsigned long long bits = (unsigned long long)n * 8;
+    for (int i = 0; i < 8; i++) last[tot - 1 - i] = (u8)(bits >> (8 * i));
+    for (int i = 0; i < tot; i += 64) sha1_block(h, last + i);
+    fprintf(stderr, "executavel extraido: tamanho=%ld fnv=%016llX sha1=%08x%08x%08x%08x%08x\n", n, fnv, h[0], h[1], h[2], h[3], h[4]);
+    fprintf(stderr, "primeiros bytes: %02X %02X %02X %02X (um ELF comeca com 7F 45 4C 46)\n", b[0], b[1], b[2], b[3]);
+    fprintf(stderr, "esperado (EU SLES-54162): fnv=61BAC351F3463E34 sha1=7ba6b0a1c05a94f28452840fcb73c204e46e79e6\n");
+    fprintf(stderr, "esperado (JP SLPS-25744): fnv=1855DF702BBE6B8D\n");
+    free(b);
 }
 
 int SDL_main(int argc, char **argv) {
@@ -80,6 +126,7 @@ int SDL_main(int argc, char **argv) {
     char exe[1200];
     snprintf(exe, sizeof exe, "%s/disc/%s", files, boot);
     if (extract(boot, exe)) return 1;
+    describe(exe);
     char *args[] = {"sstheh", "--iso", (char *)iso, exe, NULL};
     ALOG("iniciando o motor");
     return ss_main(4, args);
