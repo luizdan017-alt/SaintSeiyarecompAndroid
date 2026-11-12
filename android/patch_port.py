@@ -43,3 +43,9 @@ patch("port/gs/display.c",
       "static int panel_on = 1;\n"
       "extern volatile int touch_hud_toggle;\n"
       "static void touch_hud_poll(void) { if (touch_hud_toggle) { touch_hud_toggle = 0; panel_on = !panel_on; } }\n")
+
+# 4) iop.c: o aviso "queue full" saia a cada chamada perdida (milhares por segundo) e enchia o log
+patch("port/iop/iop.c",
+      '        rt_log("iop", "IOP->EE queue full: call %X fn %X lost", sid, fn);\n',
+      '        static unsigned lost_n;   /* Android: so as primeiras e depois 1 a cada 2000 */\n'
+      '        if (lost_n++ < 5 || lost_n % 2000 == 0) rt_log("iop", "IOP->EE queue full: call %X fn %X lost (%u)", sid, fn, lost_n);\n')

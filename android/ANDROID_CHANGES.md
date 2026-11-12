@@ -8,5 +8,10 @@ ajustes de `android/patch_port.py`, aplicados pelo workflow `.github/workflows/a
 | port/runtime/platform.c | `platform_sleep_until` usa o caminho do macOS no Android | `clock_nanosleep` so existe a partir da API 30 |
 | port/hle/cdvd.c | `cdvd_open` aceita `fd:N` | ler a ISO direto do arquivo escolhido (Android), sem copiar 4 GB |
 | port/gs/display.c | botoes do controle na tela somados ao controle 1; `touch_hud_poll` alterna o painel | controles touch (TouchOverlay.kt) |
+| port/iop/iop.c | aviso "queue full" limitado | inundava o log (milhares de linhas) |
 
 Para ver tudo o que mudou em relacao ao projeto original: `git diff master..android -- port`.
+
+## Desempenho (variaveis de ambiente, definidas em GameActivity.kt)
+`SSTHEH_SCALE` (resolucao interna, padrao 1), `SSTHEH_VSYNC=1`, `SSTHEH_INTERP=0`, `SSTHEH_PERF_LOG=1`.
+O padrao do projeto escolhia escala 3 neste aparelho (alvos de 3072x3072) e nao limitava os fps.

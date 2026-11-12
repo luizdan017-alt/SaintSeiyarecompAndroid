@@ -163,7 +163,8 @@ void iop_call_ee(u32 sid, u32 fn, const void *data, u32 size) {
     pthread_mutex_lock(&ee_lock);
     if ((ee_tail + 1) % EE_JOBS == ee_head) {
         pthread_mutex_unlock(&ee_lock);
-        rt_log("iop", "IOP->EE queue full: call %X fn %X lost", sid, fn);
+        static unsigned lost_n;   /* Android: so as primeiras e depois 1 a cada 2000 */
+        if (lost_n++ < 5 || lost_n % 2000 == 0) rt_log("iop", "IOP->EE queue full: call %X fn %X lost (%u)", sid, fn, lost_n);
         return;
     }
     EeCall *j = &ee_jobs[ee_tail];
