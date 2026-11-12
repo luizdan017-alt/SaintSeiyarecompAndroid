@@ -1,0 +1,957 @@
+# Android (Etapa 6: desempenho (nucleos, flags, 50 Hz)). Este arquivo unico cria os arquivos do app,
+# ajusta o codigo para Android (android/patch_port.py), compila o APK e grava tudo na branch.
+name: Android
+
+on:
+  push:
+    branches: [android]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Criar arquivos do app Android
+        run: |
+          mkdir -p "$(dirname android/settings.gradle.kts)"
+          cat > android/settings.gradle.kts <<'EOF_FILE'
+          pluginManagement {
+              repositories {
+                  google()
+                  mavenCentral()
+                  gradlePluginPortal()
+              }
+          }
+          dependencyResolutionManagement {
+              repositories {
+                  google()
+                  mavenCentral()
+              }
+          }
+          rootProject.name = "SaintSeiyaAndroid"
+          include(":app")
+          EOF_FILE
+          mkdir -p "$(dirname android/build.gradle.kts)"
+          cat > android/build.gradle.kts <<'EOF_FILE'
+          plugins {
+              id("com.android.application") version "8.5.2" apply false
+              id("org.jetbrains.kotlin.android") version "1.9.24" apply false
+          }
+          EOF_FILE
+          mkdir -p "$(dirname android/gradle.properties)"
+          cat > android/gradle.properties <<'EOF_FILE'
+          org.gradle.jvmargs=-Xmx3g
+          android.useAndroidX=true
+          EOF_FILE
+          mkdir -p "$(dirname android/app/build.gradle.kts)"
+          cat > android/app/build.gradle.kts <<'EOF_FILE'
+          plugins {
+              id("com.android.application")
+              id("org.jetbrains.kotlin.android")
+          }
+
+          android {
+              namespace = "com.luizdan.sstheh"
+              compileSdk = 34
+
+              defaultConfig {
+                  applicationId = "com.luizdan.sstheh"
+                  minSdk = 29
+                  targetSdk = 34
+                  versionCode = 1
+                  versionName = "0.0.1-esqueleto"
+                  ndk { abiFilters += listOf("arm64-v8a") }
+                  externalNativeBuild {
+                      cmake {
+                          arguments += listOf(
+                              "-DANDROID_STL=c++_shared",
+                              "-DSDL_DIR=${rootProject.projectDir}/third_party/SDL",
+                              "-DSS_ROOT=${rootProject.projectDir}/..",
+                              "-DCMAKE_BUILD_TYPE=Release"
+                          )
+                      }
+                  }
+              }
+
+              externalNativeBuild {
+                  cmake {
+                      path = file("src/main/cpp/CMakeLists.txt")
+                  }
+              }
+
+              compileOptions {
+                  sourceCompatibility = JavaVersion.VERSION_17
+                  targetCompatibility = JavaVersion.VERSION_17
+              }
+              kotlinOptions { jvmTarget = "17" }
+          }
+          EOF_FILE
+          mkdir -p "$(dirname android/app/src/main/AndroidManifest.xml)"
+          cat > android/app/src/main/AndroidManifest.xml <<'EOF_FILE'
+          <?xml version="1.0" encoding="utf-8"?>
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+              <uses-feature android:glEsVersion="0x00030000" android:required="true" />
+              <uses-feature android:name="android.hardware.vulkan.version" android:version="0x400003" android:required="false" />
+
+              <application
+                  android:label="Saint Seiya (port)"
+                  android:allowBackup="false"
+                  android:hasCode="true">
+
+                  <activity
+                      android:name=".LauncherActivity"
+                      android:exported="true">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+                  </activity>
+
+                  <activity
+                      android:name=".GameActivity"
+                      android:exported="false"
+                      android:process=":game"
+                      android:screenOrientation="sensorLandscape"
+                      android:configChanges="orientation|screenSize|keyboardHidden|uiMode|density"
+                      android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+                  <activity
+                      android:name=".TestActivity"
+                      android:exported="false"
+                      android:process=":game"
+                      android:screenOrientation="sensorLandscape"
+                      android:configChanges="orientation|screenSize|keyboardHidden|uiMode|density"
+                      android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+              </application>
+          </manifest>
+          EOF_FILE
+          mkdir -p "$(dirname android/app/src/main/java/com/luizdan/sstheh/GameActivity.kt)"
+          cat > android/app/src/main/java/com/luizdan/sstheh/GameActivity.kt <<'EOF_FILE'
+          package com.luizdan.sstheh
+
+          import android.net.Uri
+          import android.os.Bundle
+          import android.os.ParcelFileDescriptor
+          import android.os.Process
+          import android.system.Os
+          import android.util.Log
+          import android.view.ViewGroup
+          import org.libsdl.app.SDLActivity
+
+          /** O jogo: carrega libSDL3.so e libsstheh.so (o motor) e chama SDL_main. Roda no processo ":game". */
+          class GameActivity : SDLActivity() {
+              private var iso: ParcelFileDescriptor? = null
+
+              override fun onCreate(savedInstanceState: Bundle?) {
+                  try {
+                      val f = filesDir.absolutePath
+                      Os.setenv("SS_FILES", f, true)
+                      Os.setenv("HOME", f, true)
+                      Os.setenv("XDG_DATA_HOME", "$f/data", true)
+                      Os.setenv("SDL_ORIENTATIONS", "LandscapeLeft LandscapeRight", true)   // sempre deitado
+                      // desempenho: resolucao interna baixa (1 = a do PS2), 60 fps com vsync, sem quadros interpolados
+                      val sp = getSharedPreferences("sstheh", MODE_PRIVATE)
+                      Os.setenv("SSTHEH_SCALE", sp.getInt("render_scale", 1).toString(), true)
+                      Os.setenv("SSTHEH_VSYNC", "1", true)
+                      Os.setenv("SSTHEH_INTERP", "0", true)
+                      Os.setenv("SSTHEH_PERF_LOG", "1", true)   // uma linha de desempenho por segundo no log
+                      Os.setenv("SSTHEH_30FPS_SCENES", "1", true)   // menus e telas 2D a 30 fps, como no disco
+                      if (sp.getBoolean("hz50", true)) Os.setenv("SSTHEH_50HZ", "1", true)   // 50 Hz: o modo PAL original
+                      val s = intent.getStringExtra("iso")
+                      if (s != null) {
+                          // a ISO e lida direto do arquivo escolhido, sem copiar: o motor recebe so o numero do descritor
+                          iso = contentResolver.openFileDescriptor(Uri.parse(s), "r")
+                          Os.setenv("SS_ISO", "fd:${iso!!.fd}", true)
+                      }
+                  } catch (e: Exception) {
+                      Log.e("sstheh", "preparo falhou", e)
+                  }
+                  super.onCreate(savedInstanceState)
+                  addContentView(TouchOverlay(this), ViewGroup.LayoutParams(-1, -1))   // controle na tela
+              }
+
+              override fun getLibraries(): Array<String> = arrayOf("SDL3", "sstheh")
+
+              override fun onDestroy() {
+                  super.onDestroy()
+                  Process.killProcess(Process.myPid())   // cada partida comeca com o processo limpo
+              }
+          }
+          EOF_FILE
+          mkdir -p "$(dirname android/app/src/main/java/com/luizdan/sstheh/TestActivity.kt)"
+          cat > android/app/src/main/java/com/luizdan/sstheh/TestActivity.kt <<'EOF_FILE'
+          package com.luizdan.sstheh
+
+          import android.os.Process
+          import org.libsdl.app.SDLActivity
+
+          /** Teste dos graficos: a tela azul do esqueleto (libmain.so). */
+          class TestActivity : SDLActivity() {
+              override fun getLibraries(): Array<String> = arrayOf("SDL3", "main")
+
+              override fun onDestroy() {
+                  super.onDestroy()
+                  Process.killProcess(Process.myPid())
+              }
+          }
+          EOF_FILE
+          mkdir -p "$(dirname android/app/src/main/java/com/luizdan/sstheh/LauncherActivity.kt)"
+          cat > android/app/src/main/java/com/luizdan/sstheh/LauncherActivity.kt <<'EOF_FILE'
+          package com.luizdan.sstheh
+
+          import android.app.Activity
+          import android.content.Intent
+          import android.graphics.Typeface
+          import android.net.Uri
+          import android.os.Bundle
+          import android.provider.OpenableColumns
+          import android.widget.Button
+          import android.widget.LinearLayout
+          import android.widget.ScrollView
+          import android.widget.SeekBar
+          import android.widget.TextView
+          import android.widget.Toast
+          import java.io.File
+
+          /** Tela inicial: escolher a ISO, jogar, testar os graficos e ver o log da ultima partida. */
+          class LauncherActivity : Activity() {
+              private lateinit var status: TextView
+              private lateinit var logView: TextView
+
+              private fun prefs() = getSharedPreferences("sstheh", MODE_PRIVATE)
+
+              override fun onCreate(savedInstanceState: Bundle?) {
+                  super.onCreate(savedInstanceState)
+                  val pad = (16 * resources.displayMetrics.density).toInt()
+                  val root = LinearLayout(this).apply {
+                      orientation = LinearLayout.VERTICAL
+                      setPadding(pad, pad * 2, pad, pad)
+                  }
+                  status = TextView(this).apply { textSize = 16f }
+                  val pick = Button(this).apply { text = "Escolher a ISO"; setOnClickListener { pickIso() } }
+                  val play = Button(this).apply { text = "Jogar"; setOnClickListener { play() } }
+                  val test = Button(this).apply {
+                      text = "Testar gráficos (tela azul)"
+                      setOnClickListener { startActivity(Intent(this@LauncherActivity, TestActivity::class.java)) }
+                  }
+                  logView = TextView(this).apply {
+                      textSize = 11f
+                      typeface = Typeface.MONOSPACE
+                      setTextIsSelectable(true)
+                  }
+                  val scroll = ScrollView(this).apply { addView(logView) }
+                  root.addView(status)
+                  root.addView(pick)
+                  root.addView(play)
+                  root.addView(test)
+                  val res = Button(this)
+                  fun refresh() { res.text = "Resolução interna: ${prefs().getInt("render_scale", 1)}x (1 = mais rápido)" }
+                  res.setOnClickListener {
+                      prefs().edit().putInt("render_scale", prefs().getInt("render_scale", 1) % 3 + 1).apply()
+                      refresh()
+                  }
+                  refresh()
+                  root.addView(res)
+                  val hz = Button(this)
+                  fun refreshHz() { hz.text = "Taxa do jogo: " + (if (prefs().getBoolean("hz50", true)) "50 Hz (original, mais leve)" else "60 Hz") }
+                  hz.setOnClickListener {
+                      prefs().edit().putBoolean("hz50", !prefs().getBoolean("hz50", true)).apply()
+                      refreshHz()
+                  }
+                  refreshHz()
+                  root.addView(hz)
+                  root.addView(slider("Tamanho dos botões", "touch_scale", 60, 150, 100))
+                  root.addView(slider("Opacidade dos botões", "touch_alpha", 10, 100, 55))
+                  root.addView(scroll, LinearLayout.LayoutParams(-1, 0, 1f))
+                  setContentView(root)
+              }
+
+              override fun onResume() {
+                  super.onResume()
+                  val s = prefs().getString("iso", null)
+                  status.text = if (s == null) "Nenhuma ISO escolhida." else "ISO: " + displayName(Uri.parse(s))
+                  val log = File(filesDir, "sstheh.log")
+                  logView.text = if (log.exists()) "Log da última partida:\n" + log.readText().takeLast(8000)
+                                 else "Ainda não há log."
+              }
+
+              /** Barra de ajuste guardada nas preferencias (lida pelo controle na tela ao iniciar a partida). */
+              private fun slider(label: String, key: String, min: Int, max: Int, def: Int): LinearLayout {
+                  val box = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
+                  val t = TextView(this)
+                  val bar = SeekBar(this).apply { this.max = max - min; progress = prefs().getInt(key, def) - min }
+                  fun show(v: Int) { t.text = "$label: $v%" }
+                  show(bar.progress + min)
+                  bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                      override fun onProgressChanged(sb: SeekBar, p: Int, fromUser: Boolean) {
+                          show(p + min); prefs().edit().putInt(key, p + min).apply()
+                      }
+                      override fun onStartTrackingTouch(sb: SeekBar) {}
+                      override fun onStopTrackingTouch(sb: SeekBar) {}
+                  })
+                  box.addView(t); box.addView(bar)
+                  return box
+              }
+
+              private fun displayName(uri: Uri): String = try {
+                  contentResolver.query(uri, null, null, null, null)?.use { c ->
+                      val i = c.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                      if (c.moveToFirst() && i >= 0) c.getString(i) else uri.toString()
+                  } ?: uri.toString()
+              } catch (e: Exception) { uri.toString() }
+
+              private fun pickIso() {
+                  val i = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                      addCategory(Intent.CATEGORY_OPENABLE)
+                      type = "*/*"
+                      addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
+                  }
+                  startActivityForResult(i, 1)
+              }
+
+              @Deprecated("simples e sem dependencias")
+              override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+                  super.onActivityResult(requestCode, resultCode, data)
+                  val uri = data?.data
+                  if (requestCode == 1 && resultCode == RESULT_OK && uri != null) {
+                      try { contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION) }
+                      catch (e: Exception) { /* sem permissao persistente: vale so ate fechar o app */ }
+                      prefs().edit().putString("iso", uri.toString()).apply()
+                  }
+              }
+
+              private fun play() {
+                  val s = prefs().getString("iso", null)
+                  if (s == null) {
+                      Toast.makeText(this, "Escolha a ISO primeiro.", Toast.LENGTH_SHORT).show()
+                      return
+                  }
+                  startActivity(Intent(this, GameActivity::class.java).putExtra("iso", s))
+              }
+          }
+          EOF_FILE
+          mkdir -p "$(dirname android/app/src/main/java/com/luizdan/sstheh/TouchOverlay.kt)"
+          cat > android/app/src/main/java/com/luizdan/sstheh/TouchOverlay.kt <<'EOF_FILE'
+          package com.luizdan.sstheh
+
+          import android.content.Context
+          import android.graphics.Canvas
+          import android.graphics.Color
+          import android.graphics.Paint
+          import android.view.MotionEvent
+          import android.view.View
+          import kotlin.math.hypot
+          import kotlin.math.max
+          import kotlin.math.min
+
+          /** Ponte para o motor (libsstheh.so): estado do controle e a tecla do painel de desempenho. */
+          object NativePad {
+              @JvmStatic external fun set(buttons: Int, lx: Int, ly: Int)
+              @JvmStatic external fun hud()
+          }
+
+          /** Controle na tela: direcional/analogico a esquerda, botoes a direita. Multitoque. */
+          class TouchOverlay(ctx: Context) : View(ctx) {
+              // bits do controle do PS2 (iguais aos de port/iop/pad.h)
+              private companion object {
+                  const val SELECT = 1 shl 0; const val START = 1 shl 3
+                  const val UP = 1 shl 4; const val RIGHT = 1 shl 5; const val DOWN = 1 shl 6; const val LEFT = 1 shl 7
+                  const val L2 = 1 shl 8; const val R2 = 1 shl 9; const val L1 = 1 shl 10; const val R1 = 1 shl 11
+                  const val TRIANGLE = 1 shl 12; const val CIRCLE = 1 shl 13; const val CROSS = 1 shl 14; const val SQUARE = 1 shl 15
+              }
+
+              private class Btn(val label: String, val bit: Int, val x: Float, val y: Float, val r: Float)
+
+              private val prefs = ctx.getSharedPreferences("sstheh", Context.MODE_PRIVATE)
+              private val userScale = prefs.getInt("touch_scale", 100) / 100f
+              private val btnAlpha = prefs.getInt("touch_alpha", 55) * 255 / 100
+              private var analog = prefs.getBoolean("touch_analog", false)
+
+              private val fill = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.FILL }
+              private val line = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; strokeWidth = 3f }
+              private val text = Paint(Paint.ANTI_ALIAS_FLAG).apply { textAlign = Paint.Align.CENTER }
+
+              private var btns: List<Btn> = emptyList()
+              private var hudBtn = Btn("HUD", 0, 0f, 0f, 0f)
+              private var modeBtn = Btn("", 0, 0f, 0f, 0f)
+              private var unit = 1f
+
+              // direcional / analogico flutuante
+              private var stickId = -1
+              private var cx = 0f; private var cy = 0f      // centro (onde o dedo tocou)
+              private var sx = 0f; private var sy = 0f      // posicao atual do dedo
+              private var defX = 0f; private var defY = 0f  // posicao de repouso desenhada
+
+              override fun onSizeChanged(w: Int, h: Int, ow: Int, oh: Int) {
+                  unit = resources.displayMetrics.density * userScale
+                  val u = unit
+                  val fw = w.toFloat(); val fh = h.toFloat()
+                  val ccx = fw - 120 * u; val ccy = fh - 105 * u; val off = 56 * u; val r = 30 * u
+                  btns = listOf(
+                      Btn("△", TRIANGLE, ccx, ccy - off, r), Btn("○", CIRCLE, ccx + off, ccy, r),
+                      Btn("✕", CROSS, ccx, ccy + off, r), Btn("□", SQUARE, ccx - off, ccy, r),
+                      Btn("R1", R1, fw - 60 * u, 48 * u, 28 * u), Btn("R2", R2, fw - 135 * u, 48 * u, 28 * u),
+                      Btn("L1", L1, 60 * u, 48 * u, 28 * u), Btn("L2", L2, 135 * u, 48 * u, 28 * u),
+                      Btn("SEL", SELECT, fw / 2 - 45 * u, fh - 28 * u, 20 * u), Btn("START", START, fw / 2 + 45 * u, fh - 28 * u, 24 * u)
+                  )
+                  hudBtn = Btn("HUD", 0, fw / 2 - 40 * u, 24 * u, 20 * u)
+                  modeBtn = Btn("", 0, fw / 2 + 40 * u, 24 * u, 20 * u)
+                  defX = 105 * u; defY = fh - 105 * u
+              }
+
+              private fun drawBtn(c: Canvas, b: Btn, label: String, down: Boolean) {
+                  fill.color = Color.WHITE; fill.alpha = if (down) min(255, btnAlpha + 80) else btnAlpha / 2
+                  c.drawCircle(b.x, b.y, b.r, fill)
+                  line.color = Color.WHITE; line.alpha = btnAlpha
+                  c.drawCircle(b.x, b.y, b.r, line)
+                  text.color = Color.WHITE; text.alpha = min(255, btnAlpha + 60)
+                  text.textSize = if (label.length > 2) b.r * 0.6f else b.r * 0.9f
+                  c.drawText(label, b.x, b.y + text.textSize / 3, text)
+              }
+
+              private var pressed = 0
+              override fun onDraw(c: Canvas) {
+                  for (b in btns) drawBtn(c, b, b.label, (pressed and b.bit) != 0)
+                  drawBtn(c, hudBtn, "HUD", false)
+                  drawBtn(c, modeBtn, if (analog) "ANA" else "DPAD", false)
+                  // direcional
+                  val R = 55 * unit
+                  val bx = if (stickId >= 0) cx else defX
+                  val by = if (stickId >= 0) cy else defY
+                  fill.color = Color.WHITE; fill.alpha = btnAlpha / 3
+                  c.drawCircle(bx, by, R, fill)
+                  line.color = Color.WHITE; line.alpha = btnAlpha
+                  c.drawCircle(bx, by, R, line)
+                  fill.alpha = btnAlpha
+                  val kx = if (stickId >= 0) bx + clampVec(sx - cx, R) else bx
+                  val ky = if (stickId >= 0) by + clampVec(sy - cy, R) else by
+                  c.drawCircle(kx, ky, 24 * unit, fill)
+              }
+
+              private fun clampVec(v: Float, r: Float): Float = max(-r, min(r, v))
+
+              private fun hit(b: Btn, x: Float, y: Float) = hypot(x - b.x, y - b.y) <= b.r * 1.2f
+
+              override fun onTouchEvent(ev: MotionEvent): Boolean {
+                  val act = ev.actionMasked
+                  if (act == MotionEvent.ACTION_CANCEL) { stickId = -1; push(0); return true }
+                  val upIdx = if (act == MotionEvent.ACTION_UP || act == MotionEvent.ACTION_POINTER_UP) ev.actionIndex else -1
+                  val downIdx = if (act == MotionEvent.ACTION_DOWN || act == MotionEvent.ACTION_POINTER_DOWN) ev.actionIndex else -1
+                  var buttons = 0
+                  var stickAlive = false
+                  for (i in 0 until ev.pointerCount) {
+                      if (i == upIdx) continue
+                      val id = ev.getPointerId(i); val x = ev.getX(i); val y = ev.getY(i)
+                      if (i == downIdx) {
+                          if (hit(hudBtn, x, y)) { try { NativePad.hud() } catch (e: UnsatisfiedLinkError) { } ; continue }
+                          if (hit(modeBtn, x, y)) { analog = !analog; prefs.edit().putBoolean("touch_analog", analog).apply(); continue }
+                      }
+                      if (id == stickId) { sx = x; sy = y; stickAlive = true; continue }
+                      var hitBit = 0
+                      for (b in btns) if (hit(b, x, y)) { hitBit = b.bit; break }
+                      if (hitBit != 0) { buttons = buttons or hitBit; continue }
+                      if (stickId == -1 && i == downIdx && x < width * 0.42f && y > height * 0.3f) {
+                          stickId = id; cx = x; cy = y; sx = x; sy = y; stickAlive = true
+                      }
+                  }
+                  if (!stickAlive) stickId = -1
+                  push(buttons)
+                  return true
+              }
+
+              private fun push(buttons: Int) {
+                  var b = buttons
+                  var lx = 128; var ly = 128
+                  if (stickId >= 0) {
+                      val R = 55 * unit
+                      val dx = clampVec(sx - cx, R) / R; val dy = clampVec(sy - cy, R) / R
+                      if (analog) {
+                          lx = 128 + (dx * 127).toInt(); ly = 128 + (dy * 127).toInt()
+                      } else {
+                          if (dx > 0.38f) b = b or RIGHT
+                          if (dx < -0.38f) b = b or LEFT
+                          if (dy > 0.38f) b = b or DOWN
+                          if (dy < -0.38f) b = b or UP
+                      }
+                  }
+                  pressed = b
+                  try { NativePad.set(b, lx, ly) } catch (e: UnsatisfiedLinkError) { }
+                  invalidate()
+              }
+          }
+          EOF_FILE
+          mkdir -p "$(dirname android/app/src/main/cpp/CMakeLists.txt)"
+          cat > android/app/src/main/cpp/CMakeLists.txt <<'EOF_FILE'
+          cmake_minimum_required(VERSION 3.22)
+          project(sstheh_android C)
+
+          # ---- SDL3 compilado junto, como biblioteca compartilhada (libSDL3.so)
+          set(SDL_SHARED ON CACHE BOOL "" FORCE)
+          set(SDL_STATIC OFF CACHE BOOL "" FORCE)
+          set(SDL_TEST_LIBRARY OFF CACHE BOOL "" FORCE)
+          add_subdirectory(${SDL_DIR} SDL3-build)
+
+          # ---- libmain.so: esqueleto (tela azul). Continua sendo o que o app carrega nesta etapa.
+          add_library(main SHARED skeleton_main.c)
+          target_link_libraries(main PRIVATE SDL3::SDL3 log)
+
+          # ---- libsstheh.so: o motor do Saint Seiya. O app o carrega (GameActivity).
+          get_filename_component(SS_ROOT "${SS_ROOT}" ABSOLUTE)
+          message(STATUS "SS_ROOT = ${SS_ROOT}")
+          if(NOT EXISTS "${SS_ROOT}/port/main.c")
+            message(FATAL_ERROR "port/main.c nao encontrado em ${SS_ROOT}")
+          endif()
+
+          # shaders: GLSL -> SPIR-V -> shaders.h (igual ao configure.py)
+          find_program(GLSLC glslc HINTS "${CMAKE_ANDROID_NDK}/shader-tools/linux-x86_64" "$ENV{ANDROID_NDK_HOME}/shader-tools/linux-x86_64")
+          if(NOT GLSLC)
+            message(FATAL_ERROR "glslc nao encontrado no NDK (${CMAKE_ANDROID_NDK})")
+          endif()
+          find_package(Python3 REQUIRED COMPONENTS Interpreter)
+          set(SHDIR "${CMAKE_BINARY_DIR}/shaders")
+          file(MAKE_DIRECTORY "${SHDIR}")
+          file(GLOB SH_VERT "${SS_ROOT}/port/gs/shaders/*.vert")
+          file(GLOB SH_FRAG "${SS_ROOT}/port/gs/shaders/*.frag")
+          set(SPVS "")
+          foreach(sh ${SH_VERT} ${SH_FRAG})
+            get_filename_component(shn "${sh}" NAME)
+            execute_process(COMMAND "${GLSLC}" -O "${sh}" -o "${SHDIR}/${shn}.spv" RESULT_VARIABLE rc)
+            if(NOT rc EQUAL 0)
+              message(FATAL_ERROR "glslc falhou em ${sh}")
+            endif()
+            list(APPEND SPVS "${SHDIR}/${shn}.spv")
+          endforeach()
+          execute_process(COMMAND "${Python3_EXECUTABLE}" "${SS_ROOT}/tools/spv2h.py" "${SHDIR}/shaders.h" ${SPVS} RESULT_VARIABLE rc)
+          if(NOT rc EQUAL 0)
+            message(FATAL_ERROR "spv2h.py falhou")
+          endif()
+
+          # codigo traduzido: o EU (o que roda) e os programas VU1 em -O2; o JP so precisa existir (-O1, compila mais rapido)
+          file(GLOB GEN_EU "${SS_ROOT}/generated/recomp/*.c" "${SS_ROOT}/generated/vu/*.c")
+          file(GLOB GEN_JP "${SS_ROOT}/generated-jp/recomp/*.c")
+          # runtime, kernel, IOP, GS e HLE
+          file(GLOB_RECURSE PORT_C "${SS_ROOT}/port/*.c")
+
+          # sem protecao de pilha nem FORTIFY (o NDK liga os dois): custam tempo em codigo quente e nao ajudam aqui
+          set(FAST_OPTS -g0 -fno-strict-aliasing -ffp-contract=off -fno-stack-protector -U_FORTIFY_SOURCE)
+          include(CheckCCompilerFlag)
+          check_c_compiler_flag("-mtune=cortex-a73" HAS_MTUNE_A73)
+          if(HAS_MTUNE_A73)
+            list(APPEND FAST_OPTS -mtune=cortex-a73)
+          endif()
+
+          add_library(sstheh SHARED ${GEN_EU} ${GEN_JP} ${PORT_C} android_entry.c)
+          set_source_files_properties(${GEN_EU} PROPERTIES COMPILE_OPTIONS "-O2;-w;${FAST_OPTS}")
+          set_source_files_properties(${GEN_JP} PROPERTIES COMPILE_OPTIONS "-O1;-w;${FAST_OPTS}")
+          set_source_files_properties(${PORT_C} PROPERTIES COMPILE_OPTIONS "-O2;-Wno-unused-parameter;${FAST_OPTS}")
+          # simbolos escondidos: chamadas entre arquivos viram chamadas diretas (sem PLT). SDL_main e o JNI ficam visiveis.
+          set_target_properties(sstheh PROPERTIES C_VISIBILITY_PRESET hidden)
+          # main() do jogo vira ss_main; o SDL_main do Android esta em android_entry.c
+          set_source_files_properties("${SS_ROOT}/port/main.c" PROPERTIES COMPILE_DEFINITIONS "main=ss_main")
+          target_include_directories(sstheh PRIVATE
+            ${SS_ROOT}/port/runtime ${SS_ROOT}/port/kernel ${SS_ROOT}/port/iop ${SS_ROOT}/port/gs
+            ${SS_ROOT}/generated/recomp ${SHDIR})
+          target_link_libraries(sstheh PRIVATE SDL3::SDL3 m log android dl)
+          target_link_options(sstheh PRIVATE -Wl,--strip-all)
+          EOF_FILE
+          mkdir -p "$(dirname android/app/src/main/cpp/skeleton_main.c)"
+          cat > android/app/src/main/cpp/skeleton_main.c <<'EOF_FILE'
+          /* Esqueleto: prova que SDL3 inicia no Android e que o dispositivo grafico (Vulkan) abre.
+           * O resultado aparece no logcat (tag "sstheh") e na tela (cor de fundo azul = tudo certo). */
+          #include <SDL3/SDL.h>
+          #include <SDL3/SDL_main.h>
+          #include <android/log.h>
+
+          #define LOG(...) __android_log_print(ANDROID_LOG_INFO, "sstheh", __VA_ARGS__)
+
+          int main(int argc, char **argv) {
+              (void)argc; (void)argv;
+              if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMEPAD)) {
+                  LOG("SDL_Init falhou: %s", SDL_GetError());
+                  return 1;
+              }
+              LOG("SDL %d iniciado", SDL_GetVersion());
+
+              SDL_Window *win = SDL_CreateWindow("sstheh", 0, 0, SDL_WINDOW_FULLSCREEN);
+              if (!win) { LOG("janela falhou: %s", SDL_GetError()); return 1; }
+
+              SDL_GPUDevice *dev = SDL_CreateGPUDevice(SDL_GPU_SHADERFORMAT_SPIRV, false, NULL);
+              if (dev) {
+                  LOG("SDL GPU ok, driver: %s", SDL_GetGPUDeviceDriver(dev));
+                  SDL_ClaimWindowForGPUDevice(dev, win);
+              } else {
+                  LOG("SDL GPU falhou: %s", SDL_GetError());
+              }
+
+              for (int run = 1; run;) {
+                  SDL_Event e;
+                  while (SDL_PollEvent(&e)) if (e.type == SDL_EVENT_QUIT) run = 0;
+                  if (dev) {
+                      SDL_GPUCommandBuffer *cb = SDL_AcquireGPUCommandBuffer(dev);
+                      SDL_GPUTexture *tex = NULL;
+                      if (cb && SDL_WaitAndAcquireGPUSwapchainTexture(cb, win, &tex, NULL, NULL) && tex) {
+                          SDL_GPUColorTargetInfo ct = {0};
+                          ct.texture = tex;
+                          ct.clear_color = (SDL_FColor){0.1f, 0.3f, 0.8f, 1.0f};
+                          ct.load_op = SDL_GPU_LOADOP_CLEAR;
+                          ct.store_op = SDL_GPU_STOREOP_STORE;
+                          SDL_GPURenderPass *rp = SDL_BeginGPURenderPass(cb, &ct, 1, NULL);
+                          SDL_EndGPURenderPass(rp);
+                      }
+                      if (cb) SDL_SubmitGPUCommandBuffer(cb);
+                  } else {
+                      SDL_Delay(16);
+                  }
+              }
+              SDL_Quit();
+              return 0;
+          }
+          EOF_FILE
+          mkdir -p "$(dirname android/app/src/main/cpp/android_entry.c)"
+          cat > android/app/src/main/cpp/android_entry.c <<'EOF_FILE'
+          #define _GNU_SOURCE
+          /* Ponto de entrada do motor no Android (SDL_main). Prepara o que o main() original espera:
+           *  - guarda o log em <files>/sstheh.log (o app mostra na tela inicial)
+           *  - le a ISO direto do descritor recebido do Android ("fd:N", sem copiar)
+           *  - extrai da ISO o executavel do jogo (pequeno) para <files>/disc/ na primeira vez
+           * e entrega ao main() original (renomeado ss_main) a linha de comando "--iso fd:N <executavel>". */
+          #include <fcntl.h>
+          #include <pthread.h>
+          #include <sched.h>
+          #include <sys/resource.h>
+          #include <stdio.h>
+          #include <stdlib.h>
+          #include <string.h>
+          #include <sys/stat.h>
+          #include <unistd.h>
+          #include <android/log.h>
+          #include <jni.h>
+
+          typedef unsigned int u32;
+          typedef unsigned char u8;
+          int cdvd_open(const char *path);
+          int cdvd_find(const char *path, u32 *lsn, u32 *size);
+          int cdvd_read(u32 lsn, u32 count, u8 *out);
+          int ss_main(int argc, char **argv);
+
+          #define ALOG(...) __android_log_print(ANDROID_LOG_INFO, "sstheh", __VA_ARGS__)
+
+          /* nome do executavel que o disco inicia (SYSTEM.CNF: BOOT2 = cdrom0:\NOME;1) */
+          static const char *boot_exe_name(void) {
+              static char name[32];
+              u32 lsn, size;
+              u8 buf[2048];
+              if (!cdvd_find("\\SYSTEM.CNF;1", &lsn, &size) || cdvd_read(lsn, 1, buf)) return NULL;
+              buf[size < sizeof buf ? size : sizeof buf - 1] = 0;
+              const char *p = strstr((const char *)buf, "cdrom0:\\");
+              if (!p) return NULL;
+              p += 8;
+              int n = 0;
+              while (p[n] && p[n] != ';' && p[n] != '\r' && p[n] != '\n' && n < (int)sizeof name - 1) { name[n] = p[n]; n++; }
+              name[n] = 0;
+              return n ? name : NULL;
+          }
+
+          static int extract(const char *name, const char *dest) {
+              char key[64];
+              u32 lsn, size;
+              snprintf(key, sizeof key, "\\%s;1", name);
+              if (!cdvd_find(key, &lsn, &size)) { fprintf(stderr, "o disco nao tem %s\n", name); return -1; }
+              FILE *f = fopen(dest, "wb");
+              if (!f) { fprintf(stderr, "nao consegui criar %s\n", dest); return -1; }
+              static u8 buf[2048 * 32];
+              for (u32 done = 0; done < size;) {
+                  u32 left = (size - done + 2047) / 2048, n = left < 32 ? left : 32;
+                  if (cdvd_read(lsn + done / 2048, n, buf)) { fprintf(stderr, "leitura da ISO falhou\n"); fclose(f); remove(dest); return -1; }
+                  u32 bytes = n * 2048 < size - done ? n * 2048 : size - done;
+                  fwrite(buf, 1, bytes, f);
+                  done += bytes;
+              }
+              fclose(f);
+              fprintf(stderr, "extraido %s (%u bytes)\n", name, size);
+              return 0;
+          }
+
+
+
+          /* ---- nucleos rapidos: os threads pesados (jogo, GS, EE, IOP, tela) ficam so nos nucleos "grandes" ----
+           * Celulares tem nucleos rapidos e lentos; o motor e limitado pelo thread do jogo, e num nucleo lento ele
+           * anda bem menos. Os nucleos rapidos sao os de frequencia maxima maior que a dos mais lentos. */
+          static int big_n;
+          static cpu_set_t big_set;
+          static void init_big(void) {
+              static int done;
+              if (done) return;
+              done = 1;
+              long n = sysconf(_SC_NPROCESSORS_CONF), f[32], minf = 0, maxf = 0;
+              if (n < 2 || n > 32) return;
+              for (int i = 0; i < n; i++) {
+                  char p[96];
+                  snprintf(p, sizeof p, "/sys/devices/system/cpu/cpu%d/cpufreq/cpuinfo_max_freq", i);
+                  FILE *fp = fopen(p, "r");
+                  f[i] = 0;
+                  if (fp) { if (fscanf(fp, "%ld", &f[i]) != 1) f[i] = 0; fclose(fp); }
+                  if (f[i] <= 0) { fprintf(stderr, "afinidade: nao consegui ler a frequencia da CPU %d\n", i); return; }
+                  if (!minf || f[i] < minf) minf = f[i];
+                  if (f[i] > maxf) maxf = f[i];
+              }
+              if (maxf * 100 < minf * 105) { fprintf(stderr, "afinidade: todos os nucleos sao iguais\n"); return; }
+              CPU_ZERO(&big_set);
+              for (int i = 0; i < n; i++)
+                  if (f[i] * 100 > minf * 105) { CPU_SET(i, &big_set); big_n++; }
+              fprintf(stderr, "afinidade: %d nucleos rapidos de %ld (frequencias %ld a %ld kHz)\n", big_n, n, minf, maxf);
+          }
+
+          /* chamada por platform_thread_name (port/runtime/platform.c) e pelo SDL_main */
+          void android_pin_thread(pthread_t t, const char *name) {
+              init_big();
+              if (!big_n) return;
+              if (strcmp(name, "game") && strcmp(name, "gs") && strncmp(name, "ee-", 3) && strncmp(name, "iop-", 4) && strcmp(name, "main")) return;
+              pid_t tid = pthread_gettid_np(t);
+              if (sched_setaffinity(tid, sizeof big_set, &big_set)) fprintf(stderr, "afinidade de %s falhou\n", name);
+              if (!strcmp(name, "game") || !strcmp(name, "gs") || !strcmp(name, "main")) setpriority(PRIO_PROCESS, tid, -4);
+          }
+
+          /* ---- diagnostico do executavel extraido: tamanho, FNV-1a 64 (o que o jogo confere) e SHA-1 ---- */
+          static u32 rol(u32 v, int n) { return v << n | v >> (32 - n); }
+          static void sha1_block(u32 h[5], const u8 *p) {
+              u32 w[80];
+              for (int i = 0; i < 16; i++) w[i] = (u32)p[4*i] << 24 | p[4*i+1] << 16 | p[4*i+2] << 8 | p[4*i+3];
+              for (int i = 16; i < 80; i++) w[i] = rol(w[i-3] ^ w[i-8] ^ w[i-14] ^ w[i-16], 1);
+              u32 a = h[0], b = h[1], c = h[2], d = h[3], e = h[4];
+              for (int i = 0; i < 80; i++) {
+                  u32 f, k;
+                  if (i < 20) { f = (b & c) | (~b & d); k = 0x5A827999; }
+                  else if (i < 40) { f = b ^ c ^ d; k = 0x6ED9EBA1; }
+                  else if (i < 60) { f = (b & c) | (b & d) | (c & d); k = 0x8F1BBCDC; }
+                  else { f = b ^ c ^ d; k = 0xCA62C1D6; }
+                  u32 t = rol(a, 5) + f + e + k + w[i];
+                  e = d; d = c; c = rol(b, 30); b = a; a = t;
+              }
+              h[0] += a; h[1] += b; h[2] += c; h[3] += d; h[4] += e;
+          }
+          static void describe(const char *path) {
+              FILE *f = fopen(path, "rb");
+              if (!f) return;
+              fseek(f, 0, SEEK_END);
+              long n = ftell(f);
+              fseek(f, 0, SEEK_SET);
+              u8 *b = malloc(n > 0 ? (size_t)n : 1);
+              if (!b || fread(b, 1, (size_t)n, f) != (size_t)n) { fclose(f); free(b); return; }
+              fclose(f);
+              unsigned long long fnv = 0xCBF29CE484222325ull;
+              for (long i = 0; i < n; i++) fnv = (fnv ^ b[i]) * 0x100000001B3ull;
+              u32 h[5] = {0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0};
+              long full = n / 64 * 64;
+              for (long i = 0; i < full; i += 64) sha1_block(h, b + i);
+              u8 last[128] = {0};
+              long rest = n - full;
+              memcpy(last, b + full, (size_t)rest);
+              last[rest] = 0x80;
+              int tot = rest < 56 ? 64 : 128;
+              unsigned long long bits = (unsigned long long)n * 8;
+              for (int i = 0; i < 8; i++) last[tot - 1 - i] = (u8)(bits >> (8 * i));
+              for (int i = 0; i < tot; i += 64) sha1_block(h, last + i);
+              fprintf(stderr, "executavel extraido: tamanho=%ld fnv=%016llX sha1=%08x%08x%08x%08x%08x\n", n, fnv, h[0], h[1], h[2], h[3], h[4]);
+              fprintf(stderr, "primeiros bytes: %02X %02X %02X %02X (um ELF comeca com 7F 45 4C 46)\n", b[0], b[1], b[2], b[3]);
+              fprintf(stderr, "esperado (EU SLES-54162): fnv=61BAC351F3463E34 sha1=7ba6b0a1c05a94f28452840fcb73c204e46e79e6\n");
+              fprintf(stderr, "esperado (JP SLPS-25744): fnv=1855DF702BBE6B8D\n");
+              free(b);
+          }
+
+          __attribute__((visibility("default"))) int SDL_main(int argc, char **argv) {
+              (void)argc; (void)argv;
+              const char *files = getenv("SS_FILES"), *iso = getenv("SS_ISO");
+              if (!files) { ALOG("SS_FILES nao definido"); return 1; }
+              char path[1200];
+              snprintf(path, sizeof path, "%s/sstheh.log", files);
+              int fd = open(path, O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0644);
+              if (fd >= 0) { dup2(fd, 1); dup2(fd, 2); }
+              setvbuf(stdout, NULL, _IONBF, 0);
+              setvbuf(stderr, NULL, _IONBF, 0);
+              android_pin_thread(pthread_self(), "main");
+              if (chdir(files)) fprintf(stderr, "chdir(%s) falhou\n", files);
+              mkdir("data", 0755);
+              mkdir("disc", 0755);
+              fprintf(stderr, "sstheh android: files=%s iso=%s\n", files, iso ? iso : "(nenhuma)");
+              if (!iso) { fprintf(stderr, "nenhuma ISO recebida\n"); return 1; }
+              if (cdvd_open(iso)) { fprintf(stderr, "nao consegui abrir a ISO (%s)\n", iso); return 1; }
+              const char *boot = boot_exe_name();
+              if (!boot) { fprintf(stderr, "a ISO nao tem SYSTEM.CNF: nao e um disco de PS2?\n"); return 1; }
+              fprintf(stderr, "executavel do disco: %s\n", boot);
+              char exe[1200];
+              snprintf(exe, sizeof exe, "%s/disc/%s", files, boot);
+              if (extract(boot, exe)) return 1;
+              describe(exe);
+              char *args[] = {"sstheh", "--iso", (char *)iso, exe, NULL};
+              ALOG("iniciando o motor");
+              return ss_main(4, args);
+          }
+
+          /* ---- controle na tela (TouchOverlay.kt -> NativePad): botoes do PS2 e analogico esquerdo ---- */
+          volatile unsigned short touch_pad_buttons;     /* lido por poll_pads() em port/gs/display.c */
+          volatile int touch_hud_toggle;                 /* pedido de mostrar/esconder o painel de desempenho */
+          extern volatile unsigned char pad_sticks[2][4];/* port/iop/pad.c: RX RY LX LY, 128 = centro */
+
+          JNIEXPORT void JNICALL Java_com_luizdan_sstheh_NativePad_set(JNIEnv *env, jclass cls, jint buttons, jint lx, jint ly) {
+              (void)env; (void)cls;
+              touch_pad_buttons = (unsigned short)buttons;
+              pad_sticks[0][2] = (unsigned char)(lx < 0 ? 0 : lx > 255 ? 255 : lx);
+              pad_sticks[0][3] = (unsigned char)(ly < 0 ? 0 : ly > 255 ? 255 : ly);
+          }
+
+          JNIEXPORT void JNICALL Java_com_luizdan_sstheh_NativePad_hud(JNIEnv *env, jclass cls) {
+              (void)env; (void)cls;
+              touch_hud_toggle = 1;
+          }
+          EOF_FILE
+          mkdir -p "$(dirname android/patch_port.py)"
+          cat > android/patch_port.py <<'EOF_FILE'
+          #!/usr/bin/env python3
+          """Ajustes minimos do codigo do jogo para o Android (rodado pelo workflow, na raiz do repositorio).
+          Cada ajuste troca um trecho exato; se o trecho nao existir (e o ajuste ainda nao estiver feito), falha.
+          Documentado em android/ANDROID_CHANGES.md."""
+          import sys
+
+          def patch(path, old, new):
+              s = open(path, encoding="utf-8").read()
+              if new in s:
+                  print("ja aplicado:", path); return
+              if s.count(old) != 1:
+                  sys.exit(f"ERRO: trecho nao encontrado (ou repetido) em {path}:\n{old}")
+              open(path, "w", encoding="utf-8").write(s.replace(old, new))
+              print("aplicado:", path)
+
+          # 1) platform.c: no Android (API 29) nao existe clock_nanosleep: usar o mesmo caminho do macOS
+          patch("port/runtime/platform.c",
+                "#ifdef __APPLE__\n#include <errno.h>\n",
+                "#include <errno.h>\n#ifdef __APPLE__\n")
+          patch("port/runtime/platform.c",
+                "#elif defined(__APPLE__)\n    /* no absolute clock_nanosleep",
+                "#elif defined(__APPLE__) || defined(__ANDROID__)\n    /* no absolute clock_nanosleep")
+
+          # 2) cdvd.c: a ISO pode vir como "fd:N" (descritor aberto pelo Android), lida sem copiar o arquivo
+          patch("port/hle/cdvd.c",
+                'int cdvd_open(const char *path) {\n    iso = fopen(path, "rb");\n',
+                'int cdvd_open(const char *path) {\n'
+                '    if (!strncmp(path, "fd:", 3)) {   /* Android: descritor da ISO escolhida; dup para nao fechar o original */\n'
+                '        extern int dup(int);\n'
+                '        int d = dup(atoi(path + 3));\n'
+                '        iso = d >= 0 ? fdopen(d, "rb") : NULL;\n'
+                '    } else iso = fopen(path, "rb");\n')
+
+          # 3) display.c: botoes do controle na tela entram no controle 1; HUD pode ser alternado pela tela
+          patch("port/gs/display.c",
+                "static void poll_pads(void) {\n    pad_buttons[0] = training_pad(keyboard() | gamepad_buttons(0) | scripted(kernel_vblank_count()));\n",
+                "extern volatile u16 touch_pad_buttons;    /* Android: controle na tela (android_entry.c) */\n"
+                "static void touch_hud_poll(void);\n"
+                "static void poll_pads(void) {\n    touch_hud_poll();\n"
+                "    pad_buttons[0] = training_pad(keyboard() | gamepad_buttons(0) | scripted(kernel_vblank_count()) | touch_pad_buttons);\n")
+          patch("port/gs/display.c",
+                "static int panel_on = 1;\n",
+                "static int panel_on = 1;\n"
+                "extern volatile int touch_hud_toggle;\n"
+                "static void touch_hud_poll(void) { if (touch_hud_toggle) { touch_hud_toggle = 0; panel_on = !panel_on; } }\n")
+
+          # 4) iop.c: o aviso "queue full" saia a cada chamada perdida (milhares por segundo) e enchia o log
+          patch("port/iop/iop.c",
+                '        rt_log("iop", "IOP->EE queue full: call %X fn %X lost", sid, fn);\n',
+                '        static unsigned lost_n;   /* Android: so as primeiras e depois 1 a cada 2000 */\n'
+                '        if (lost_n++ < 5 || lost_n % 2000 == 0) rt_log("iop", "IOP->EE queue full: call %X fn %X lost (%u)", sid, fn, lost_n);\n')
+
+          # 5) platform.c: threads pesados so nos nucleos rapidos (android_entry.c)
+          patch("port/runtime/platform.c",
+                "    pthread_setname_np(t, name);\n#endif\n",
+                "    pthread_setname_np(t, name);\n#ifdef __ANDROID__\n"
+                "    { extern void android_pin_thread(pthread_t, const char *); android_pin_thread(t, name); }\n#endif\n#endif\n")
+
+          # 6) cdvd.c: avisar leituras lentas da ISO (diagnostico das travadas)
+          patch("port/hle/cdvd.c",
+                '#include <string.h>\n\n#include "r5900.h"',
+                '#include <string.h>\n#include <time.h>\n\n#include "r5900.h"')
+          patch("port/hle/cdvd.c",
+                "    if (!iso) return -1;\n    pthread_mutex_lock(&iso_lock);\n    int ok;\n",
+                "    if (!iso) return -1;\n    struct timespec t0_, t1_;\n    clock_gettime(CLOCK_MONOTONIC, &t0_);\n"
+                "    pthread_mutex_lock(&iso_lock);\n    int ok;\n")
+          patch("port/hle/cdvd.c",
+                "    pthread_mutex_unlock(&iso_lock);\n    return ok ? 0 : -1;\n}",
+                "    pthread_mutex_unlock(&iso_lock);\n    clock_gettime(CLOCK_MONOTONIC, &t1_);\n"
+                "    long ms_ = (t1_.tv_sec - t0_.tv_sec) * 1000 + (t1_.tv_nsec - t0_.tv_nsec) / 1000000;\n"
+                '    if (ms_ >= 100) rt_log("cdvd", "leitura lenta: %u setores em %u levou %ld ms", count, lsn, ms_);\n'
+                "    return ok ? 0 : -1;\n}")
+          EOF_FILE
+          mkdir -p "$(dirname android/ANDROID_CHANGES.md)"
+          cat > android/ANDROID_CHANGES.md <<'EOF_FILE'
+          # Alteracoes do port Android
+
+          Arquivos novos em `android/` (app, CMake, patch_port.py). O codigo do jogo em `port/` so recebe os
+          ajustes de `android/patch_port.py`, aplicados pelo workflow `.github/workflows/android.yml`:
+
+          | Arquivo | Ajuste | Motivo |
+          |---|---|---|
+          | port/runtime/platform.c | `platform_sleep_until` usa o caminho do macOS no Android | `clock_nanosleep` so existe a partir da API 30 |
+          | port/hle/cdvd.c | `cdvd_open` aceita `fd:N` | ler a ISO direto do arquivo escolhido (Android), sem copiar 4 GB |
+          | port/gs/display.c | botoes do controle na tela somados ao controle 1; `touch_hud_poll` alterna o painel | controles touch (TouchOverlay.kt) |
+          | port/iop/iop.c | aviso "queue full" limitado | inundava o log (milhares de linhas) |
+          | port/runtime/platform.c | threads pesados ficam nos nucleos rapidos | o thread do jogo e o limite de velocidade |
+          | port/hle/cdvd.c | aviso de leitura lenta da ISO (>= 100 ms) | achar as travadas |
+
+          Para ver tudo o que mudou em relacao ao projeto original: `git diff master..android -- port`.
+
+          ## Desempenho (variaveis de ambiente, definidas em GameActivity.kt)
+          `SSTHEH_SCALE` (resolucao interna, padrao 1), `SSTHEH_VSYNC=1`, `SSTHEH_INTERP=0`, `SSTHEH_PERF_LOG=1`.
+          O padrao do projeto escolhia escala 3 neste aparelho (alvos de 3072x3072) e nao limitava os fps.
+
+          Compilacao: codigo EU em -O2 (JP em -O1), sem stack protector/FORTIFY, simbolos escondidos (chamadas diretas),
+          `-mtune=cortex-a73` quando o compilador aceita.
+          EOF_FILE
+          printf 'third_party/\napp/src/main/java/org/libsdl/\napp/build/\napp/.cxx/\n.gradle/\nbuild/\n' > android/.gitignore
+
+      - name: Ajustes do codigo para Android
+        run: python3 android/patch_port.py
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: SDL3 (codigo-fonte e parte Java)
+        run: |
+          git clone --depth 1 --branch release-3.2.x https://github.com/libsdl-org/SDL.git android/third_party/SDL
+          mkdir -p android/app/src/main/java/org/libsdl
+          cp -r android/third_party/SDL/android-project/app/src/main/java/org/libsdl/app android/app/src/main/java/org/libsdl/
+          git -C android/third_party/SDL rev-parse HEAD
+
+      - name: Compilar APK
+        working-directory: android
+        run: gradle --no-daemon assembleDebug
+
+      - name: Tamanho das bibliotecas
+        run: |
+          mkdir -p /tmp/apkx && cd /tmp/apkx && unzip -o -q "$GITHUB_WORKSPACE"/android/app/build/outputs/apk/debug/*.apk 'lib/*'
+          ls -la lib/arm64-v8a
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sstheh-android-debug
+          path: android/app/build/outputs/apk/debug/*.apk
+
+      - name: Gravar os arquivos criados e os ajustes na branch
+        if: success()
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add android port
+          git diff --cached --quiet || git commit -m "Android: arquivos gerados e ajustes pelo workflow"
+          git push || true
