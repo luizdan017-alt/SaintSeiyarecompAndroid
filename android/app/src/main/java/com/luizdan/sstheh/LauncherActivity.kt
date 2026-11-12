@@ -9,6 +9,7 @@ import android.provider.OpenableColumns
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import java.io.File
@@ -44,6 +45,8 @@ class LauncherActivity : Activity() {
         root.addView(pick)
         root.addView(play)
         root.addView(test)
+        root.addView(slider("Tamanho dos botões", "touch_scale", 60, 150, 100))
+        root.addView(slider("Opacidade dos botões", "touch_alpha", 10, 100, 55))
         root.addView(scroll, LinearLayout.LayoutParams(-1, 0, 1f))
         setContentView(root)
     }
@@ -55,6 +58,24 @@ class LauncherActivity : Activity() {
         val log = File(filesDir, "sstheh.log")
         logView.text = if (log.exists()) "Log da última partida:\n" + log.readText().takeLast(8000)
                        else "Ainda não há log."
+    }
+
+    /** Barra de ajuste guardada nas preferencias (lida pelo controle na tela ao iniciar a partida). */
+    private fun slider(label: String, key: String, min: Int, max: Int, def: Int): LinearLayout {
+        val box = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
+        val t = TextView(this)
+        val bar = SeekBar(this).apply { this.max = max - min; progress = prefs().getInt(key, def) - min }
+        fun show(v: Int) { t.text = "$label: $v%" }
+        show(bar.progress + min)
+        bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(sb: SeekBar, p: Int, fromUser: Boolean) {
+                show(p + min); prefs().edit().putInt(key, p + min).apply()
+            }
+            override fun onStartTrackingTouch(sb: SeekBar) {}
+            override fun onStopTrackingTouch(sb: SeekBar) {}
+        })
+        box.addView(t); box.addView(bar)
+        return box
     }
 
     private fun displayName(uri: Uri): String = try {

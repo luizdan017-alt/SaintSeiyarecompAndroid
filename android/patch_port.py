@@ -30,3 +30,16 @@ patch("port/hle/cdvd.c",
       '        int d = dup(atoi(path + 3));\n'
       '        iso = d >= 0 ? fdopen(d, "rb") : NULL;\n'
       '    } else iso = fopen(path, "rb");\n')
+
+# 3) display.c: botoes do controle na tela entram no controle 1; HUD pode ser alternado pela tela
+patch("port/gs/display.c",
+      "static void poll_pads(void) {\n    pad_buttons[0] = training_pad(keyboard() | gamepad_buttons(0) | scripted(kernel_vblank_count()));\n",
+      "extern volatile u16 touch_pad_buttons;    /* Android: controle na tela (android_entry.c) */\n"
+      "static void touch_hud_poll(void);\n"
+      "static void poll_pads(void) {\n    touch_hud_poll();\n"
+      "    pad_buttons[0] = training_pad(keyboard() | gamepad_buttons(0) | scripted(kernel_vblank_count()) | touch_pad_buttons);\n")
+patch("port/gs/display.c",
+      "static int panel_on = 1;\n",
+      "static int panel_on = 1;\n"
+      "extern volatile int touch_hud_toggle;\n"
+      "static void touch_hud_poll(void) { if (touch_hud_toggle) { touch_hud_toggle = 0; panel_on = !panel_on; } }\n")

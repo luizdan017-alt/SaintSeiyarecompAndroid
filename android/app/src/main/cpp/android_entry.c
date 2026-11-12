@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <android/log.h>
+#include <jni.h>
 
 typedef unsigned int u32;
 typedef unsigned char u8;
@@ -130,4 +131,21 @@ int SDL_main(int argc, char **argv) {
     char *args[] = {"sstheh", "--iso", (char *)iso, exe, NULL};
     ALOG("iniciando o motor");
     return ss_main(4, args);
+}
+
+/* ---- controle na tela (TouchOverlay.kt -> NativePad): botoes do PS2 e analogico esquerdo ---- */
+volatile unsigned short touch_pad_buttons;     /* lido por poll_pads() em port/gs/display.c */
+volatile int touch_hud_toggle;                 /* pedido de mostrar/esconder o painel de desempenho */
+extern volatile unsigned char pad_sticks[2][4];/* port/iop/pad.c: RX RY LX LY, 128 = centro */
+
+JNIEXPORT void JNICALL Java_com_luizdan_sstheh_NativePad_set(JNIEnv *env, jclass cls, jint buttons, jint lx, jint ly) {
+    (void)env; (void)cls;
+    touch_pad_buttons = (unsigned short)buttons;
+    pad_sticks[0][2] = (unsigned char)(lx < 0 ? 0 : lx > 255 ? 255 : lx);
+    pad_sticks[0][3] = (unsigned char)(ly < 0 ? 0 : ly > 255 ? 255 : ly);
+}
+
+JNIEXPORT void JNICALL Java_com_luizdan_sstheh_NativePad_hud(JNIEnv *env, jclass cls) {
+    (void)env; (void)cls;
+    touch_hud_toggle = 1;
 }

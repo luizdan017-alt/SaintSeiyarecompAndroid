@@ -141,8 +141,11 @@ u16 training_pad(u16 buttons);
 int training_hud(SDL_Surface *surf);
 void gpu_set_hud(const u32 *px, int w, int h);      /* gpu_vk.c */
 
+extern volatile u16 touch_pad_buttons;    /* Android: controle na tela (android_entry.c) */
+static void touch_hud_poll(void);
 static void poll_pads(void) {
-    pad_buttons[0] = training_pad(keyboard() | gamepad_buttons(0) | scripted(kernel_vblank_count()));
+    touch_hud_poll();
+    pad_buttons[0] = training_pad(keyboard() | gamepad_buttons(0) | scripted(kernel_vblank_count()) | touch_pad_buttons);
     pad_buttons[1] = gamepad_buttons(1);
 }
 static u32 crt_interlace, crt_mode, crt_field;
@@ -356,6 +359,8 @@ static SDL_Window *win_create(void) {
 
 static Panel panel;
 static int panel_on = 1;
+extern volatile int touch_hud_toggle;
+static void touch_hud_poll(void) { if (touch_hud_toggle) { touch_hud_toggle = 0; panel_on = !panel_on; } }
 /* (VU1 time includes the XGKICKs it makes, which gs_ns counts too) */
 
 static double cpu_seconds(void) { return platform_cpu_seconds(); }
