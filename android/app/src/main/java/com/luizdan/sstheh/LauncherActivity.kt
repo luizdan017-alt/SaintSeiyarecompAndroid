@@ -72,15 +72,6 @@ class LauncherActivity : Activity() {
         }
         refreshWide()
         root.addView(wide)
-        fun toggle(label: String, key: String, def: Boolean): Button {
-            val b = Button(this)
-            fun refreshT() { b.text = label + ": " + (if (prefs().getBoolean(key, def)) "LIGADO" else "desligado") }
-            b.setOnClickListener { prefs().edit().putBoolean(key, !prefs().getBoolean(key, def)).apply(); refreshT() }
-            refreshT()
-            return b
-        }
-        root.addView(toggle("Desbloquear tudo (personagens, modos...)", "unlock", false))
-        root.addView(toggle("Medir desempenho (profiler)", "prof", false))
         val copy = Button(this).apply {
             text = "Copiar o log"
             setOnClickListener {

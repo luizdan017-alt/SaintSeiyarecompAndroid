@@ -60,9 +60,8 @@ add_library(sstheh SHARED ${GEN_EU} ${GEN_JP} ${PORT_C} android_entry.c)
 set_source_files_properties(${GEN_EU} PROPERTIES COMPILE_OPTIONS "-O2;-w;${FAST_OPTS}")
 set_source_files_properties(${GEN_JP} PROPERTIES COMPILE_OPTIONS "-O1;-w;${FAST_OPTS}")
 set_source_files_properties(${PORT_C} PROPERTIES COMPILE_OPTIONS "-O2;-Wno-unused-parameter;${FAST_OPTS}")
-# simbolos visiveis (o profiler precisa dos nomes das funcoes) e -Bsymbolic: as chamadas entre funcoes da
-# propria biblioteca continuam diretas, sem passar pela PLT
-target_link_options(sstheh PRIVATE -Wl,-Bsymbolic)
+# simbolos escondidos: chamadas entre arquivos viram chamadas diretas (sem PLT). SDL_main e o JNI ficam visiveis.
+set_target_properties(sstheh PROPERTIES C_VISIBILITY_PRESET hidden)
 # main() do jogo vira ss_main; o SDL_main do Android esta em android_entry.c
 set_source_files_properties("${SS_ROOT}/port/main.c" PROPERTIES COMPILE_DEFINITIONS "main=ss_main")
 target_include_directories(sstheh PRIVATE
