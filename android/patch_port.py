@@ -70,3 +70,61 @@ patch("port/hle/cdvd.c",
       "    long ms_ = (t1_.tv_sec - t0_.tv_sec) * 1000 + (t1_.tv_nsec - t0_.tv_nsec) / 1000000;\n"
       '    if (ms_ >= 100) rt_log("cdvd", "leitura lenta: %u setores em %u levou %ld ms", count, lsn, ms_);\n'
       "    return ok ? 0 : -1;\n}")
+
+# 7) velocidade do thread do jogo (o limite de fps do port): ver android/ANDROID_CHANGES.md
+# 7a) RAM do jogo como vetor estatico (endereco constante, sem recarregar o ponteiro a cada acesso)
+patch("port/runtime/r5900.h",
+      "extern u8 *rt_ram;              /* 32 MB */\n",
+      "#ifdef __ANDROID__\n"
+      "extern u8 rt_ram_buf[0x02000000] __attribute__((aligned(64)));   /* 32 MB, estatico */\n"
+      "#define rt_ram rt_ram_buf\n"
+      "#else\n"
+      "extern u8 *rt_ram;              /* 32 MB */\n"
+      "#endif\n")
+patch("port/runtime/memory.c",
+      "u8 *rt_ram;\n",
+      "#ifdef __ANDROID__\n"
+      "u8 rt_ram_buf[0x02000000] __attribute__((aligned(64)));\n"
+      "#else\n"
+      "u8 *rt_ram;\n"
+      "#endif\n")
+patch("port/runtime/memory.c",
+      "    rt_ram = platform_aligned_alloc(64, 0x02000000);\n",
+      "#ifndef __ANDROID__\n"
+      "    rt_ram = platform_aligned_alloc(64, 0x02000000);\n"
+      "#endif\n")
+# 7b) caminho rapido de rt_ptr: RAM em KUSEG (0..32 MB) e o caso de quase todo acesso
+patch("port/runtime/r5900.h",
+      "    u32 seg = a >> 28;\n    if (seg == 0 ||",
+      "    if (__builtin_expect(a < 0x02000000u, 1)) return rt_ram + a;   /* caso comum */\n"
+      "    u32 seg = a >> 28;\n    if (seg == 0 ||")
+# 7c) ENTER (so serve ao --trace) vira nada: tirava um load e um desvio de cada funcao
+patch("port/runtime/r5900.h",
+      "#define ENTER(a) do { if (__builtin_expect(rt_trace_on, 0)) rt_enter(c, a); } while (0)\n",
+      "#ifdef __ANDROID__\n"
+      "#define ENTER(a) do { } while (0)   /* --trace nao existe no Android */\n"
+      "#else\n"
+      "#define ENTER(a) do { if (__builtin_expect(rt_trace_on, 0)) rt_enter(c, a); } while (0)\n"
+      "#endif\n")
+# 7d) chamadas indiretas (jalr/jr): tabela direta em vez de busca binaria em ~16 mil funcoes
+patch("port/runtime/cpu.c",
+      "void rt_call(Ctx *c, u32 addr) {\n    const FuncEntry *f = rt_find(addr);\n",
+      "/* tabela direta endereco -> funcao (o codigo fica em 0x100000..0x500000, alinhado a 4 bytes) */\n"
+      "static GuestFn fn_map[0x100000];\n"
+      "static const FuncEntry *fn_map_for;\n"
+      "static void build_fn_map(void) {\n"
+      "    memset(fn_map, 0, sizeof fn_map);\n"
+      "    for (int i = 0; i < rt_functab_count; i++) {\n"
+      "        u32 a = rt_functab[i].addr;\n"
+      "        if (a >= 0x00100000u && a < 0x00500000u && !(a & 3)) fn_map[(a - 0x00100000u) >> 2] = rt_functab[i].fn;\n"
+      "    }\n"
+      "    fn_map_for = rt_functab;\n"
+      "}\n\n"
+      "void rt_call(Ctx *c, u32 addr) {\n"
+      "    u32 mi = (addr - 0x00100000u) >> 2;\n"
+      "    if (__builtin_expect(mi < 0x100000u && !(addr & 3), 1)) {\n"
+      "        GuestFn g = fn_map[mi];\n"
+      "        if (__builtin_expect(g != NULL, 1)) { g(c); return; }\n"
+      "        if (fn_map_for != rt_functab) { build_fn_map(); g = fn_map[mi]; if (g) { g(c); return; } }\n"
+      "    }\n"
+      "    const FuncEntry *f = rt_find(addr);\n")

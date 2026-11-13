@@ -11,6 +11,8 @@ ajustes de `android/patch_port.py`, aplicados pelo workflow `.github/workflows/a
 | port/iop/iop.c | aviso "queue full" limitado | inundava o log (milhares de linhas) |
 | port/runtime/platform.c | threads pesados ficam nos nucleos rapidos | o thread do jogo e o limite de velocidade |
 | port/hle/cdvd.c | aviso de leitura lenta da ISO (>= 100 ms) | achar as travadas |
+| port/runtime/r5900.h, memory.c | RAM do jogo como vetor estatico; `rt_ptr` com caminho rapido; `ENTER` vazio | menos instrucoes em cada acesso a memoria e em cada funcao |
+| port/runtime/cpu.c | `rt_call` usa tabela direta | trocar a busca binaria (~14 passos) em cada chamada indireta |
 
 Para ver tudo o que mudou em relacao ao projeto original: `git diff master..android -- port`.
 
@@ -20,3 +22,7 @@ O padrao do projeto escolhia escala 3 neste aparelho (alvos de 3072x3072) e nao 
 
 Compilacao: codigo EU em -O2 (JP em -O1), sem stack protector/FORTIFY, simbolos escondidos (chamadas diretas),
 `-mtune=cortex-a73` quando o compilador aceita.
+
+## Jogo: opcoes do app (variaveis de ambiente)
+`SSTHEH_50HZ` (padrao ligado), `SSTHEH_WIDESCREEN=0` (tela 4:3). `SSTHEH_30FPS_SCENES` nao e mais definido:
+com ele o jogo espera o vblank em cada quadro das cenas e, abaixo de 50 fps, cai em degraus (25 fps).

@@ -64,7 +64,12 @@ typedef struct {
     const char *name;
 } FuncEntry;
 
+#ifdef __ANDROID__
+extern u8 rt_ram_buf[0x02000000] __attribute__((aligned(64)));   /* 32 MB, estatico */
+#define rt_ram rt_ram_buf
+#else
 extern u8 *rt_ram;              /* 32 MB */
+#endif
 extern u8 rt_spr[0x4000];       /* scratchpad, 0x70000000 */
 
 /* ---------------------------------------------------------------------------------- registers */
@@ -84,6 +89,7 @@ void rt_mmio_write128(Ctx *c, u32 addr, const GPR *v);
 
 /* Host pointer for a guest address in RAM or scratchpad, or NULL for hardware registers. */
 static inline u8 *rt_ptr(u32 a) {
+    if (__builtin_expect(a < 0x02000000u, 1)) return rt_ram + a;   /* caso comum */
     u32 seg = a >> 28;
     if (seg == 0 || seg == 2 || seg == 3 || seg == 8 || seg == 9 || seg == 0xA) {
         u32 p = a & 0x0FFFFFFF;
@@ -308,7 +314,11 @@ void rt_poll(Ctx *c);                 /* run pending interrupts; polled at backw
 
 extern int rt_trace_on;               /* --trace: log every function the first time it runs */
 void rt_enter(Ctx *c, u32 addr);
+#ifdef __ANDROID__
+#define ENTER(a) do { } while (0)   /* --trace nao existe no Android */
+#else
 #define ENTER(a) do { if (__builtin_expect(rt_trace_on, 0)) rt_enter(c, a); } while (0)
+#endif
 
 void rt_call(Ctx *c, u32 addr);       /* call guest code at addr (jalr, unknown jal) */
 void rt_jump(Ctx *c, u32 addr);       /* jr / branch to a computed or unknown address: call, caller returns */

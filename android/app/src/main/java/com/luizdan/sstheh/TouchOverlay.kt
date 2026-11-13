@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.os.SystemClock
 import android.view.MotionEvent
 import android.view.View
 import kotlin.math.hypot
@@ -17,7 +18,7 @@ object NativePad {
 }
 
 /** Controle na tela: direcional/analogico a esquerda, botoes a direita. Multitoque. */
-class TouchOverlay(ctx: Context) : View(ctx) {
+class TouchOverlay(ctx: Context, private val onExit: () -> Unit) : View(ctx) {
     // bits do controle do PS2 (iguais aos de port/iop/pad.h)
     private companion object {
         const val SELECT = 1 shl 0; const val START = 1 shl 3
@@ -40,6 +41,8 @@ class TouchOverlay(ctx: Context) : View(ctx) {
     private var btns: List<Btn> = emptyList()
     private var hudBtn = Btn("HUD", 0, 0f, 0f, 0f)
     private var modeBtn = Btn("", 0, 0f, 0f, 0f)
+    private var exitBtn = Btn("", 0, 0f, 0f, 0f)
+    private var armedUntil = 0L
     private var unit = 1f
 
     // direcional / analogico flutuante
@@ -62,6 +65,7 @@ class TouchOverlay(ctx: Context) : View(ctx) {
         )
         hudBtn = Btn("HUD", 0, fw / 2 - 40 * u, 24 * u, 20 * u)
         modeBtn = Btn("", 0, fw / 2 + 40 * u, 24 * u, 20 * u)
+        exitBtn = Btn("", 0, fw / 2 + 120 * u, 24 * u, 20 * u)
         defX = 105 * u; defY = fh - 105 * u
     }
 
@@ -80,6 +84,7 @@ class TouchOverlay(ctx: Context) : View(ctx) {
         for (b in btns) drawBtn(c, b, b.label, (pressed and b.bit) != 0)
         drawBtn(c, hudBtn, "HUD", false)
         drawBtn(c, modeBtn, if (analog) "ANA" else "DPAD", false)
+        drawBtn(c, exitBtn, if (SystemClock.uptimeMillis() < armedUntil) "OK?" else "SAIR", false)
         // direcional
         val R = 55 * unit
         val bx = if (stickId >= 0) cx else defX
@@ -110,6 +115,13 @@ class TouchOverlay(ctx: Context) : View(ctx) {
             val id = ev.getPointerId(i); val x = ev.getX(i); val y = ev.getY(i)
             if (i == downIdx) {
                 if (hit(hudBtn, x, y)) { try { NativePad.hud() } catch (e: UnsatisfiedLinkError) { } ; continue }
+                if (hit(exitBtn, x, y)) {   // dois toques em 2,5 s: sai da partida e volta para o menu do app
+                    val now = SystemClock.uptimeMillis()
+                    if (now < armedUntil) onExit()
+                    else { armedUntil = now + 2500; postDelayed({ invalidate() }, 2600) }
+                    invalidate()
+                    continue
+                }
                 if (hit(modeBtn, x, y)) { analog = !analog; prefs.edit().putBoolean("touch_analog", analog).apply(); continue }
             }
             if (id == stickId) { sx = x; sy = y; stickAlive = true; continue }

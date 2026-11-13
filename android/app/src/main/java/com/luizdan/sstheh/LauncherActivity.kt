@@ -1,6 +1,9 @@
 package com.luizdan.sstheh
 
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
@@ -61,6 +64,25 @@ class LauncherActivity : Activity() {
         }
         refreshHz()
         root.addView(hz)
+        val wide = Button(this)
+        fun refreshWide() { wide.text = "Tela: " + (if (prefs().getBoolean("wide", true)) "16:9 (ampla)" else "4:3 (original)") }
+        wide.setOnClickListener {
+            prefs().edit().putBoolean("wide", !prefs().getBoolean("wide", true)).apply()
+            refreshWide()
+        }
+        refreshWide()
+        root.addView(wide)
+        val copy = Button(this).apply {
+            text = "Copiar o log"
+            setOnClickListener {
+                val log = File(filesDir, "sstheh.log")
+                val txt = if (log.exists()) log.readText().takeLast(30000) else "(sem log)"
+                (getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
+                    .setPrimaryClip(ClipData.newPlainText("sstheh.log", txt))
+                Toast.makeText(this@LauncherActivity, "Log copiado.", Toast.LENGTH_SHORT).show()
+            }
+        }
+        root.addView(copy)
         root.addView(slider("Tamanho dos botões", "touch_scale", 60, 150, 100))
         root.addView(slider("Opacidade dos botões", "touch_alpha", 10, 100, 55))
         root.addView(scroll, LinearLayout.LayoutParams(-1, 0, 1f))

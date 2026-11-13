@@ -16,7 +16,11 @@
 int timer_read(u32 addr, u32 *value);   /* timers.c */
 int timer_write(u32 addr, u32 value);
 
+#ifdef __ANDROID__
+u8 rt_ram_buf[0x02000000] __attribute__((aligned(64)));
+#else
 u8 *rt_ram;
+#endif
 u8 rt_spr[0x4000] __attribute__((aligned(16)));
 
 /* 0x10000000..0x1000FFFF (EE registers) and 0x12000000..0x12001FFF (GS privileged registers) */
@@ -25,7 +29,9 @@ static u8 io_gs[0x2000] __attribute__((aligned(16)));
 static u8 seen_ee[0x10000 / 4], seen_gs[0x2000 / 4];
 
 void memory_init(void) {
+#ifndef __ANDROID__
     rt_ram = platform_aligned_alloc(64, 0x02000000);
+#endif
     memset(rt_ram, 0, 0x02000000);
 }
 

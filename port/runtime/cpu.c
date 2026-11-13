@@ -29,7 +29,25 @@ const char *rt_name_of(u32 addr) {
     return best ? best->name : "?";
 }
 
+/* tabela direta endereco -> funcao (o codigo fica em 0x100000..0x500000, alinhado a 4 bytes) */
+static GuestFn fn_map[0x100000];
+static const FuncEntry *fn_map_for;
+static void build_fn_map(void) {
+    memset(fn_map, 0, sizeof fn_map);
+    for (int i = 0; i < rt_functab_count; i++) {
+        u32 a = rt_functab[i].addr;
+        if (a >= 0x00100000u && a < 0x00500000u && !(a & 3)) fn_map[(a - 0x00100000u) >> 2] = rt_functab[i].fn;
+    }
+    fn_map_for = rt_functab;
+}
+
 void rt_call(Ctx *c, u32 addr) {
+    u32 mi = (addr - 0x00100000u) >> 2;
+    if (__builtin_expect(mi < 0x100000u && !(addr & 3), 1)) {
+        GuestFn g = fn_map[mi];
+        if (__builtin_expect(g != NULL, 1)) { g(c); return; }
+        if (fn_map_for != rt_functab) { build_fn_map(); g = fn_map[mi]; if (g) { g(c); return; } }
+    }
     const FuncEntry *f = rt_find(addr);
     if (!f) rt_fatal(c, "call to %08X, which is not a known function (from %s)", addr, rt_name_of(RW(31) - 8));
     f->fn(c);

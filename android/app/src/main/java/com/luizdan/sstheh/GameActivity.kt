@@ -26,8 +26,8 @@ class GameActivity : SDLActivity() {
             Os.setenv("SSTHEH_VSYNC", "1", true)
             Os.setenv("SSTHEH_INTERP", "0", true)
             Os.setenv("SSTHEH_PERF_LOG", "1", true)   // uma linha de desempenho por segundo no log
-            Os.setenv("SSTHEH_30FPS_SCENES", "1", true)   // menus e telas 2D a 30 fps, como no disco
             if (sp.getBoolean("hz50", true)) Os.setenv("SSTHEH_50HZ", "1", true)   // 50 Hz: o modo PAL original
+            if (!sp.getBoolean("wide", true)) Os.setenv("SSTHEH_WIDESCREEN", "0", true)   // 4:3 original
             val s = intent.getStringExtra("iso")
             if (s != null) {
                 // a ISO e lida direto do arquivo escolhido, sem copiar: o motor recebe so o numero do descritor
@@ -38,8 +38,11 @@ class GameActivity : SDLActivity() {
             Log.e("sstheh", "preparo falhou", e)
         }
         super.onCreate(savedInstanceState)
-        addContentView(TouchOverlay(this), ViewGroup.LayoutParams(-1, -1))   // controle na tela
+        addContentView(TouchOverlay(this) { finish() }, ViewGroup.LayoutParams(-1, -1))   // controle na tela
     }
+
+    @Deprecated("o botao Voltar tambem sai da partida")
+    override fun onBackPressed() { finish() }
 
     override fun getLibraries(): Array<String> = arrayOf("SDL3", "sstheh")
 
