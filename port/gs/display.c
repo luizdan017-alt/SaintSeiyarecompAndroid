@@ -469,7 +469,7 @@ static int display_window_gpu(void) {
     for (;;) {
         SDL_Event e;
         while (SDL_PollEvent(&e)) {
-            if (e.type == SDL_EVENT_QUIT) { SDL_Quit(); _exit(0); }
+            if (e.type == SDL_EVENT_QUIT) { { void prof_report(void); prof_report(); } SDL_Quit(); _exit(0); }
             gamepad_event(&e);
             if (e.type == SDL_EVENT_KEY_DOWN && e.key.scancode == SDL_SCANCODE_F1 && !e.key.repeat) win_size_next(win);
             if (e.type == SDL_EVENT_KEY_DOWN && e.key.scancode == SDL_SCANCODE_F2 && !e.key.repeat) widescreen_toggle();

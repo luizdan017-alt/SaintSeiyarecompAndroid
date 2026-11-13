@@ -128,3 +128,14 @@ patch("port/runtime/cpu.c",
       "        if (fn_map_for != rt_functab) { build_fn_map(); g = fn_map[mi]; if (g) { g(c); return; } }\n"
       "    }\n"
       "    const FuncEntry *f = rt_find(addr);\n")
+
+# 8) display.c: o profiler (SSTHEH_PROF) imprime o relatorio tambem ao fechar a partida pelo botao SAIR
+patch("port/gs/display.c",
+      "            if (e.type == SDL_EVENT_QUIT) { SDL_Quit(); _exit(0); }\n"
+      "            gamepad_event(&e);\n"
+      "            if (e.type == SDL_EVENT_KEY_DOWN && e.key.scancode == SDL_SCANCODE_F1 && !e.key.repeat) win_size_next(win);\n"
+      "            if (e.type == SDL_EVENT_KEY_DOWN && e.key.scancode == SDL_SCANCODE_F2",
+      "            if (e.type == SDL_EVENT_QUIT) { { void prof_report(void); prof_report(); } SDL_Quit(); _exit(0); }\n"
+      "            gamepad_event(&e);\n"
+      "            if (e.type == SDL_EVENT_KEY_DOWN && e.key.scancode == SDL_SCANCODE_F1 && !e.key.repeat) win_size_next(win);\n"
+      "            if (e.type == SDL_EVENT_KEY_DOWN && e.key.scancode == SDL_SCANCODE_F2")
