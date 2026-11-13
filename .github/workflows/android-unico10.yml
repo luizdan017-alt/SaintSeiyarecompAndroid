@@ -1,4 +1,4 @@
-# Android (Etapa 9: desbloquear tudo e medir desempenho). Este arquivo unico cria os arquivos do app,
+# Android (Etapa 10: uso por thread e profiler no jogo). Este arquivo unico cria os arquivos do app,
 # ajusta o codigo para Android (android/patch_port.py), compila o APK e grava tudo na branch.
 name: Android
 
@@ -176,6 +176,8 @@ jobs:
                       Log.e("sstheh", "preparo falhou", e)
                   }
                   super.onCreate(savedInstanceState)
+                  try { window.setSustainedPerformanceMode(true) } catch (e: Exception) { }   // se o aparelho tiver, evita baixar o clock
+                  window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
                   addContentView(TouchOverlay(this) { finish() }, ViewGroup.LayoutParams(-1, -1))   // controle na tela
               }
 
@@ -381,6 +383,7 @@ jobs:
           import android.graphics.Canvas
           import android.graphics.Color
           import android.graphics.Paint
+          import android.graphics.Typeface
           import android.os.SystemClock
           import android.view.MotionEvent
           import android.view.View
@@ -392,6 +395,8 @@ jobs:
           object NativePad {
               @JvmStatic external fun set(buttons: Int, lx: Int, ly: Int)
               @JvmStatic external fun hud()
+              @JvmStatic external fun stats(): String
+              @JvmStatic external fun prof(op: Int)
           }
 
           /** Controle na tela: direcional/analogico a esquerda, botoes a direita. Multitoque. */
@@ -415,7 +420,28 @@ jobs:
               private val line = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; strokeWidth = 3f }
               private val text = Paint(Paint.ANTI_ALIAS_FLAG).apply { textAlign = Paint.Align.CENTER }
 
+              private val profOn = prefs.getBoolean("prof", false)
+              private var profState = 0          // 0 parado, 1 medindo, 2 relatorio pedido
+              private var hudOn = true
+              private var statsText = ""
+              private val statsPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                  typeface = Typeface.MONOSPACE
+                  color = Color.rgb(120, 255, 120)
+                  setShadowLayer(3f, 0f, 0f, Color.BLACK)
+              }
+              private val ticker = object : Runnable {
+                  override fun run() {
+                      try { statsText = NativePad.stats() } catch (e: UnsatisfiedLinkError) { }
+                      if (hudOn) invalidate()
+                      postDelayed(this, 1000)
+                  }
+              }
+
+              override fun onAttachedToWindow() { super.onAttachedToWindow(); postDelayed(ticker, 1000) }
+              override fun onDetachedFromWindow() { removeCallbacks(ticker); super.onDetachedFromWindow() }
+
               private var btns: List<Btn> = emptyList()
+              private var profBtn = Btn("", 0, 0f, 0f, 0f)
               private var hudBtn = Btn("HUD", 0, 0f, 0f, 0f)
               private var modeBtn = Btn("", 0, 0f, 0f, 0f)
               private var exitBtn = Btn("", 0, 0f, 0f, 0f)
@@ -443,6 +469,7 @@ jobs:
                   hudBtn = Btn("HUD", 0, fw / 2 - 40 * u, 24 * u, 20 * u)
                   modeBtn = Btn("", 0, fw / 2 + 40 * u, 24 * u, 20 * u)
                   exitBtn = Btn("", 0, fw / 2 + 120 * u, 24 * u, 20 * u)
+                  profBtn = Btn("", 0, fw / 2 + 200 * u, 24 * u, 20 * u)
                   defX = 105 * u; defY = fh - 105 * u
               }
 
@@ -462,6 +489,12 @@ jobs:
                   drawBtn(c, hudBtn, "HUD", false)
                   drawBtn(c, modeBtn, if (analog) "ANA" else "DPAD", false)
                   drawBtn(c, exitBtn, if (SystemClock.uptimeMillis() < armedUntil) "OK?" else "SAIR", false)
+                  if (profOn) drawBtn(c, profBtn, when (profState) { 0 -> "PROF"; 1 -> "FIM"; else -> "log" }, profState == 1)
+                  if (hudOn && statsText.isNotEmpty()) {          // uso de cada thread, no canto (abaixo do painel do jogo)
+                      statsPaint.textSize = 11f * resources.displayMetrics.density
+                      var y = 70f * resources.displayMetrics.density
+                      for (ln in statsText.split("\n")) { c.drawText(ln, 8f * resources.displayMetrics.density, y, statsPaint); y += statsPaint.textSize * 1.2f }
+                  }
                   // direcional
                   val R = 55 * unit
                   val bx = if (stickId >= 0) cx else defX
@@ -491,7 +524,15 @@ jobs:
                       if (i == upIdx) continue
                       val id = ev.getPointerId(i); val x = ev.getX(i); val y = ev.getY(i)
                       if (i == downIdx) {
-                          if (hit(hudBtn, x, y)) { try { NativePad.hud() } catch (e: UnsatisfiedLinkError) { } ; continue }
+                          if (hit(hudBtn, x, y)) { try { NativePad.hud() } catch (e: UnsatisfiedLinkError) { } ; hudOn = !hudOn; invalidate(); continue }
+                          if (profOn && hit(profBtn, x, y)) {     // 1o toque: comeca a medir; 2o: imprime o relatorio no log
+                              try {
+                                  if (profState == 0) { NativePad.prof(0); profState = 1 }
+                                  else if (profState == 1) { NativePad.prof(1); profState = 2 }
+                              } catch (e: UnsatisfiedLinkError) { }
+                              invalidate()
+                              continue
+                          }
                           if (hit(exitBtn, x, y)) {   // dois toques em 2,5 s: sai da partida e volta para o menu do app
                               val now = SystemClock.uptimeMillis()
                               if (now < armedUntil) onExit()
@@ -671,6 +712,7 @@ jobs:
            *  - le a ISO direto do descritor recebido do Android ("fd:N", sem copiar)
            *  - extrai da ISO o executavel do jogo (pequeno) para <files>/disc/ na primeira vez
            * e entrega ao main() original (renomeado ss_main) a linha de comando "--iso fd:N <executavel>". */
+          #include <dirent.h>
           #include <fcntl.h>
           #include <pthread.h>
           #include <sched.h>
@@ -768,6 +810,117 @@ jobs:
               if (!strcmp(name, "game") || !strcmp(name, "gs") || !strcmp(name, "main")) setpriority(PRIO_PROCESS, tid, -4);
           }
 
+
+          /* ---- uso de CPU por thread (nome, %, nucleo, frequencia): /proc/self/task e cpufreq ----
+           * O painel do jogo soma tudo em "CPU"; aqui da para ver qual thread esta no limite. */
+          typedef struct { int tid; unsigned long ticks; char name[20]; int cpu; double pct; } Th;
+          static Th th_prev[256], th_cur[256];
+          static int th_nprev;
+          static double th_prev_t;
+
+          static double mono_s(void) {
+              struct timespec ts;
+              clock_gettime(CLOCK_MONOTONIC, &ts);
+              return ts.tv_sec + ts.tv_nsec / 1e9;
+          }
+
+          static int read_threads(Th *out, int max) {
+              DIR *d = opendir("/proc/self/task");
+              if (!d) return 0;
+              int n = 0;
+              struct dirent *e;
+              while ((e = readdir(d)) && n < max) {
+                  int tid = atoi(e->d_name);
+                  if (tid <= 0) continue;
+                  char p[64], buf[600];
+                  snprintf(p, sizeof p, "/proc/self/task/%d/stat", tid);
+                  FILE *f = fopen(p, "r");
+                  if (!f) continue;
+                  size_t k = fread(buf, 1, sizeof buf - 1, f);
+                  fclose(f);
+                  buf[k] = 0;
+                  char *lp = strchr(buf, '('), *rp = strrchr(buf, ')');
+                  if (!lp || !rp || rp < lp) continue;
+                  Th *t = &out[n];
+                  size_t nl = (size_t)(rp - lp - 1);
+                  if (nl > 15) nl = 15;
+                  memcpy(t->name, lp + 1, nl);
+                  t->name[nl] = 0;
+                  t->tid = tid;
+                  unsigned long ut = 0, st = 0;
+                  int cpu = -1, field = 3;
+                  char *s2 = rp + 2;
+                  while (*s2) {                       /* campos do /proc/PID/stat: 14 utime, 15 stime, 39 processador */
+                      char *sp = strchr(s2, ' ');
+                      if (sp) *sp = 0;
+                      if (field == 14) ut = strtoul(s2, NULL, 10);
+                      else if (field == 15) st = strtoul(s2, NULL, 10);
+                      else if (field == 39) { cpu = atoi(s2); break; }
+                      if (!sp) break;
+                      s2 = sp + 1;
+                      field++;
+                  }
+                  t->ticks = ut + st;
+                  t->cpu = cpu;
+                  t->pct = 0;
+                  n++;
+              }
+              closedir(d);
+              return n;
+          }
+
+          static long cpu_khz(int c) {
+              char p[96];
+              snprintf(p, sizeof p, "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_cur_freq", c);
+              FILE *f = fopen(p, "r");
+              if (!f) return -1;
+              long v = -1;
+              if (fscanf(f, "%ld", &v) != 1) v = -1;
+              fclose(f);
+              return v;
+          }
+
+          /* texto com as 6 threads que mais usaram CPU desde a chamada anterior + a frequencia dos nucleos */
+          void android_make_stats(char *out, size_t cap) {
+              double now = mono_s(), dt = now - th_prev_t;
+              int n = read_threads(th_cur, 256);
+              long hz = sysconf(_SC_CLK_TCK);
+              if (hz <= 0) hz = 100;
+              for (int i = 0; i < n; i++)
+                  for (int j = 0; j < th_nprev; j++)
+                      if (th_prev[j].tid == th_cur[i].tid && dt > 0.05) {
+                          th_cur[i].pct = 100.0 * (double)(th_cur[i].ticks - th_prev[j].ticks) / (double)hz / dt;
+                          break;
+                      }
+              for (int a = 0; a < n && a < 6; a++) {      /* as 6 maiores */
+                  int best = a;
+                  for (int b = a + 1; b < n; b++) if (th_cur[b].pct > th_cur[best].pct) best = b;
+                  Th t = th_cur[a]; th_cur[a] = th_cur[best]; th_cur[best] = t;
+              }
+              size_t o = 0;
+              out[0] = 0;
+              for (int i = 0; i < n && i < 6; i++) {
+                  long f = th_cur[i].cpu >= 0 ? cpu_khz(th_cur[i].cpu) : -1;
+                  char fr[16] = "";
+                  if (f > 0) snprintf(fr, sizeof fr, " %.1fGHz", f / 1e6);
+                  o += (size_t)snprintf(out + o, cap - o, "%-9.9s %3.0f%%  cpu%d%s\n", th_cur[i].name, th_cur[i].pct, th_cur[i].cpu, fr);
+                  if (o >= cap) return;
+              }
+              long nc = sysconf(_SC_NPROCESSORS_CONF);
+              if (nc > 0 && nc <= 16 && o + 64 < cap) {
+                  o += (size_t)snprintf(out + o, cap - o, "clock:");
+                  for (int c = 0; c < nc; c++) {
+                      long f = cpu_khz(c);
+                      if (f > 0) o += (size_t)snprintf(out + o, cap - o, " %.1f", f / 1e6);
+                      else o += (size_t)snprintf(out + o, cap - o, " ?");
+                  }
+                  snprintf(out + o, cap - o, " GHz");
+              }
+              memcpy(th_prev, th_cur, (size_t)n * sizeof *th_cur);   /* (so as 6 primeiras ficam ordenadas; o resto vem desordenado) */
+              th_nprev = n;
+              th_prev_t = now;
+          }
+
           /* ---- diagnostico do executavel extraido: tamanho, FNV-1a 64 (o que o jogo confere) e SHA-1 ---- */
           static u32 rol(u32 v, int n) { return v << n | v >> (32 - n); }
           static void sha1_block(u32 h[5], const u8 *p) {
@@ -859,6 +1012,34 @@ jobs:
           JNIEXPORT void JNICALL Java_com_luizdan_sstheh_NativePad_hud(JNIEnv *env, jclass cls) {
               (void)env; (void)cls;
               touch_hud_toggle = 1;
+          }
+
+          static unsigned stats_calls;
+
+          JNIEXPORT jstring JNICALL Java_com_luizdan_sstheh_NativePad_stats(JNIEnv *env, jclass cls) {
+              (void)cls;
+              char buf[700];
+              android_make_stats(buf, sizeof buf);
+              if (++stats_calls % 4 == 0) {            /* uma linha no log a cada ~4 s */
+                  char one[700];
+                  size_t o = 0;
+                  for (const char *p = buf; *p && o + 4 < sizeof one; p++) { one[o++] = *p == '\n' ? '|' : *p; }
+                  one[o] = 0;
+                  fprintf(stderr, "[threads] %s\n", one);
+              }
+              return (*env)->NewStringUTF(env, buf);
+          }
+
+          /* profiler (SSTHEH_PROF): 0 = recomeca a contagem; 1 = imprime o relatorio no log (numa thread, sem travar a tela) */
+          void prof_reset(void);
+          void prof_report(void);
+          static void *prof_thread(void *a) { (void)a; prof_report(); return NULL; }
+
+          JNIEXPORT void JNICALL Java_com_luizdan_sstheh_NativePad_prof(JNIEnv *env, jclass cls, jint op) {
+              (void)env; (void)cls;
+              if (op == 0) { prof_reset(); return; }
+              pthread_t t;
+              if (pthread_create(&t, NULL, prof_thread, NULL) == 0) pthread_detach(t);
           }
           EOF_FILE
           mkdir -p "$(dirname android/patch_port.py)"
@@ -1004,6 +1185,14 @@ jobs:
                 "            gamepad_event(&e);\n"
                 "            if (e.type == SDL_EVENT_KEY_DOWN && e.key.scancode == SDL_SCANCODE_F1 && !e.key.repeat) win_size_next(win);\n"
                 "            if (e.type == SDL_EVENT_KEY_DOWN && e.key.scancode == SDL_SCANCODE_F2")
+
+          # 9) prof.c: prof_reset (o botao PROF do jogo recomeca a contagem); display.c: "game" -> "resto" (e o que sobra, nao so o thread do jogo)
+          patch("port/runtime/prof.c",
+                'void prof_report(void) {\n    if (!getenv("SSTHEH_PROF")) return;',
+                'void prof_reset(void) { nsamples = 0; }\n\nvoid prof_report(void) {\n    if (!getenv("SSTHEH_PROF")) return;')
+          patch("port/gs/display.c",
+                'GS %3.0f%%  VU1 %3.0f%%  game %3.0f%%',
+                'GS %3.0f%%  VU1 %3.0f%%  resto %3.0f%%')
           EOF_FILE
           mkdir -p "$(dirname android/ANDROID_CHANGES.md)"
           cat > android/ANDROID_CHANGES.md <<'EOF_FILE'
@@ -1023,6 +1212,8 @@ jobs:
           | port/runtime/r5900.h, memory.c | RAM do jogo como vetor estatico; `rt_ptr` com caminho rapido; `ENTER` vazio | menos instrucoes em cada acesso a memoria e em cada funcao |
           | port/runtime/cpu.c | `rt_call` usa tabela direta | trocar a busca binaria (~14 passos) em cada chamada indireta |
           | port/gs/display.c | relatorio do profiler tambem ao fechar a partida | medir o desempenho no celular |
+          | port/runtime/prof.c | `prof_reset` | o botao PROF recomeca a medicao no meio da partida |
+          | port/gs/display.c | rotulo "game" do painel vira "resto" | e o que sobra do total, nao so o thread do jogo |
 
           Para ver tudo o que mudou em relacao ao projeto original: `git diff master..android -- port`.
 
