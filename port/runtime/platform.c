@@ -158,6 +158,9 @@ void platform_thread_name(pthread_t t, const char *name) {
     if (pthread_equal(t, pthread_self())) pthread_setname_np(name);
 #else
     pthread_setname_np(t, name);
+#ifdef __ANDROID__
+    { extern void android_pin_thread(pthread_t, const char *); android_pin_thread(t, name); }
+#endif
 #endif
 }
 

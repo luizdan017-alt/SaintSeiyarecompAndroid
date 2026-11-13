@@ -43,3 +43,30 @@ patch("port/gs/display.c",
       "static int panel_on = 1;\n"
       "extern volatile int touch_hud_toggle;\n"
       "static void touch_hud_poll(void) { if (touch_hud_toggle) { touch_hud_toggle = 0; panel_on = !panel_on; } }\n")
+
+# 4) iop.c: o aviso "queue full" saia a cada chamada perdida (milhares por segundo) e enchia o log
+patch("port/iop/iop.c",
+      '        rt_log("iop", "IOP->EE queue full: call %X fn %X lost", sid, fn);\n',
+      '        static unsigned lost_n;   /* Android: so as primeiras e depois 1 a cada 2000 */\n'
+      '        if (lost_n++ < 5 || lost_n % 2000 == 0) rt_log("iop", "IOP->EE queue full: call %X fn %X lost (%u)", sid, fn, lost_n);\n')
+
+# 5) platform.c: threads pesados so nos nucleos rapidos (android_entry.c)
+patch("port/runtime/platform.c",
+      "    pthread_setname_np(t, name);\n#endif\n",
+      "    pthread_setname_np(t, name);\n#ifdef __ANDROID__\n"
+      "    { extern void android_pin_thread(pthread_t, const char *); android_pin_thread(t, name); }\n#endif\n#endif\n")
+
+# 6) cdvd.c: avisar leituras lentas da ISO (diagnostico das travadas)
+patch("port/hle/cdvd.c",
+      '#include <string.h>\n\n#include "r5900.h"',
+      '#include <string.h>\n#include <time.h>\n\n#include "r5900.h"')
+patch("port/hle/cdvd.c",
+      "    if (!iso) return -1;\n    pthread_mutex_lock(&iso_lock);\n    int ok;\n",
+      "    if (!iso) return -1;\n    struct timespec t0_, t1_;\n    clock_gettime(CLOCK_MONOTONIC, &t0_);\n"
+      "    pthread_mutex_lock(&iso_lock);\n    int ok;\n")
+patch("port/hle/cdvd.c",
+      "    pthread_mutex_unlock(&iso_lock);\n    return ok ? 0 : -1;\n}",
+      "    pthread_mutex_unlock(&iso_lock);\n    clock_gettime(CLOCK_MONOTONIC, &t1_);\n"
+      "    long ms_ = (t1_.tv_sec - t0_.tv_sec) * 1000 + (t1_.tv_nsec - t0_.tv_nsec) / 1000000;\n"
+      '    if (ms_ >= 100) rt_log("cdvd", "leitura lenta: %u setores em %u levou %ld ms", count, lsn, ms_);\n'
+      "    return ok ? 0 : -1;\n}")

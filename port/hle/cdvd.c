@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "r5900.h"
 #include "runtime.h"
@@ -55,6 +56,8 @@ static pthread_mutex_t iso_lock = PTHREAD_MUTEX_INITIALIZER;   /* the EE and the
 
 static int read_sectors(u32 lsn, u32 count, u8 *out) {
     if (!iso) return -1;
+    struct timespec t0_, t1_;
+    clock_gettime(CLOCK_MONOTONIC, &t0_);
     pthread_mutex_lock(&iso_lock);
     int ok;
     if (stride == SECTOR) ok = !fseeko(iso, (off_t)lsn * SECTOR, SEEK_SET) && fread(out, SECTOR, count, iso) == count;
@@ -64,6 +67,9 @@ static int read_sectors(u32 lsn, u32 count, u8 *out) {
             ok = !fseeko(iso, (off_t)(lsn + i) * stride + skip, SEEK_SET) && fread(out + (size_t)i * SECTOR, SECTOR, 1, iso) == 1;
     }
     pthread_mutex_unlock(&iso_lock);
+    clock_gettime(CLOCK_MONOTONIC, &t1_);
+    long ms_ = (t1_.tv_sec - t0_.tv_sec) * 1000 + (t1_.tv_nsec - t0_.tv_nsec) / 1000000;
+    if (ms_ >= 100) rt_log("cdvd", "leitura lenta: %u setores em %u levou %ld ms", count, lsn, ms_);
     return ok ? 0 : -1;
 }
 

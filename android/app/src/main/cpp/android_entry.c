@@ -1,9 +1,13 @@
+#define _GNU_SOURCE
 /* Ponto de entrada do motor no Android (SDL_main). Prepara o que o main() original espera:
  *  - guarda o log em <files>/sstheh.log (o app mostra na tela inicial)
  *  - le a ISO direto do descritor recebido do Android ("fd:N", sem copiar)
  *  - extrai da ISO o executavel do jogo (pequeno) para <files>/disc/ na primeira vez
  * e entrega ao main() original (renomeado ss_main) a linha de comando "--iso fd:N <executavel>". */
 #include <fcntl.h>
+#include <pthread.h>
+#include <sched.h>
+#include <sys/resource.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -58,6 +62,45 @@ static int extract(const char *name, const char *dest) {
 }
 
 
+
+/* ---- nucleos rapidos: os threads pesados (jogo, GS, EE, IOP, tela) ficam so nos nucleos "grandes" ----
+ * Celulares tem nucleos rapidos e lentos; o motor e limitado pelo thread do jogo, e num nucleo lento ele
+ * anda bem menos. Os nucleos rapidos sao os de frequencia maxima maior que a dos mais lentos. */
+static int big_n;
+static cpu_set_t big_set;
+static void init_big(void) {
+    static int done;
+    if (done) return;
+    done = 1;
+    long n = sysconf(_SC_NPROCESSORS_CONF), f[32], minf = 0, maxf = 0;
+    if (n < 2 || n > 32) return;
+    for (int i = 0; i < n; i++) {
+        char p[96];
+        snprintf(p, sizeof p, "/sys/devices/system/cpu/cpu%d/cpufreq/cpuinfo_max_freq", i);
+        FILE *fp = fopen(p, "r");
+        f[i] = 0;
+        if (fp) { if (fscanf(fp, "%ld", &f[i]) != 1) f[i] = 0; fclose(fp); }
+        if (f[i] <= 0) { fprintf(stderr, "afinidade: nao consegui ler a frequencia da CPU %d\n", i); return; }
+        if (!minf || f[i] < minf) minf = f[i];
+        if (f[i] > maxf) maxf = f[i];
+    }
+    if (maxf * 100 < minf * 105) { fprintf(stderr, "afinidade: todos os nucleos sao iguais\n"); return; }
+    CPU_ZERO(&big_set);
+    for (int i = 0; i < n; i++)
+        if (f[i] * 100 > minf * 105) { CPU_SET(i, &big_set); big_n++; }
+    fprintf(stderr, "afinidade: %d nucleos rapidos de %ld (frequencias %ld a %ld kHz)\n", big_n, n, minf, maxf);
+}
+
+/* chamada por platform_thread_name (port/runtime/platform.c) e pelo SDL_main */
+void android_pin_thread(pthread_t t, const char *name) {
+    init_big();
+    if (!big_n) return;
+    if (strcmp(name, "game") && strcmp(name, "gs") && strncmp(name, "ee-", 3) && strncmp(name, "iop-", 4) && strcmp(name, "main")) return;
+    pid_t tid = pthread_gettid_np(t);
+    if (sched_setaffinity(tid, sizeof big_set, &big_set)) fprintf(stderr, "afinidade de %s falhou\n", name);
+    if (!strcmp(name, "game") || !strcmp(name, "gs") || !strcmp(name, "main")) setpriority(PRIO_PROCESS, tid, -4);
+}
+
 /* ---- diagnostico do executavel extraido: tamanho, FNV-1a 64 (o que o jogo confere) e SHA-1 ---- */
 static u32 rol(u32 v, int n) { return v << n | v >> (32 - n); }
 static void sha1_block(u32 h[5], const u8 *p) {
@@ -105,7 +148,7 @@ static void describe(const char *path) {
     free(b);
 }
 
-int SDL_main(int argc, char **argv) {
+__attribute__((visibility("default"))) int SDL_main(int argc, char **argv) {
     (void)argc; (void)argv;
     const char *files = getenv("SS_FILES"), *iso = getenv("SS_ISO");
     if (!files) { ALOG("SS_FILES nao definido"); return 1; }
@@ -115,6 +158,7 @@ int SDL_main(int argc, char **argv) {
     if (fd >= 0) { dup2(fd, 1); dup2(fd, 2); }
     setvbuf(stdout, NULL, _IONBF, 0);
     setvbuf(stderr, NULL, _IONBF, 0);
+    android_pin_thread(pthread_self(), "main");
     if (chdir(files)) fprintf(stderr, "chdir(%s) falhou\n", files);
     mkdir("data", 0755);
     mkdir("disc", 0755);

@@ -45,6 +45,22 @@ class LauncherActivity : Activity() {
         root.addView(pick)
         root.addView(play)
         root.addView(test)
+        val res = Button(this)
+        fun refresh() { res.text = "Resolução interna: ${prefs().getInt("render_scale", 1)}x (1 = mais rápido)" }
+        res.setOnClickListener {
+            prefs().edit().putInt("render_scale", prefs().getInt("render_scale", 1) % 3 + 1).apply()
+            refresh()
+        }
+        refresh()
+        root.addView(res)
+        val hz = Button(this)
+        fun refreshHz() { hz.text = "Taxa do jogo: " + (if (prefs().getBoolean("hz50", true)) "50 Hz (original, mais leve)" else "60 Hz") }
+        hz.setOnClickListener {
+            prefs().edit().putBoolean("hz50", !prefs().getBoolean("hz50", true)).apply()
+            refreshHz()
+        }
+        refreshHz()
+        root.addView(hz)
         root.addView(slider("Tamanho dos botões", "touch_scale", 60, 150, 100))
         root.addView(slider("Opacidade dos botões", "touch_alpha", 10, 100, 55))
         root.addView(scroll, LinearLayout.LayoutParams(-1, 0, 1f))

@@ -42,14 +42,26 @@ if(NOT rc EQUAL 0)
   message(FATAL_ERROR "spv2h.py falhou")
 endif()
 
-# codigo traduzido (EU e JP) e programas VU1 embutidos: -O1, sem avisos (e codigo gerado)
-file(GLOB GEN_C "${SS_ROOT}/generated/recomp/*.c" "${SS_ROOT}/generated/vu/*.c" "${SS_ROOT}/generated-jp/recomp/*.c")
+# codigo traduzido: o EU (o que roda) e os programas VU1 em -O2; o JP so precisa existir (-O1, compila mais rapido)
+file(GLOB GEN_EU "${SS_ROOT}/generated/recomp/*.c" "${SS_ROOT}/generated/vu/*.c")
+file(GLOB GEN_JP "${SS_ROOT}/generated-jp/recomp/*.c")
 # runtime, kernel, IOP, GS e HLE
 file(GLOB_RECURSE PORT_C "${SS_ROOT}/port/*.c")
 
-add_library(sstheh SHARED ${GEN_C} ${PORT_C} android_entry.c)
-set_source_files_properties(${GEN_C} PROPERTIES COMPILE_OPTIONS "-O1;-w;-g0;-fno-strict-aliasing;-ffp-contract=off")
-set_source_files_properties(${PORT_C} PROPERTIES COMPILE_OPTIONS "-O2;-g0;-fno-strict-aliasing;-ffp-contract=off;-Wno-unused-parameter")
+# sem protecao de pilha nem FORTIFY (o NDK liga os dois): custam tempo em codigo quente e nao ajudam aqui
+set(FAST_OPTS -g0 -fno-strict-aliasing -ffp-contract=off -fno-stack-protector -U_FORTIFY_SOURCE)
+include(CheckCCompilerFlag)
+check_c_compiler_flag("-mtune=cortex-a73" HAS_MTUNE_A73)
+if(HAS_MTUNE_A73)
+  list(APPEND FAST_OPTS -mtune=cortex-a73)
+endif()
+
+add_library(sstheh SHARED ${GEN_EU} ${GEN_JP} ${PORT_C} android_entry.c)
+set_source_files_properties(${GEN_EU} PROPERTIES COMPILE_OPTIONS "-O2;-w;${FAST_OPTS}")
+set_source_files_properties(${GEN_JP} PROPERTIES COMPILE_OPTIONS "-O1;-w;${FAST_OPTS}")
+set_source_files_properties(${PORT_C} PROPERTIES COMPILE_OPTIONS "-O2;-Wno-unused-parameter;${FAST_OPTS}")
+# simbolos escondidos: chamadas entre arquivos viram chamadas diretas (sem PLT). SDL_main e o JNI ficam visiveis.
+set_target_properties(sstheh PROPERTIES C_VISIBILITY_PRESET hidden)
 # main() do jogo vira ss_main; o SDL_main do Android esta em android_entry.c
 set_source_files_properties("${SS_ROOT}/port/main.c" PROPERTIES COMPILE_DEFINITIONS "main=ss_main")
 target_include_directories(sstheh PRIVATE
