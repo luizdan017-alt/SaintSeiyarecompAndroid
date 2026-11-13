@@ -137,6 +137,8 @@ static int tally(Row *rows, int max_rows, int n, int tid) {
     return nrows;
 }
 
+void prof_reset(void) { nsamples = 0; }
+
 void prof_report(void) {
     if (!getenv("SSTHEH_PROF")) return;
     struct itimerval off = {0};

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Typeface
 import android.os.SystemClock
 import android.view.MotionEvent
 import android.view.View
@@ -15,6 +16,8 @@ import kotlin.math.min
 object NativePad {
     @JvmStatic external fun set(buttons: Int, lx: Int, ly: Int)
     @JvmStatic external fun hud()
+    @JvmStatic external fun stats(): String
+    @JvmStatic external fun prof(op: Int)
 }
 
 /** Controle na tela: direcional/analogico a esquerda, botoes a direita. Multitoque. */
@@ -38,7 +41,28 @@ class TouchOverlay(ctx: Context, private val onExit: () -> Unit) : View(ctx) {
     private val line = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; strokeWidth = 3f }
     private val text = Paint(Paint.ANTI_ALIAS_FLAG).apply { textAlign = Paint.Align.CENTER }
 
+    private val profOn = prefs.getBoolean("prof", false)
+    private var profState = 0          // 0 parado, 1 medindo, 2 relatorio pedido
+    private var hudOn = true
+    private var statsText = ""
+    private val statsPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        typeface = Typeface.MONOSPACE
+        color = Color.rgb(120, 255, 120)
+        setShadowLayer(3f, 0f, 0f, Color.BLACK)
+    }
+    private val ticker = object : Runnable {
+        override fun run() {
+            try { statsText = NativePad.stats() } catch (e: UnsatisfiedLinkError) { }
+            if (hudOn) invalidate()
+            postDelayed(this, 1000)
+        }
+    }
+
+    override fun onAttachedToWindow() { super.onAttachedToWindow(); postDelayed(ticker, 1000) }
+    override fun onDetachedFromWindow() { removeCallbacks(ticker); super.onDetachedFromWindow() }
+
     private var btns: List<Btn> = emptyList()
+    private var profBtn = Btn("", 0, 0f, 0f, 0f)
     private var hudBtn = Btn("HUD", 0, 0f, 0f, 0f)
     private var modeBtn = Btn("", 0, 0f, 0f, 0f)
     private var exitBtn = Btn("", 0, 0f, 0f, 0f)
@@ -66,6 +90,7 @@ class TouchOverlay(ctx: Context, private val onExit: () -> Unit) : View(ctx) {
         hudBtn = Btn("HUD", 0, fw / 2 - 40 * u, 24 * u, 20 * u)
         modeBtn = Btn("", 0, fw / 2 + 40 * u, 24 * u, 20 * u)
         exitBtn = Btn("", 0, fw / 2 + 120 * u, 24 * u, 20 * u)
+        profBtn = Btn("", 0, fw / 2 + 200 * u, 24 * u, 20 * u)
         defX = 105 * u; defY = fh - 105 * u
     }
 
@@ -85,6 +110,12 @@ class TouchOverlay(ctx: Context, private val onExit: () -> Unit) : View(ctx) {
         drawBtn(c, hudBtn, "HUD", false)
         drawBtn(c, modeBtn, if (analog) "ANA" else "DPAD", false)
         drawBtn(c, exitBtn, if (SystemClock.uptimeMillis() < armedUntil) "OK?" else "SAIR", false)
+        if (profOn) drawBtn(c, profBtn, when (profState) { 0 -> "PROF"; 1 -> "FIM"; else -> "log" }, profState == 1)
+        if (hudOn && statsText.isNotEmpty()) {          // uso de cada thread, no canto (abaixo do painel do jogo)
+            statsPaint.textSize = 11f * resources.displayMetrics.density
+            var y = 70f * resources.displayMetrics.density
+            for (ln in statsText.split("\n")) { c.drawText(ln, 8f * resources.displayMetrics.density, y, statsPaint); y += statsPaint.textSize * 1.2f }
+        }
         // direcional
         val R = 55 * unit
         val bx = if (stickId >= 0) cx else defX
@@ -114,7 +145,15 @@ class TouchOverlay(ctx: Context, private val onExit: () -> Unit) : View(ctx) {
             if (i == upIdx) continue
             val id = ev.getPointerId(i); val x = ev.getX(i); val y = ev.getY(i)
             if (i == downIdx) {
-                if (hit(hudBtn, x, y)) { try { NativePad.hud() } catch (e: UnsatisfiedLinkError) { } ; continue }
+                if (hit(hudBtn, x, y)) { try { NativePad.hud() } catch (e: UnsatisfiedLinkError) { } ; hudOn = !hudOn; invalidate(); continue }
+                if (profOn && hit(profBtn, x, y)) {     // 1o toque: comeca a medir; 2o: imprime o relatorio no log
+                    try {
+                        if (profState == 0) { NativePad.prof(0); profState = 1 }
+                        else if (profState == 1) { NativePad.prof(1); profState = 2 }
+                    } catch (e: UnsatisfiedLinkError) { }
+                    invalidate()
+                    continue
+                }
                 if (hit(exitBtn, x, y)) {   // dois toques em 2,5 s: sai da partida e volta para o menu do app
                     val now = SystemClock.uptimeMillis()
                     if (now < armedUntil) onExit()

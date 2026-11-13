@@ -392,7 +392,7 @@ static void panel_update(void) {
              (render_frames - rf0) / dt, (kernel_vblank_count() - vb0) / dt);
     rf0 = render_frames;
     sealed0 = sealed;
-    snprintf(panel.line[1], 96, "CPU %3.0f%%  GS %3.0f%%  VU1 %3.0f%%  game %3.0f%%", 100 * total / dt,
+    snprintf(panel.line[1], 96, "CPU %3.0f%%  GS %3.0f%%  VU1 %3.0f%%  resto %3.0f%%", 100 * total / dt,
              100 * gs / dt, 100 * vu / dt, 100 * game / dt);
     extern u64 upload_skipped, upload_written;
     static u64 sk0, wr0;

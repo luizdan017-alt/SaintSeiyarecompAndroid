@@ -13,6 +13,9 @@ ajustes de `android/patch_port.py`, aplicados pelo workflow `.github/workflows/a
 | port/hle/cdvd.c | aviso de leitura lenta da ISO (>= 100 ms) | achar as travadas |
 | port/runtime/r5900.h, memory.c | RAM do jogo como vetor estatico; `rt_ptr` com caminho rapido; `ENTER` vazio | menos instrucoes em cada acesso a memoria e em cada funcao |
 | port/runtime/cpu.c | `rt_call` usa tabela direta | trocar a busca binaria (~14 passos) em cada chamada indireta |
+| port/gs/display.c | relatorio do profiler tambem ao fechar a partida | medir o desempenho no celular |
+| port/runtime/prof.c | `prof_reset` | o botao PROF recomeca a medicao no meio da partida |
+| port/gs/display.c | rotulo "game" do painel vira "resto" | e o que sobra do total, nao so o thread do jogo |
 
 Para ver tudo o que mudou em relacao ao projeto original: `git diff master..android -- port`.
 
@@ -26,3 +29,6 @@ Compilacao: codigo EU em -O2 (JP em -O1), sem stack protector/FORTIFY, simbolos 
 ## Jogo: opcoes do app (variaveis de ambiente)
 `SSTHEH_50HZ` (padrao ligado), `SSTHEH_WIDESCREEN=0` (tela 4:3). `SSTHEH_30FPS_SCENES` nao e mais definido:
 com ele o jogo espera o vblank em cada quadro das cenas e, abaixo de 50 fps, cai em degraus (25 fps).
+
+`SSTHEH_UNLOCK_ALL=1` (opcao do app) e `SSTHEH_PROF=1` (opcao do app; relatorio no log ao sair).
+Os simbolos ficam visiveis e o link usa `-Wl,-Bsymbolic` (em vez de `-fvisibility=hidden`) para o profiler dar nomes.

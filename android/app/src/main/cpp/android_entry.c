@@ -4,6 +4,7 @@
  *  - le a ISO direto do descritor recebido do Android ("fd:N", sem copiar)
  *  - extrai da ISO o executavel do jogo (pequeno) para <files>/disc/ na primeira vez
  * e entrega ao main() original (renomeado ss_main) a linha de comando "--iso fd:N <executavel>". */
+#include <dirent.h>
 #include <fcntl.h>
 #include <pthread.h>
 #include <sched.h>
@@ -101,6 +102,117 @@ void android_pin_thread(pthread_t t, const char *name) {
     if (!strcmp(name, "game") || !strcmp(name, "gs") || !strcmp(name, "main")) setpriority(PRIO_PROCESS, tid, -4);
 }
 
+
+/* ---- uso de CPU por thread (nome, %, nucleo, frequencia): /proc/self/task e cpufreq ----
+ * O painel do jogo soma tudo em "CPU"; aqui da para ver qual thread esta no limite. */
+typedef struct { int tid; unsigned long ticks; char name[20]; int cpu; double pct; } Th;
+static Th th_prev[256], th_cur[256];
+static int th_nprev;
+static double th_prev_t;
+
+static double mono_s(void) {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return ts.tv_sec + ts.tv_nsec / 1e9;
+}
+
+static int read_threads(Th *out, int max) {
+    DIR *d = opendir("/proc/self/task");
+    if (!d) return 0;
+    int n = 0;
+    struct dirent *e;
+    while ((e = readdir(d)) && n < max) {
+        int tid = atoi(e->d_name);
+        if (tid <= 0) continue;
+        char p[64], buf[600];
+        snprintf(p, sizeof p, "/proc/self/task/%d/stat", tid);
+        FILE *f = fopen(p, "r");
+        if (!f) continue;
+        size_t k = fread(buf, 1, sizeof buf - 1, f);
+        fclose(f);
+        buf[k] = 0;
+        char *lp = strchr(buf, '('), *rp = strrchr(buf, ')');
+        if (!lp || !rp || rp < lp) continue;
+        Th *t = &out[n];
+        size_t nl = (size_t)(rp - lp - 1);
+        if (nl > 15) nl = 15;
+        memcpy(t->name, lp + 1, nl);
+        t->name[nl] = 0;
+        t->tid = tid;
+        unsigned long ut = 0, st = 0;
+        int cpu = -1, field = 3;
+        char *s2 = rp + 2;
+        while (*s2) {                       /* campos do /proc/PID/stat: 14 utime, 15 stime, 39 processador */
+            char *sp = strchr(s2, ' ');
+            if (sp) *sp = 0;
+            if (field == 14) ut = strtoul(s2, NULL, 10);
+            else if (field == 15) st = strtoul(s2, NULL, 10);
+            else if (field == 39) { cpu = atoi(s2); break; }
+            if (!sp) break;
+            s2 = sp + 1;
+            field++;
+        }
+        t->ticks = ut + st;
+        t->cpu = cpu;
+        t->pct = 0;
+        n++;
+    }
+    closedir(d);
+    return n;
+}
+
+static long cpu_khz(int c) {
+    char p[96];
+    snprintf(p, sizeof p, "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_cur_freq", c);
+    FILE *f = fopen(p, "r");
+    if (!f) return -1;
+    long v = -1;
+    if (fscanf(f, "%ld", &v) != 1) v = -1;
+    fclose(f);
+    return v;
+}
+
+/* texto com as 6 threads que mais usaram CPU desde a chamada anterior + a frequencia dos nucleos */
+void android_make_stats(char *out, size_t cap) {
+    double now = mono_s(), dt = now - th_prev_t;
+    int n = read_threads(th_cur, 256);
+    long hz = sysconf(_SC_CLK_TCK);
+    if (hz <= 0) hz = 100;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < th_nprev; j++)
+            if (th_prev[j].tid == th_cur[i].tid && dt > 0.05) {
+                th_cur[i].pct = 100.0 * (double)(th_cur[i].ticks - th_prev[j].ticks) / (double)hz / dt;
+                break;
+            }
+    for (int a = 0; a < n && a < 6; a++) {      /* as 6 maiores */
+        int best = a;
+        for (int b = a + 1; b < n; b++) if (th_cur[b].pct > th_cur[best].pct) best = b;
+        Th t = th_cur[a]; th_cur[a] = th_cur[best]; th_cur[best] = t;
+    }
+    size_t o = 0;
+    out[0] = 0;
+    for (int i = 0; i < n && i < 6; i++) {
+        long f = th_cur[i].cpu >= 0 ? cpu_khz(th_cur[i].cpu) : -1;
+        char fr[16] = "";
+        if (f > 0) snprintf(fr, sizeof fr, " %.1fGHz", f / 1e6);
+        o += (size_t)snprintf(out + o, cap - o, "%-9.9s %3.0f%%  cpu%d%s\n", th_cur[i].name, th_cur[i].pct, th_cur[i].cpu, fr);
+        if (o >= cap) return;
+    }
+    long nc = sysconf(_SC_NPROCESSORS_CONF);
+    if (nc > 0 && nc <= 16 && o + 64 < cap) {
+        o += (size_t)snprintf(out + o, cap - o, "clock:");
+        for (int c = 0; c < nc; c++) {
+            long f = cpu_khz(c);
+            if (f > 0) o += (size_t)snprintf(out + o, cap - o, " %.1f", f / 1e6);
+            else o += (size_t)snprintf(out + o, cap - o, " ?");
+        }
+        snprintf(out + o, cap - o, " GHz");
+    }
+    memcpy(th_prev, th_cur, (size_t)n * sizeof *th_cur);   /* (so as 6 primeiras ficam ordenadas; o resto vem desordenado) */
+    th_nprev = n;
+    th_prev_t = now;
+}
+
 /* ---- diagnostico do executavel extraido: tamanho, FNV-1a 64 (o que o jogo confere) e SHA-1 ---- */
 static u32 rol(u32 v, int n) { return v << n | v >> (32 - n); }
 static void sha1_block(u32 h[5], const u8 *p) {
@@ -192,4 +304,32 @@ JNIEXPORT void JNICALL Java_com_luizdan_sstheh_NativePad_set(JNIEnv *env, jclass
 JNIEXPORT void JNICALL Java_com_luizdan_sstheh_NativePad_hud(JNIEnv *env, jclass cls) {
     (void)env; (void)cls;
     touch_hud_toggle = 1;
+}
+
+static unsigned stats_calls;
+
+JNIEXPORT jstring JNICALL Java_com_luizdan_sstheh_NativePad_stats(JNIEnv *env, jclass cls) {
+    (void)cls;
+    char buf[700];
+    android_make_stats(buf, sizeof buf);
+    if (++stats_calls % 4 == 0) {            /* uma linha no log a cada ~4 s */
+        char one[700];
+        size_t o = 0;
+        for (const char *p = buf; *p && o + 4 < sizeof one; p++) { one[o++] = *p == '\n' ? '|' : *p; }
+        one[o] = 0;
+        fprintf(stderr, "[threads] %s\n", one);
+    }
+    return (*env)->NewStringUTF(env, buf);
+}
+
+/* profiler (SSTHEH_PROF): 0 = recomeca a contagem; 1 = imprime o relatorio no log (numa thread, sem travar a tela) */
+void prof_reset(void);
+void prof_report(void);
+static void *prof_thread(void *a) { (void)a; prof_report(); return NULL; }
+
+JNIEXPORT void JNICALL Java_com_luizdan_sstheh_NativePad_prof(JNIEnv *env, jclass cls, jint op) {
+    (void)env; (void)cls;
+    if (op == 0) { prof_reset(); return; }
+    pthread_t t;
+    if (pthread_create(&t, NULL, prof_thread, NULL) == 0) pthread_detach(t);
 }
