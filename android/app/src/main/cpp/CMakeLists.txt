@@ -69,4 +69,3 @@ target_include_directories(sstheh PRIVATE
   ${SS_ROOT}/port/runtime ${SS_ROOT}/port/kernel ${SS_ROOT}/port/iop ${SS_ROOT}/port/gs
   ${SS_ROOT}/generated/recomp ${SHDIR})
 target_link_libraries(sstheh PRIVATE SDL3::SDL3 m log android dl)
-target_link_options(sstheh PRIVATE -Wl,--strip-all)

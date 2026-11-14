@@ -79,6 +79,7 @@ class LauncherActivity : Activity() {
             refreshT()
             return b
         }
+        root.addView(toggle("Modo rápido: GS em 2 threads (experimental)", "gssplit", false))
         root.addView(toggle("Desbloquear tudo (personagens, modos...)", "unlock", false))
         root.addView(toggle("Medir desempenho (profiler)", "prof", false))
         val copy = Button(this).apply {

@@ -96,10 +96,10 @@ static void init_big(void) {
 void android_pin_thread(pthread_t t, const char *name) {
     init_big();
     if (!big_n) return;
-    if (strcmp(name, "game") && strcmp(name, "gs") && strncmp(name, "ee-", 3) && strncmp(name, "iop-", 4) && strcmp(name, "main")) return;
+    if (strcmp(name, "game") && strcmp(name, "gs") && strcmp(name, "gsx") && strncmp(name, "ee-", 3) && strncmp(name, "iop-", 4) && strcmp(name, "main")) return;
     pid_t tid = pthread_gettid_np(t);
     if (sched_setaffinity(tid, sizeof big_set, &big_set)) fprintf(stderr, "afinidade de %s falhou\n", name);
-    if (!strcmp(name, "game") || !strcmp(name, "gs") || !strcmp(name, "main")) setpriority(PRIO_PROCESS, tid, -4);
+    if (!strcmp(name, "game") || !strcmp(name, "gs") || !strcmp(name, "gsx") || !strcmp(name, "main")) setpriority(PRIO_PROCESS, tid, -4);
 }
 
 

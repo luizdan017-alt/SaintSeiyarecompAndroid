@@ -37,4 +37,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions { jvmTarget = "17" }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true                    // a biblioteca e extraida como arquivo (o profiler le os simbolos dela)
+            keepDebugSymbols += "**/libsstheh.so"
+        }
+    }
 }

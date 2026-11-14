@@ -7,6 +7,7 @@
     <application
         android:label="Saint Seiya (port)"
         android:allowBackup="false"
+        android:extractNativeLibs="true"
         android:hasCode="true">
 
         <activity

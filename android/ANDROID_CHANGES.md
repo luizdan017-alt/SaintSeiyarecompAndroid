@@ -16,6 +16,8 @@ ajustes de `android/patch_port.py`, aplicados pelo workflow `.github/workflows/a
 | port/gs/display.c | relatorio do profiler tambem ao fechar a partida | medir o desempenho no celular |
 | port/runtime/prof.c | `prof_reset` | o botao PROF recomeca a medicao no meio da partida |
 | port/gs/display.c | rotulo "game" do painel vira "resto" | e o que sobra do total, nao so o thread do jogo |
+| port/gs/gs.c, port/gs/dmac.c | `SSTHEH_GSSPLIT=1`: pacotes GIF vao por uma fila para o thread `gsx` | VU1 e GS em dois nucleos (experimental, desligado por padrao) |
+| port/runtime/prof.c | nomes das funcoes `static` pela tabela de simbolos | profiler legivel |
 
 Para ver tudo o que mudou em relacao ao projeto original: `git diff master..android -- port`.
 
@@ -32,3 +34,8 @@ com ele o jogo espera o vblank em cada quadro das cenas e, abaixo de 50 fps, cai
 
 `SSTHEH_UNLOCK_ALL=1` (opcao do app) e `SSTHEH_PROF=1` (opcao do app; relatorio no log ao sair).
 Os simbolos ficam visiveis e o link usa `-Wl,-Bsymbolic` (em vez de `-fvisibility=hidden`) para o profiler dar nomes.
+
+## Modo rapido (GS em 2 threads)
+`SSTHEH_GSSPLIT=1`: o thread `gs` (VIF1 + VU1) copia cada pacote GIF para um anel de 16 MB e o thread `gsx` o
+interpreta, na mesma ordem. O EE nao le o estado do GS (o CSR so devolve vblanks), entao o jogo nao ve diferenca.
+No maximo 2 quadros novos esperam o `gsx`. Testado so numa bancada no PC (194 mil itens, ordem e conteudo iguais).

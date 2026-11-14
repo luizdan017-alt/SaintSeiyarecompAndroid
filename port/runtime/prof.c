@@ -102,6 +102,61 @@ void prof_start(void) {
  * constant rate on current x86 CPUs). */
 
 
+#ifdef __ANDROID__
+#include <elf.h>
+#include <fcntl.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+/* Nome de uma funcao nao exportada (static): le a tabela de simbolos (.symtab) do arquivo da biblioteca,
+ * que o app agora instala sem tirar os simbolos. */
+typedef struct { unsigned long addr, size; const char *name; } SymEnt;
+static SymEnt *sym_tab;
+static int sym_n, sym_tried;
+static int sym_cmp(const void *a, const void *b) {
+    unsigned long x = ((const SymEnt *)a)->addr, y = ((const SymEnt *)b)->addr;
+    return x < y ? -1 : x > y;
+}
+static void sym_load(const char *path) {
+    if (sym_tried) return;
+    sym_tried = 1;
+    int fd = open(path, O_RDONLY);
+    if (fd < 0) return;
+    struct stat st;
+    if (fstat(fd, &st)) { close(fd); return; }
+    unsigned char *m = mmap(NULL, (size_t)st.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+    close(fd);
+    if (m == MAP_FAILED) return;
+    const Elf64_Ehdr *eh = (const Elf64_Ehdr *)m;
+    if (memcmp(eh->e_ident, ELFMAG, SELFMAG) || eh->e_ident[EI_CLASS] != ELFCLASS64) return;
+    const Elf64_Shdr *sh = (const Elf64_Shdr *)(m + eh->e_shoff);
+    for (int i = 0; i < eh->e_shnum; i++) {
+        if (sh[i].sh_type != SHT_SYMTAB) continue;
+        const Elf64_Sym *sy = (const Elf64_Sym *)(m + sh[i].sh_offset);
+        int n = (int)(sh[i].sh_size / sizeof *sy);
+        const char *str = (const char *)(m + sh[sh[i].sh_link].sh_offset);
+        sym_tab = malloc((size_t)n * sizeof *sym_tab);
+        if (!sym_tab) return;
+        for (int k = 0; k < n; k++)
+            if (ELF64_ST_TYPE(sy[k].st_info) == STT_FUNC && sy[k].st_size)
+                sym_tab[sym_n++] = (SymEnt){sy[k].st_value, sy[k].st_size, str + sy[k].st_name};
+        qsort(sym_tab, (size_t)sym_n, sizeof *sym_tab, sym_cmp);
+        return;
+    }
+}
+static const char *sym_name(const char *path, unsigned long off) {
+    sym_load(path);
+    int lo = 0, hi = sym_n - 1, best = -1;
+    while (lo <= hi) {
+        int mid = (lo + hi) / 2;
+        if (sym_tab[mid].addr <= off) { best = mid; lo = mid + 1; } else hi = mid - 1;
+    }
+    if (best >= 0 && off < sym_tab[best].addr + sym_tab[best].size) return sym_tab[best].name;
+    return NULL;
+}
+#else
+static const char *sym_name(const char *path, unsigned long off) { (void)path; (void)off; return NULL; }
+#endif
+
 typedef struct { const char *name; int count; } Row;
 
 static int by_count(const void *a, const void *b) { return ((const Row *)b)->count - ((const Row *)a)->count; }
@@ -115,9 +170,13 @@ static int tally(Row *rows, int max_rows, int n, int tid) {
         static char buf[1 << 16][24];
         static int nbuf;
         const char *name;
-        if (dladdr(samples[i], &info) && info.dli_sname && strcmp(info.dli_sname, "vu_prog")) name = info.dli_sname;
+        int dl_ok = dladdr(samples[i], &info);
+        if (dl_ok && info.dli_sname && strcmp(info.dli_sname, "vu_prog")) name = info.dli_sname;
         else if (info.dli_sname) name = strrchr(info.dli_fname, '/') ? strrchr(info.dli_fname, '/') + 1 : info.dli_fname;  /* a VU1 program: its file */
-        else {
+        else if (dl_ok && info.dli_fname &&
+                 (name = sym_name(info.dli_fname, (unsigned long)((char *)samples[i] - (char *)info.dli_fbase))) != NULL) {
+            /* named from the library's symbol table */
+        } else {
             /* not exported (static): the offset in the executable, for addr2line; 64-byte buckets */
             unsigned long off = (unsigned long)((char *)samples[i] - (char *)info.dli_fbase) & ~63ul;
             int b = 0;

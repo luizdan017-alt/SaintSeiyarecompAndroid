@@ -51,6 +51,7 @@ static const u8 *mem(u32 addr, int spr) {
 
 void gsrec_data(int ch, int tag, const u8 *p, u32 bytes);    /* gsrec.c */
 void gsrec_flip(void);
+void gs_job_flip(void);               /* gs.c: com SSTHEH_GSSPLIT vai pela fila do gsx */
 
 static void deliver(Ctx *c, int ch, const u8 *data, u32 qwc) {
     (void)c;
@@ -187,8 +188,7 @@ static void *gs_thread(void *arg) {
         int ch = queue[qhead];
         pthread_mutex_unlock(&qlock);
         if (ch == JOB_FLIP) {
-            gsrec_flip();
-            gpu_seal_frame();
+            gs_job_flip();
             pthread_mutex_lock(&qlock);
             qhead = (qhead + 1) % 64;
             qcount--;
