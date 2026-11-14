@@ -24,7 +24,7 @@ class GameActivity : SDLActivity() {
             val sp = getSharedPreferences("sstheh", MODE_PRIVATE)
             Os.setenv("SSTHEH_SCALE", sp.getInt("render_scale", 1).toString(), true)
             Os.setenv("SSTHEH_VSYNC", "1", true)
-            Os.setenv("SSTHEH_INTERP", "0", true)
+            if (!sp.getBoolean("interp", true)) Os.setenv("SSTHEH_INTERP", "0", true)   // padrao: movimento suavizado entre os quadros do jogo
             Os.setenv("SSTHEH_PERF_LOG", "1", true)   // uma linha de desempenho por segundo no log
             if (sp.getBoolean("hz50", true)) Os.setenv("SSTHEH_50HZ", "1", true)   // 50 Hz: o modo PAL original
             if (!sp.getBoolean("wide", true)) Os.setenv("SSTHEH_WIDESCREEN", "0", true)   // 4:3 original

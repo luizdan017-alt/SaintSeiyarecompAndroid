@@ -39,3 +39,7 @@ Os simbolos ficam visiveis e o link usa `-Wl,-Bsymbolic` (em vez de `-fvisibilit
 `SSTHEH_GSSPLIT=1`: o thread `gs` (VIF1 + VU1) copia cada pacote GIF para um anel de 16 MB e o thread `gsx` o
 interpreta, na mesma ordem. O EE nao le o estado do GS (o CSR so devolve vblanks), entao o jogo nao ve diferenca.
 No maximo 2 quadros novos esperam o `gsx`. Testado so numa bancada no PC (194 mil itens, ordem e conteudo iguais).
+
+## Interpolacao de quadros
+`SSTHEH_INTERP` volta ao padrao do projeto (ligada). Desligada (`SSTHEH_INTERP=0`, opcao do app) cada quadro do jogo
+aparece como veio, e quando o jogo oscila entre 25 e 40 fps o tempo entre quadros fica irregular (tremida).
