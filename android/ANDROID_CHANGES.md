@@ -18,6 +18,8 @@ ajustes de `android/patch_port.py`, aplicados pelo workflow `.github/workflows/a
 | port/gs/display.c | rotulo "game" do painel vira "resto" | e o que sobra do total, nao so o thread do jogo |
 | port/gs/gs.c, port/gs/dmac.c | `SSTHEH_GSSPLIT=1`: pacotes GIF vao por uma fila para o thread `gsx` | VU1 e GS em dois nucleos (experimental, desligado por padrao) |
 | port/runtime/prof.c | nomes das funcoes `static` pela tabela de simbolos | profiler legivel |
+| port/hle/cdvd.c | leitura adiantada de 2 MB quando a leitura e em sequencia | leituras de ~40 KB pelo FUSE chegavam a 1,4 s |
+| port/gs/display.c | `android_render_frames()` (vigia) e a interpolacao nao mistura texturas diferentes | achar travadas da tela e evitar partes deformadas |
 
 Para ver tudo o que mudou em relacao ao projeto original: `git diff master..android -- port`.
 

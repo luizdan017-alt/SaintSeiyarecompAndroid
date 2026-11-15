@@ -52,6 +52,52 @@ int cdvd_open(const char *path) {
     return 0;
 }
 
+/* Leitura da ISO com leitura adiantada (Android): o arquivo vem do armazenamento do aparelho por uma camada lenta
+ * por chamada (FUSE); o jogo le em pedacos de ~40 KB. Leituras em sequencia trazem 2 MB de uma vez e as seguintes
+ * saem da memoria; leituras soltas (aleatorias) continuam lendo so o que foi pedido. */
+#include <unistd.h>
+#define RA_SIZE (2u << 20)
+static u8 *ra_buf;
+static u64 ra_off, ra_len, ra_last_end;
+
+static int pread_all(int fd, u8 *dst, u64 len, u64 off, u64 *got) {
+    u64 done = 0;
+    while (done < len) {
+        ssize_t n = pread(fd, dst + done, (size_t)(len - done), (off_t)(off + done));
+        if (n < 0) return -1;
+        if (n == 0) break;                       /* fim do arquivo */
+        done += (u64)n;
+    }
+    if (got) *got = done;
+    return 0;
+}
+
+static int ra_read(FILE *f, u32 lsn, u32 count, u8 *out) {
+    u64 off = (u64)lsn * SECTOR, len = (u64)count * SECTOR, got = 0;
+    int fd = fileno(f);
+    if (len >= RA_SIZE / 2) {                    /* leitura grande: direto */
+        if (pread_all(fd, out, len, off, &got) || got < len) return -1;
+        ra_last_end = off + len;
+        return 0;
+    }
+    if (!ra_buf) ra_buf = malloc(RA_SIZE);
+    if (ra_buf && off >= ra_off && off + len <= ra_off + ra_len) {          /* ja esta na memoria */
+        memcpy(out, ra_buf + (off - ra_off), (size_t)len);
+        ra_last_end = off + len;
+        return 0;
+    }
+    int seq = ra_last_end && off >= ra_last_end && off - ra_last_end <= 256 * 1024;
+    if (ra_buf && seq) {                         /* em sequencia: traz 2 MB a partir daqui */
+        if (pread_all(fd, ra_buf, RA_SIZE, off, &got)) { ra_len = 0; return -1; }
+        ra_off = off; ra_len = got;
+        if (got >= len) { memcpy(out, ra_buf, (size_t)len); ra_last_end = off + len; return 0; }
+        ra_len = 0;                              /* arquivo acaba antes do pedido: cai na leitura simples */
+    }
+    if (pread_all(fd, out, len, off, &got) || got < len) return -1;
+    ra_last_end = off + len;
+    return 0;
+}
+
 static pthread_mutex_t iso_lock = PTHREAD_MUTEX_INITIALIZER;   /* the EE and the IOP's modules both read */
 
 static int read_sectors(u32 lsn, u32 count, u8 *out) {
@@ -60,7 +106,7 @@ static int read_sectors(u32 lsn, u32 count, u8 *out) {
     clock_gettime(CLOCK_MONOTONIC, &t0_);
     pthread_mutex_lock(&iso_lock);
     int ok;
-    if (stride == SECTOR) ok = !fseeko(iso, (off_t)lsn * SECTOR, SEEK_SET) && fread(out, SECTOR, count, iso) == count;
+    if (stride == SECTOR) ok = !ra_read(iso, lsn, count, out);
     else {
         ok = 1;
         for (u32 i = 0; i < count && ok; i++)

@@ -410,3 +410,68 @@ patch("port/runtime/prof.c",
       "                 (name = sym_name(info.dli_fname, (unsigned long)((char *)samples[i] - (char *)info.dli_fbase))) != NULL) {\n"
       "            /* named from the library's symbol table */\n"
       "        } else {\n            /* not exported (static): the offset in the executable, for addr2line; 64-byte buckets */\n")
+
+# 12) cdvd.c: leitura adiantada da ISO (os "leitura lenta" de 300 ms a 1,4 s eram leituras de ~40 KB pelo FUSE do Android)
+RA_BLOCK = r'''/* Leitura da ISO com leitura adiantada (Android): o arquivo vem do armazenamento do aparelho por uma camada lenta
+ * por chamada (FUSE); o jogo le em pedacos de ~40 KB. Leituras em sequencia trazem 2 MB de uma vez e as seguintes
+ * saem da memoria; leituras soltas (aleatorias) continuam lendo so o que foi pedido. */
+#include <unistd.h>
+#define RA_SIZE (2u << 20)
+static u8 *ra_buf;
+static u64 ra_off, ra_len, ra_last_end;
+
+static int pread_all(int fd, u8 *dst, u64 len, u64 off, u64 *got) {
+    u64 done = 0;
+    while (done < len) {
+        ssize_t n = pread(fd, dst + done, (size_t)(len - done), (off_t)(off + done));
+        if (n < 0) return -1;
+        if (n == 0) break;                       /* fim do arquivo */
+        done += (u64)n;
+    }
+    if (got) *got = done;
+    return 0;
+}
+
+static int ra_read(FILE *f, u32 lsn, u32 count, u8 *out) {
+    u64 off = (u64)lsn * SECTOR, len = (u64)count * SECTOR, got = 0;
+    int fd = fileno(f);
+    if (len >= RA_SIZE / 2) {                    /* leitura grande: direto */
+        if (pread_all(fd, out, len, off, &got) || got < len) return -1;
+        ra_last_end = off + len;
+        return 0;
+    }
+    if (!ra_buf) ra_buf = malloc(RA_SIZE);
+    if (ra_buf && off >= ra_off && off + len <= ra_off + ra_len) {          /* ja esta na memoria */
+        memcpy(out, ra_buf + (off - ra_off), (size_t)len);
+        ra_last_end = off + len;
+        return 0;
+    }
+    int seq = ra_last_end && off >= ra_last_end && off - ra_last_end <= 256 * 1024;
+    if (ra_buf && seq) {                         /* em sequencia: traz 2 MB a partir daqui */
+        if (pread_all(fd, ra_buf, RA_SIZE, off, &got)) { ra_len = 0; return -1; }
+        ra_off = off; ra_len = got;
+        if (got >= len) { memcpy(out, ra_buf, (size_t)len); ra_last_end = off + len; return 0; }
+        ra_len = 0;                              /* arquivo acaba antes do pedido: cai na leitura simples */
+    }
+    if (pread_all(fd, out, len, off, &got) || got < len) return -1;
+    ra_last_end = off + len;
+    return 0;
+}
+
+'''
+patch("port/hle/cdvd.c",
+      "static pthread_mutex_t iso_lock = PTHREAD_MUTEX_INITIALIZER;",
+      RA_BLOCK + "static pthread_mutex_t iso_lock = PTHREAD_MUTEX_INITIALIZER;")
+patch("port/hle/cdvd.c",
+      "    if (stride == SECTOR) ok = !fseeko(iso, (off_t)lsn * SECTOR, SEEK_SET) && fread(out, SECTOR, count, iso) == count;\n",
+      "    if (stride == SECTOR) ok = !ra_read(iso, lsn, count, out);\n")
+
+# 13) display.c: o vigia do app le o contador de quadros mostrados; a interpolacao nao mistura desenhos com texturas diferentes
+patch("port/gs/display.c",
+      "static u32 render_frames;               /* pictures shown (GPU window), for the panel */\n",
+      "static u32 render_frames;               /* pictures shown (GPU window), for the panel */\n"
+      "u32 android_render_frames(void) { return render_frames; }   /* vigia do app Android */\n")
+patch("port/gs/display.c",
+      "if (da->count != db->count || da->fbp != db->fbp || da->textured != db->textured || (da->tex < -1) != (db->tex < -1))\n            continue;",
+      "if (da->count != db->count || da->fbp != db->fbp || da->textured != db->textured || (da->tex < -1) != (db->tex < -1) ||\n"
+      "            (da->tex >= 0 && db->tex >= 0 && da->tex != db->tex))\n            continue;")

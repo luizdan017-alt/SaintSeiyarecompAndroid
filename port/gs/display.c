@@ -36,6 +36,7 @@ extern u64 gs_prims;
 
 static u32 frame[1024 * 1024];
 static u32 render_frames;               /* pictures shown (GPU window), for the panel */
+u32 android_render_frames(void) { return render_frames; }   /* vigia do app Android */
 
 /* --press 600:CROSS,700:START,800:DOWN:20: press a button at those times for 6 vertical blanks, or for
    the given number (tests) */
@@ -196,7 +197,8 @@ static GpuVertex *interpolate(const GpuFrame *a, const GpuFrame *b, float t) {
     memcpy(out, b->verts, b->nverts * sizeof *out);
     for (u32 i = 0; i < b->ndraws && i < a->ndraws; i++) {
         const GpuDraw *db = &b->draws[i], *da = &a->draws[i];
-        if (da->count != db->count || da->fbp != db->fbp || da->textured != db->textured || (da->tex < -1) != (db->tex < -1))
+        if (da->count != db->count || da->fbp != db->fbp || da->textured != db->textured || (da->tex < -1) != (db->tex < -1) ||
+            (da->tex >= 0 && db->tex >= 0 && da->tex != db->tex))
             continue;
         const GpuVertex *va = &a->verts[da->first], *vb = &b->verts[db->first];
         int far = 0;
