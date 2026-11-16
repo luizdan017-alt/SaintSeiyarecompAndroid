@@ -105,7 +105,7 @@ void android_pin_thread(pthread_t t, const char *name) {
 
 /* ---- uso de CPU por thread (nome, %, nucleo, frequencia): /proc/self/task e cpufreq ----
  * O painel do jogo soma tudo em "CPU"; aqui da para ver qual thread esta no limite. */
-typedef struct { int tid; unsigned long ticks; char name[20]; int cpu; double pct; char state; } Th;
+typedef struct { int tid; unsigned long ticks; char name[20]; int cpu; double pct; } Th;
 static Th th_prev[256], th_cur[256];
 static int th_nprev;
 static double th_prev_t;
@@ -153,7 +153,6 @@ static int read_threads(Th *out, int max) {
             field++;
         }
         t->ticks = ut + st;
-        t->state = lp ? rp[2] : '?';
         t->cpu = cpu;
         t->pct = 0;
         n++;
@@ -173,37 +172,6 @@ static long cpu_khz(int c) {
     return v;
 }
 
-
-/* ---- memoria (do app e livre no aparelho) e vigia da imagem parada ---- */
-static long meminfo_mb(const char *file, const char *key) {
-    FILE *f = fopen(file, "r");
-    if (!f) return -1;
-    char ln[128];
-    long v = -1;
-    size_t kl = strlen(key);
-    while (fgets(ln, sizeof ln, f)) if (!strncmp(ln, key, kl)) { v = atol(ln + kl) / 1024; break; }
-    fclose(f);
-    return v;
-}
-
-u32 android_render_frames(void);
-unsigned kernel_vblank_count(void);
-static unsigned wd_last_rf, wd_last_vb, wd_stall;
-
-static void watchdog(const Th *th, int n) {
-    unsigned rf = android_render_frames(), vb = kernel_vblank_count();
-    if (rf == wd_last_rf && vb != wd_last_vb) wd_stall++; else wd_stall = 0;
-    wd_last_rf = rf; wd_last_vb = vb;
-    if (wd_stall >= 3 && wd_stall % 5 == 3) {       /* a imagem nao muda ha segundos, mas o jogo continua contando vblanks */
-        char d[200] = "";
-        size_t o = 0;
-        for (int i = 0; i < n && o + 24 < sizeof d; i++)
-            if (th[i].state == 'D') o += (size_t)snprintf(d + o, sizeof d - o, "%s ", th[i].name);
-        fprintf(stderr, "[vigia] imagem parada ha %u s; threads em espera de E/S ou driver (D): %s | app %ld MB, livre %ld MB\n",
-                wd_stall, o ? d : "(nenhuma)", meminfo_mb("/proc/self/status", "VmRSS:"), meminfo_mb("/proc/meminfo", "MemAvailable:"));
-    }
-}
-
 /* texto com as 6 threads que mais usaram CPU desde a chamada anterior + a frequencia dos nucleos */
 void android_make_stats(char *out, size_t cap) {
     double now = mono_s(), dt = now - th_prev_t;
@@ -216,7 +184,6 @@ void android_make_stats(char *out, size_t cap) {
                 th_cur[i].pct = 100.0 * (double)(th_cur[i].ticks - th_prev[j].ticks) / (double)hz / dt;
                 break;
             }
-    watchdog(th_cur, n);
     for (int a = 0; a < n && a < 6; a++) {      /* as 6 maiores */
         int best = a;
         for (int b = a + 1; b < n; b++) if (th_cur[b].pct > th_cur[best].pct) best = b;
@@ -231,8 +198,6 @@ void android_make_stats(char *out, size_t cap) {
         o += (size_t)snprintf(out + o, cap - o, "%-9.9s %3.0f%%  cpu%d%s\n", th_cur[i].name, th_cur[i].pct, th_cur[i].cpu, fr);
         if (o >= cap) return;
     }
-    if (o + 48 < cap) o += (size_t)snprintf(out + o, cap - o, "mem: app %ld MB, livre %ld MB\n",
-                                            meminfo_mb("/proc/self/status", "VmRSS:"), meminfo_mb("/proc/meminfo", "MemAvailable:"));
     long nc = sysconf(_SC_NPROCESSORS_CONF);
     if (nc > 0 && nc <= 16 && o + 64 < cap) {
         o += (size_t)snprintf(out + o, cap - o, "clock:");
