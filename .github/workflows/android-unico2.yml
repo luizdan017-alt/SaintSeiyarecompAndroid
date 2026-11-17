@@ -20,7 +20,7 @@ on:
 
 env:
   EE_OPT: ${{ github.event.inputs.ee_opt || 'O2' }}
-  VU_OPT: ${{ github.event.inputs.vu_opt || 'O2' }}
+  VU_OPT: ${{ github.event.inputs.vu_opt || 'O1' }}
 
 permissions:
   contents: write
