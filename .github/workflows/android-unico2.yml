@@ -19,8 +19,8 @@ on:
         options: ['O2', 'O1']
 
 env:
-  EE_OPT: ${{ github.event.inputs.ee_opt || 'O2' }}
-  VU_OPT: ${{ github.event.inputs.vu_opt || 'O1' }}
+  EE_OPT: ${{ github.event.inputs.ee_opt || 'O1' }}
+  VU_OPT: ${{ github.event.inputs.vu_opt || 'O2' }}
 
 permissions:
   contents: write
