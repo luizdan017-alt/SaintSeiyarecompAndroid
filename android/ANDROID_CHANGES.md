@@ -18,6 +18,8 @@ ajustes de `android/patch_port.py`, aplicados pelo workflow `.github/workflows/a
 | port/gs/display.c | rotulo "game" do painel vira "resto" | e o que sobra do total, nao so o thread do jogo |
 | port/gs/gs.c, port/gs/dmac.c | `SSTHEH_GSSPLIT=1`: pacotes GIF vao por uma fila para o thread `gsx` | VU1 e GS em dois nucleos (experimental, desligado por padrao) |
 | port/runtime/prof.c | nomes das funcoes `static` pela tabela de simbolos | profiler legivel |
+| port/hle/cdvd.c | leitura adiantada de 2 MB quando a leitura e em sequencia | leituras de ~40 KB pelo FUSE chegavam a 1,4 s |
+| port/gs/display.c | `android_render_frames()` (vigia) e a interpolacao nao mistura texturas diferentes | achar travadas da tela e evitar partes deformadas |
 
 Para ver tudo o que mudou em relacao ao projeto original: `git diff master..android -- port`.
 
@@ -43,3 +45,10 @@ No maximo 2 quadros novos esperam o `gsx`. Testado so numa bancada no PC (194 mi
 ## Interpolacao de quadros
 `SSTHEH_INTERP` volta ao padrao do projeto (ligada). Desligada (`SSTHEH_INTERP=0`, opcao do app) cada quadro do jogo
 aparece como veio, e quando o jogo oscila entre 25 e 40 fps o tempo entre quadros fica irregular (tremida).
+
+## Interruptores no jogo
+Botoes INT (interpolacao) e 16:9 (widescreen) no topo da tela do jogo: `touch_hud_toggle` ganhou bits (1 HUD, 2 widescreen,
+4 interpolacao, 8 vsync), tratados em `touch_hud_poll()` (port/gs/display.c). Serve para comparar uma falha visual na hora.
+
+## Niveis de otimizacao (workflow)
+`Run workflow` pede `ee_opt` e `vu_opt` (O2 ou O1). O1 e o nivel do projeto original; serve para ver se uma falha vem do -O2.

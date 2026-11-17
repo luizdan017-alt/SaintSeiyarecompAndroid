@@ -362,7 +362,14 @@ static SDL_Window *win_create(void) {
 static Panel panel;
 static int panel_on = 1;
 extern volatile int touch_hud_toggle;
-static void touch_hud_poll(void) { if (touch_hud_toggle) { touch_hud_toggle = 0; panel_on = !panel_on; } }
+static volatile int android_interp_off;
+static void touch_hud_poll(void) {
+    int k = __atomic_exchange_n(&touch_hud_toggle, 0, __ATOMIC_ACQ_REL);
+    if (k & 1) panel_on = !panel_on;
+    if (k & 2) widescreen_toggle();
+    if (k & 4) android_interp_off = !android_interp_off;
+    if (k & 8) gpu_set_vsync(!gpu_vsync());
+}
 /* (VU1 time includes the XGKICKs it makes, which gs_ns counts too) */
 
 static double cpu_seconds(void) { return platform_cpu_seconds(); }
@@ -507,7 +514,7 @@ static int display_window_gpu(void) {
             final_shown = 0;
         }
         if (!fb) { SDL_Delay(1); continue; }
-        float t = interp && fa ? (float)(now - tb) / (float)period : 1.0f;
+        float t = interp && !android_interp_off && fa ? (float)(now - tb) / (float)period : 1.0f;
         if (t >= 1.0f) {
             if (final_shown) { SDL_Delay(1); continue; }
             t = 1.0f;

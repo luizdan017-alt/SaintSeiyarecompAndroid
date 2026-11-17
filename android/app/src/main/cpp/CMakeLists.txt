@@ -42,8 +42,19 @@ if(NOT rc EQUAL 0)
   message(FATAL_ERROR "spv2h.py falhou")
 endif()
 
-# codigo traduzido: o EU (o que roda) e os programas VU1 em -O2; o JP so precisa existir (-O1, compila mais rapido)
-file(GLOB GEN_EU "${SS_ROOT}/generated/recomp/*.c" "${SS_ROOT}/generated/vu/*.c")
+# codigo traduzido: o EU (o que roda) em -O2 por padrao; o JP so precisa existir (-O1, compila mais rapido).
+# Os niveis vem do workflow (ee_opt e vu_opt): O1 e o nivel do projeto original, util para ver se uma falha vem do -O2.
+set(EE_OPT "$ENV{EE_OPT}")
+set(VU_OPT "$ENV{VU_OPT}")
+if(NOT EE_OPT)
+  set(EE_OPT O2)
+endif()
+if(NOT VU_OPT)
+  set(VU_OPT O2)
+endif()
+message(STATUS "otimizacao: codigo do jogo -${EE_OPT}, programas VU1 -${VU_OPT}")
+file(GLOB GEN_EE "${SS_ROOT}/generated/recomp/*.c")
+file(GLOB GEN_VU "${SS_ROOT}/generated/vu/*.c")
 file(GLOB GEN_JP "${SS_ROOT}/generated-jp/recomp/*.c")
 # runtime, kernel, IOP, GS e HLE
 file(GLOB_RECURSE PORT_C "${SS_ROOT}/port/*.c")
@@ -56,8 +67,9 @@ if(HAS_MTUNE_A73)
   list(APPEND FAST_OPTS -mtune=cortex-a73)
 endif()
 
-add_library(sstheh SHARED ${GEN_EU} ${GEN_JP} ${PORT_C} android_entry.c)
-set_source_files_properties(${GEN_EU} PROPERTIES COMPILE_OPTIONS "-O2;-w;${FAST_OPTS}")
+add_library(sstheh SHARED ${GEN_EE} ${GEN_VU} ${GEN_JP} ${PORT_C} android_entry.c)
+set_source_files_properties(${GEN_EE} PROPERTIES COMPILE_OPTIONS "-${EE_OPT};-w;${FAST_OPTS}")
+set_source_files_properties(${GEN_VU} PROPERTIES COMPILE_OPTIONS "-${VU_OPT};-w;${FAST_OPTS}")
 set_source_files_properties(${GEN_JP} PROPERTIES COMPILE_OPTIONS "-O1;-w;${FAST_OPTS}")
 set_source_files_properties(${PORT_C} PROPERTIES COMPILE_OPTIONS "-O2;-Wno-unused-parameter;${FAST_OPTS}")
 # simbolos visiveis (o profiler precisa dos nomes das funcoes) e -Bsymbolic: as chamadas entre funcoes da

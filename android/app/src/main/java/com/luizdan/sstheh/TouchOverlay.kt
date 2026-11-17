@@ -16,6 +16,7 @@ import kotlin.math.min
 object NativePad {
     @JvmStatic external fun set(buttons: Int, lx: Int, ly: Int)
     @JvmStatic external fun hud()
+    @JvmStatic external fun key(bit: Int)
     @JvmStatic external fun stats(): String
     @JvmStatic external fun prof(op: Int)
 }
@@ -44,6 +45,11 @@ class TouchOverlay(ctx: Context, private val onExit: () -> Unit) : View(ctx) {
     private val profOn = prefs.getBoolean("prof", false)
     private var profState = 0          // 0 parado, 1 medindo, 2 relatorio pedido
     private var hudOn = true
+    private var interpOn = prefs.getBoolean("interp", true)
+    private var wideOn = prefs.getBoolean("wide", true)
+    private var intBtn = Btn("", 0, 0f, 0f, 0f)
+    private var wideBtn = Btn("", 0, 0f, 0f, 0f)
+    private var lastStick = false
     private var statsText = ""
     private val statsPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         typeface = Typeface.MONOSPACE
@@ -91,6 +97,8 @@ class TouchOverlay(ctx: Context, private val onExit: () -> Unit) : View(ctx) {
         modeBtn = Btn("", 0, fw / 2 + 40 * u, 24 * u, 20 * u)
         exitBtn = Btn("", 0, fw / 2 + 120 * u, 24 * u, 20 * u)
         profBtn = Btn("", 0, fw / 2 + 200 * u, 24 * u, 20 * u)
+        intBtn = Btn("", 0, fw / 2 - 120 * u, 24 * u, 20 * u)
+        wideBtn = Btn("", 0, fw / 2 - 200 * u, 24 * u, 20 * u)
         defX = 105 * u; defY = fh - 105 * u
     }
 
@@ -108,6 +116,8 @@ class TouchOverlay(ctx: Context, private val onExit: () -> Unit) : View(ctx) {
     override fun onDraw(c: Canvas) {
         for (b in btns) drawBtn(c, b, b.label, (pressed and b.bit) != 0)
         drawBtn(c, hudBtn, "HUD", false)
+        drawBtn(c, intBtn, if (interpOn) "INT" else "int", false)       // INT maiusculo = suavizacao ligada
+        drawBtn(c, wideBtn, if (wideOn) "16:9" else "4:3", false)
         drawBtn(c, modeBtn, if (analog) "ANA" else "DPAD", false)
         drawBtn(c, exitBtn, if (SystemClock.uptimeMillis() < armedUntil) "OK?" else "SAIR", false)
         if (profOn) drawBtn(c, profBtn, when (profState) { 0 -> "PROF"; 1 -> "FIM"; else -> "log" }, profState == 1)
@@ -146,6 +156,8 @@ class TouchOverlay(ctx: Context, private val onExit: () -> Unit) : View(ctx) {
             val id = ev.getPointerId(i); val x = ev.getX(i); val y = ev.getY(i)
             if (i == downIdx) {
                 if (hit(hudBtn, x, y)) { try { NativePad.hud() } catch (e: UnsatisfiedLinkError) { } ; hudOn = !hudOn; invalidate(); continue }
+                if (hit(intBtn, x, y)) { try { NativePad.key(4) } catch (e: UnsatisfiedLinkError) { } ; interpOn = !interpOn; invalidate(); continue }
+                if (hit(wideBtn, x, y)) { try { NativePad.key(2) } catch (e: UnsatisfiedLinkError) { } ; wideOn = !wideOn; invalidate(); continue }
                 if (profOn && hit(profBtn, x, y)) {     // 1o toque: comeca a medir; 2o: imprime o relatorio no log
                     try {
                         if (profState == 0) { NativePad.prof(0); profState = 1 }
@@ -191,8 +203,11 @@ class TouchOverlay(ctx: Context, private val onExit: () -> Unit) : View(ctx) {
                 if (dy < -0.38f) b = b or UP
             }
         }
+        val changed = b != pressed
         pressed = b
         try { NativePad.set(b, lx, ly) } catch (e: UnsatisfiedLinkError) { }
-        invalidate()
+        val active = stickId >= 0
+        if (changed || active || lastStick) invalidate()      // so redesenha quando algo muda (poupa CPU)
+        lastStick = active
     }
 }
