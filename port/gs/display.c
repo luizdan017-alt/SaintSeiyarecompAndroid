@@ -202,8 +202,15 @@ static GpuVertex *interpolate(const GpuFrame *a, const GpuFrame *b, float t) {
             continue;
         const GpuVertex *va = &a->verts[da->first], *vb = &b->verts[db->first];
         int far = 0;
-        for (u32 k = 0; k < db->count && !far; k++)
+        for (u32 k = 0; k < db->count && !far; k++) {
             far = fabsf(vb[k].x - va[k].x) > 80.0f || fabsf(vb[k].y - va[k].y) > 80.0f;
+            if (!far) far = fabsf(vb[k].z - va[k].z) > 0.1f;
+            if (!far && db->textured) {
+                float qa = va[k].q != 0.0f ? va[k].q : 1.0f, qb = vb[k].q != 0.0f ? vb[k].q : 1.0f;
+                float tol = db->fst ? 2.0f : 0.03f;
+                far = fabsf(vb[k].s / qb - va[k].s / qa) > tol || fabsf(vb[k].t / qb - va[k].t / qa) > tol;
+            }
+        }
         if (far) continue;
         GpuVertex *o = &out[db->first];
         for (u32 k = 0; k < db->count; k++) {

@@ -491,3 +491,19 @@ patch("port/gs/display.c",
 patch("port/gs/display.c",
       "        float t = interp && fa ? (float)(now - tb) / (float)period : 1.0f;\n",
       "        float t = interp && !android_interp_off && fa ? (float)(now - tb) / (float)period : 1.0f;\n")
+
+# 15) display.c: a interpolacao so mistura vertices que sao o MESMO ponto nos dois quadros (mesma profundidade e mesmas
+#     coordenadas de textura). Poligonos recortados nas bordas trocam de vertice entre quadros e viravam buracos
+#     (triangulos pretos no topo das colunas).
+patch("port/gs/display.c",
+      "        for (u32 k = 0; k < db->count && !far; k++)\n"
+      "            far = fabsf(vb[k].x - va[k].x) > 80.0f || fabsf(vb[k].y - va[k].y) > 80.0f;\n",
+      "        for (u32 k = 0; k < db->count && !far; k++) {\n"
+      "            far = fabsf(vb[k].x - va[k].x) > 80.0f || fabsf(vb[k].y - va[k].y) > 80.0f;\n"
+      "            if (!far) far = fabsf(vb[k].z - va[k].z) > 0.1f;\n"
+      "            if (!far && db->textured) {\n"
+      "                float qa = va[k].q != 0.0f ? va[k].q : 1.0f, qb = vb[k].q != 0.0f ? vb[k].q : 1.0f;\n"
+      "                float tol = db->fst ? 2.0f : 0.03f;\n"
+      "                far = fabsf(vb[k].s / qb - va[k].s / qa) > tol || fabsf(vb[k].t / qb - va[k].t / qa) > tol;\n"
+      "            }\n"
+      "        }\n")

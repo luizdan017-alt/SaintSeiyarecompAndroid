@@ -52,3 +52,8 @@ Botoes INT (interpolacao) e 16:9 (widescreen) no topo da tela do jogo: `touch_hu
 
 ## Niveis de otimizacao (workflow)
 `Run workflow` pede `ee_opt` e `vu_opt` (O2 ou O1). O1 e o nivel do projeto original; serve para ver se uma falha vem do -O2.
+
+## Interpolacao: correspondencia de vertices
+`interpolate()` (port/gs/display.c) agora so mistura um desenho se TODOS os vertices tem a mesma profundidade (<= 0,1) e as
+mesmas coordenadas de textura (<= 2 texels, ou 0,03 em STQ) nos dois quadros. Com a interpolacao desligada as manchas pretas
+nas colunas nao apareciam; com ela ligada apareciam.
